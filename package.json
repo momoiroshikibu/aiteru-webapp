@@ -3,9 +3,11 @@
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "build:html": "rm -f dist/index.html && sed -e s/\\{\\{this-is-commit-hash\\}\\}/$(git rev-parse HEAD)/ index.html > dist/index.html",
-      "test": "echo \"Error: no test specified\" && exit 1"
+    "scripts": {
+    "build:all": "npm run build:html && npm run build:js",
+    "build:html": "rm -f dist/index.html && sed -e s/\\{\\{this-is-commit-hash\\}\\}/$(git rev-parse HEAD)/g index.html > dist/index.html",
+    "build:js": "COMMIT_HASH=$(git rev-parse HEAD) webpack -p",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -16,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/momoiroshikibu/aiteru-webapp/issues"
   },
-  "homepage": "https://github.com/momoiroshikibu/aiteru-webapp#readme"
+  "homepage": "https://github.com/momoiroshikibu/aiteru-webapp#readme",
+  "devDependencies": {
+    "webpack": "^2.2.0-rc.2"
+  }
 }

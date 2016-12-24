@@ -8,6 +8,14 @@ $ npm run build:all
 
 ## Run
 
+### Backend
+
+```
+$ go run server.go
+```
+
+
+### Frontend
 ```
 $ npm run server:h2o & tail -f tmp/h2o/access-log
 ```

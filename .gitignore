@@ -1,0 +1,7 @@
+node_modules
+npm-debug.log
+.tern-port
+/tmp
+.DS_Store
+/lib
+index.js

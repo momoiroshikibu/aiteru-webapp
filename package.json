@@ -1,0 +1,20 @@
+{
+  "name": "aiteru-webapp",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:html": "rm -f dist/index.html && sed -e s/\\{\\{this-is-commit-hash\\}\\}/$(git rev-parse HEAD)/ index.html > dist/index.html",
+      "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/momoiroshikibu/aiteru-webapp.git"
+  },
+  "author": "momoiroshikibu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/momoiroshikibu/aiteru-webapp/issues"
+  },
+  "homepage": "https://github.com/momoiroshikibu/aiteru-webapp#readme"
+}

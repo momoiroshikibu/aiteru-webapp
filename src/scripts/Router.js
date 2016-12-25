@@ -1,30 +1,22 @@
 import pathToRegexp from 'path-to-regexp';
 
-export default class Router {
+import {EventEmitter} from 'events';
+
+class Router extends EventEmitter {
 
     constructor() {
-        this.routes = [];
+        super();
+//         this.routes = [];
     }
 
-    add(pattern, fn) {
-        this.routes.push({
-            regexp: pathToRegexp(`#${pattern}`),
-            fn: fn
-        });
-        return this;
-    }
+//     add(pattern, fn) {
+//         this.routes.push({
+//             regexp: pathToRegexp(`#${pattern}`),
+//             fn: fn
+//         });
+//         return this;
+//     }
 
-    resolve(path) {
-        const route = this.routes.find(function(route) {
-            return !!route.regexp.exec(path);
-        });
-
-        if (!route) {
-            return;
-        }
-
-        var matches = route.regexp.exec(path);
-        const args = matches.slice(1);
-        route.fn(...args);
-    }
 }
+
+export default new Router();

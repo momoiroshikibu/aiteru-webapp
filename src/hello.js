@@ -1,9 +1,9 @@
-module.exports = function hello() {
+export default function hello() {
     console.log('hello');
-    fetch('/api/v1/places/', {
+    fetch('/api/v1/places', {
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'b095a504-1dba-45c4-844b-9955c3435265'
+            'Authorization': '08ad9d34-fc4f-43eb-8756-afa519c13949'
         }
     }).then(function(response) {
         return response.json();

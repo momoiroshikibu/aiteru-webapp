@@ -9,5 +9,14 @@ module.exports = {
     output: {
         path: __dirname + '/dist/assets',
         filename: `bundle.${COMMIT_HASH}.js`
+    },
+    module: {
+        rules: [
+            {
+                test: /\.es$/,
+                use: 'babel-loader',
+                exclude: /node_modules/
+            }
+        ]
     }
 };

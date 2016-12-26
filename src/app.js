@@ -5,6 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ApplicationComponent from './scripts/ApplicationComponent.jsx';
 import RoutingComponent from './scripts/RoutingComponent.jsx';
+import LoginComponent from './scripts/LoginComponent.jsx';
 
 hello();
 
@@ -18,6 +19,8 @@ router.add('/places/:id', function placeIdComponent(placeId) {
         </span>
     );
 });
+
+router.add('/login', LoginComponent);
 
 window.addEventListener('DOMContentLoaded', function() {
     router.resolve(window.location.hash);

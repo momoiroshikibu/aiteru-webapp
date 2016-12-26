@@ -18,7 +18,7 @@ export default class PlaceComponent extends Component {
         fetch(`/api/v1/places/${this.state.placeId}`, {
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': window.accessToken // TODO
+                'Authorization': localStorage.getItem('authorization') // TODO
             },
             method: 'GET'
         }).then((response) => {

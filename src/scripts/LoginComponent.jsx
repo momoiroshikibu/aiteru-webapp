@@ -54,14 +54,14 @@ export default class LoginComponent extends Component{
                 name: this.state.loginId,
                 address: this.state.password
             })
-        }).then(function(response) {
+        }).then((response) => {
             return response.json();
-        }).then(function(places) {
+        }).then((places) => {
             console.log(places);
             self.setState({
                 message: 'Login Success'
             })
-        }).catch(function(error) {
+        }).catch((error) => {
             self.setState({
                 message: 'Login Failure'
             });

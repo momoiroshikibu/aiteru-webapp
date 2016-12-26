@@ -21,7 +21,7 @@ export default class Router extends EventEmitter {
     }
 
     resolve(path) {
-        const route = this.routes.find(function(route) {
+        const route = this.routes.find((route) => {
             return !!route.regexp.exec(path);
         });
 

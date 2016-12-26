@@ -22,11 +22,11 @@ router.add('/places/:id', function placeIdComponent(placeId) {
 
 router.add('/login', LoginComponent);
 
-window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('DOMContentLoaded', () => {
     router.resolve(window.location.hash);
 });
 
-window.addEventListener('hashchange', function() {
+window.addEventListener('hashchange', () => {
     router.resolve(window.location.hash);
 });
 

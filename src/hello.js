@@ -5,9 +5,9 @@ export default function hello() {
             'Content-Type': 'application/json',
             'Authorization': '08ad9d34-fc4f-43eb-8756-afa519c13949'
         }
-    }).then(function(response) {
+    }).then((response) => {
         return response.json();
-    }).then(function(places) {
+    }).then((places) => {
         console.log(places);
     });
 }

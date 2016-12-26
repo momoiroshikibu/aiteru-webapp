@@ -34,7 +34,7 @@ export default class RoutingComponent extends Component {
             return (<p>Routing: Nothing to show.</p>)
         }
 
-        const element = React.createElement(this.state.component, {args: this.args});
+        const element = React.createElement(this.state.component, {args: this.state.args});
         // {this.state.component(this.state.args)}
         return (
             <div>

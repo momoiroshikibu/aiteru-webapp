@@ -1,7 +1,7 @@
 import React from 'react';
 import {Component} from 'react';
 
-export default class LoginComponent extends Component{
+export default class LoginComponent extends Component {
 
     constructor() {
         super();
@@ -56,8 +56,9 @@ export default class LoginComponent extends Component{
             })
         }).then((response) => {
             return response.json();
-        }).then((places) => {
-            console.log(places);
+        }).then((response) => {
+            console.log(response);
+            window.accessToken = response.AccessToken; // TODO
             self.setState({
                 message: 'Login Success'
             })

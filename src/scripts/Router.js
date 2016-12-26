@@ -2,7 +2,7 @@ import pathToRegexp from 'path-to-regexp';
 
 import {EventEmitter} from 'events';
 
-class Router extends EventEmitter {
+export default class Router extends EventEmitter {
 
     constructor() {
         super();
@@ -44,4 +44,3 @@ class Router extends EventEmitter {
     }
 }
 
-export default new Router();

@@ -1,8 +1,11 @@
-// import {Component} from 'react';
 import React from 'react';
+import RoutingComponent from './RoutingComponent.jsx';
 
-export default function ApplicationComponent() {
+export default function ApplicationComponent(props) {
     return (
-        <h1>ApplicationComponent</h1>
+        <div>
+          <h1>ApplicationComponent</h1>
+          <RoutingComponent router={props.router}/>
+        </div>
     );
 }

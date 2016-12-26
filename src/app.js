@@ -9,23 +9,23 @@ import RoutingComponent from './scripts/RoutingComponent.jsx';
 hello();
 
 
-// const router = new Router();
-Router.add('/places/:id', function(placeId) {
-    console.log('places', placeId);
+const router = new Router();
+
+router.add('/places/:id', function placeIdComponent(placeId) {
+    return (
+        <span>
+        placeId: {placeId}
+        </span>
+    );
 });
 
-
 window.addEventListener('DOMContentLoaded', function() {
-    Router.resolve(window.location.hash);
-//     Router.emit('change', window.location.hash);
+    router.resolve(window.location.hash);
 });
 
 window.addEventListener('hashchange', function() {
-    Router.resolve(window.location.hash);
-//    Router.emit('change', window.location.hash);
+    router.resolve(window.location.hash);
 });
 
 
-ReactDOM.render(<ApplicationComponent />, document.getElementById('application-container'));
-
-ReactDOM.render(<RoutingComponent />, document.getElementById('routing-container'));
+ReactDOM.render(<ApplicationComponent router={router} />, document.getElementById('application-container'));

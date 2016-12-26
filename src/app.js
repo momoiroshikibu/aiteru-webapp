@@ -1,4 +1,3 @@
-import hello from './hello';
 import Router from './scripts/Router.js';
 
 import React from 'react';
@@ -6,9 +5,6 @@ import ReactDOM from 'react-dom';
 import ApplicationComponent from './scripts/ApplicationComponent.jsx';
 import RoutingComponent from './scripts/RoutingComponent.jsx';
 import LoginComponent from './scripts/LoginComponent.jsx';
-
-hello();
-
 
 const router = new Router();
 

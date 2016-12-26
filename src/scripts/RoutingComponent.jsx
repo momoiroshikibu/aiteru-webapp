@@ -1,5 +1,6 @@
 import React from 'react';
 import {Component} from 'react';
+import NotFoundComponent from './NotFoundComponent.jsx';
 
 export default class RoutingComponent extends Component {
 
@@ -14,10 +15,18 @@ export default class RoutingComponent extends Component {
 
     componentWillMount() {
         this.router.on('change', this.onChangeRoute.bind(this));
+        this.router.on('notfound', this.onNotFound.bind(this));
     }
 
     onChangeRoute(path) {
         this.setState(this.router.getCurrentComponent());
+    }
+
+    onNotFound(path) {
+        this.setState({
+            component: NotFoundComponent,
+            args: path
+        })
     }
 
     render() {
@@ -27,21 +36,7 @@ export default class RoutingComponent extends Component {
 
         return (
             <div>
-                <h1>RoutingComponent</h1>
-                <div>
-                    <p>
-                        component: {this.state.component.name}
-                    </p>
-                    <p>
-                        args: {this.state.args}
-                    </p>
-                    <p>
-                        {this.state.component.name}({this.state.args})
-                    </p>
-                    <p>
-                        {this.state.component(...this.state.args)}
-                    </p>
-                </div>
+                {this.state.component(this.state.args)}
             </div>
         );
     }

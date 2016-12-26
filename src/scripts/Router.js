@@ -4,7 +4,7 @@ import {EventEmitter} from 'events';
 
 export default class Router extends EventEmitter {
 
-    constructor() {
+    constructor(notFoundComponent) {
         super();
         this.routes = [];
         this.currentPath = null;
@@ -26,6 +26,10 @@ export default class Router extends EventEmitter {
         });
 
         if (!route) {
+            this.currentPath = null;
+            this.currentComponent = null;
+            this.currentArgs = null;
+            this.emit('notfound', path);
             return;
         }
 

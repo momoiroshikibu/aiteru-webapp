@@ -57,7 +57,6 @@ export default class LoginComponent extends Component {
         }).then((response) => {
             return response.json();
         }).then((response) => {
-            console.log(response);
             localStorage.setItem('authorization', response.AccessToken); // TODO
             self.setState({
                 message: 'Login Success'

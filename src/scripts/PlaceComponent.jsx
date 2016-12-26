@@ -14,7 +14,6 @@ export default class PlaceComponent extends Component {
 
     componentDidMount() {
         const self = this;
-        console.log(this.state.placeId);
         fetch(`/api/v1/places/${this.state.placeId}`, {
             headers: {
                 'Content-Type': 'application/json',
@@ -24,7 +23,6 @@ export default class PlaceComponent extends Component {
         }).then((response) => {
             return response.json();
         }).then((place) => {
-            console.log(place);
             self.setState({
                 place: place
             });

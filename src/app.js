@@ -10,17 +10,19 @@ hello();
 
 
 // const router = new Router();
-// router.add('/places/:id', function(placeId) {
-//     console.log('places', placeId);
-// });
+Router.add('/places/:id', function(placeId) {
+    console.log('places', placeId);
+});
 
 
 window.addEventListener('DOMContentLoaded', function() {
-    Router.emit('change', window.location.hash);
+    Router.resolve(window.location.hash);
+//     Router.emit('change', window.location.hash);
 });
 
 window.addEventListener('hashchange', function() {
-    Router.emit('change', window.location.hash);
+    Router.resolve(window.location.hash);
+//    Router.emit('change', window.location.hash);
 });
 
 

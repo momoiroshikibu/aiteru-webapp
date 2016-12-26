@@ -6,6 +6,10 @@ export default class RoutingComponent extends Component {
 
     constructor() {
         super();
+        this.state = {
+            component: null,
+            args: null
+        };
     }
 
     componentWillMount() {
@@ -14,9 +18,19 @@ export default class RoutingComponent extends Component {
 
     onChangeRoute(path) {
         console.log('onChangeRoute', path);
+        this.setState(Router.getCurrentComponent());
     }
 
     render() {
-        return (<p>Routing Component</p>);
+        if (!this.state.component) {
+            return (<p>Routing: Nothing to show.</p>)
+        }
+
+        return (
+            <p>
+                {this.state.component}
+                {this.state.args}
+            </p>
+        );
     }
 }

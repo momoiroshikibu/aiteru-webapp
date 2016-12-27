@@ -1,5 +1,6 @@
 import React from 'react';
 import {Component} from 'react';
+import UserLinkComponent from './UserLinkComponent.jsx';
 
 export default class UserComponent extends Component {
 
@@ -58,20 +59,12 @@ export default class UserComponent extends Component {
                         <td>{user.id}</td>
                     </tr>
                     <tr>
-                        <th>ownerIds</th>
-                        <td>{user.ownerIds}</td>
-                    </tr>
-                    <tr>
-                        <th>collaboratorIds</th>
-                        <td>{user.collaboratorIds}</td>
-                    </tr>
-                    <tr>
                         <th>createdAt</th>
                         <td>{user.createdAt}</td>
                     </tr>
                     <tr>
                         <th>createdUserId</th>
-                        <td>{user.createdUserId}</td>
+                        <td><UserLinkComponent userId={user.id} /></td>
                     </tr>
                     <tr>
                         <th>updatedAt</th>
@@ -79,7 +72,7 @@ export default class UserComponent extends Component {
                     </tr>
                     <tr>
                         <th>updatedUserId</th>
-                        <td>{user.updatedUserId}</td>
+                        <td><UserLinkComponent userId={user.id} /></td>
                     </tr>
                 </table>
             </div>

@@ -9,13 +9,15 @@ export default class Router extends EventEmitter {
         this.routes = [];
         this.currentPath = null;
         this.currentComponent = null;
+        this.currentWorker = null;
         this.currentArgs = null;
     }
 
-    add(pattern, component) {
+    add(pattern, component, worker) {
         this.routes.push({
             regexp: pathToRegexp(`#${pattern}`),
-            component: component
+            component: component,
+            worker: worker
         });
         return this;
     }
@@ -28,13 +30,15 @@ export default class Router extends EventEmitter {
         if (!route) {
             this.currentPath = null;
             this.currentComponent = null;
+            this.currentWorker = null;
             this.currentArgs = null;
             this.emit('notfound', path);
             return;
         }
 
         this.currentPath = path;
-        this.currentComponent = route.component
+        this.currentComponent = route.component;
+        this.currentWorker = route.worker;
         const matches = route.regexp.exec(path);
         this.currentArgs = matches.slice(1);
         this.emit('change', path);
@@ -43,6 +47,7 @@ export default class Router extends EventEmitter {
     getCurrentComponent() {
         return {
             component: this.currentComponent,
+            worker: this.currentWorker,
             args: this.currentArgs
         }
     }

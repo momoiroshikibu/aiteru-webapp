@@ -8,39 +8,36 @@ export default class PlaceComponent extends Component {
     constructor(props) {
         super();
         this.state = {
-            placeId: props.args[0],
-            place: null
+            worker: props.worker,
+            status: props.worker.getStatus()
         };
     }
 
 
     componentWillMount() {
-        PlaceService(this.state.placeId).then((place) => {
-            this.setState({place});
-        }).catch((error) => {
+        this.state.worker.on('change', () => {
             this.setState({
-                message: 'error!'
+                status: this.state.worker.getStatus()
             });
         });
+        this.state.worker.start();
     }
 
     render() {
 
-        if (!this.state.place) {
-            return (
-                <marqee>
-                    fetching
-                </marqee>
-            );
-        }
+        const statusElement = (
+            <div>
+                {this.state.status}
+            </div>
+        );
 
-        const place = this.state.place;
-
+        const place = this.state.worker.getResult() || {};
         const ownerElements = (place.ownerIds || []).map((id) => <UserLinkComponent userId={id} />);
         const collaboratorElements = (place.collaboratorIds || []).map((id) => <UserLinkComponent userId={id} />);
 
         return (
             <div className="place">
+                <div>{statusElement}</div>
                 <h1 className="place-name">{place.name}</h1>
                 <p className="message">
                     {this.state.message}

@@ -9,6 +9,7 @@ export default class RoutingComponent extends Component {
         this.router = props.router;
         this.state = {
             component: null,
+            worker: null,
             args: null
         };
     }
@@ -34,7 +35,10 @@ export default class RoutingComponent extends Component {
             return (<p>Routing: Nothing to show.</p>)
         }
 
-        const element = React.createElement(this.state.component, {args: this.state.args});
+        const element = React.createElement(this.state.component, {
+            worker: (this.state.worker)? new this.state.worker(this.state.args[0]): null,
+            args: this.state.args
+});
         // {this.state.component(this.state.args)}
         return (
             <div>

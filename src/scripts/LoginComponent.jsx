@@ -1,5 +1,6 @@
 import React from 'react';
 import {Component} from 'react';
+import LoginService from './LoginService.es';
 
 export default class LoginComponent extends Component {
 
@@ -42,27 +43,16 @@ export default class LoginComponent extends Component {
     }
 
 
-    attempt(e) {
-        const self = this;
-        e.preventDefault();
-        fetch('/api/auth', {
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            method: 'POST',
-            body: JSON.stringify({
-                name: this.state.loginId,
-                address: this.state.password
-            })
-        }).then((response) => {
-            return response.json();
-        }).then((response) => {
-            localStorage.setItem('authorization', response.AccessToken); // TODO
-            self.setState({
+    attempt(event) {
+        event.preventDefault();
+
+        LoginService(this.state.loginId, this.state.password).then((accessToken) => {
+            localStorage.setItem('authorization', accessToken); // TODO
+            this.setState({
                 message: 'Login Success'
-            })
+            });
         }).catch((error) => {
-            self.setState({
+            this.setState({
                 message: 'Login Failure'
             });
         });

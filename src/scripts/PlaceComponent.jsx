@@ -47,6 +47,9 @@ export default class PlaceComponent extends Component {
 
         const place = this.state.place;
 
+        const ownerElements = (place.ownerIds || []).map((id) => <UserLinkComponent userId={id} />);
+        const collaboratorElements = (place.collaboratorIds || []).map((id) => <UserLinkComponent userId={id} />);
+
         return (
             <div className="place">
                 <h1 className="place-name">{place.name}</h1>
@@ -60,11 +63,11 @@ export default class PlaceComponent extends Component {
                     </tr>
                     <tr>
                         <th>ownerIds</th>
-                        <td>{place.ownerIds}</td>
+                        <td>{ownerElements}</td>
                     </tr>
                     <tr>
                         <th>collaboratorIds</th>
-                        <td>{place.collaboratorIds}</td>
+                        <td>{collaboratorElements}</td>
                     </tr>
                     <tr>
                         <th>createdAt</th>

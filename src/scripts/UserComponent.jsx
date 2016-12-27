@@ -1,6 +1,7 @@
 import React from 'react';
 import {Component} from 'react';
 import UserLinkComponent from './UserLinkComponent.jsx';
+import UserService from './UserService.es';
 
 export default class UserComponent extends Component {
 
@@ -12,27 +13,12 @@ export default class UserComponent extends Component {
         };
     }
 
-
     componentWillMount() {
-        const self = this;
-        fetch(`/api/v1/users/${this.state.userId}`, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': localStorage.getItem('authorization') // TODO
-            },
-            method: 'GET'
-        }).then((response) => {
-            return response.json();
-        }).then((user) => {
-            self.setState({
-                user: user
-            });
+        UserService(this.state.userId).then((user) => {
+            this.setState({user});
         }).catch((error) => {
-            self.setState({
-                message: 'error!'
-            });
+            this.setState({message: 'error!'});
         });
-
     }
 
     render() {

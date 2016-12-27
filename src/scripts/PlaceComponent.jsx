@@ -25,11 +25,11 @@ export default class PlaceComponent extends Component {
 
     render() {
 
-        const statusElement = (
-            <div>
-                {this.state.status}
-            </div>
-        );
+        if (this.state.status === 'pending') {
+            return (
+                <h1>fetching...</h1>
+            )
+        };
 
         const place = this.state.worker.getResult() || {};
         const ownerElements = (place.ownerIds || []).map((id) => <UserLinkComponent userId={id} />);
@@ -37,7 +37,6 @@ export default class PlaceComponent extends Component {
 
         return (
             <div className="place">
-                <div>{statusElement}</div>
                 <h1 className="place-name">{place.name}</h1>
                 <p className="message">
                     {this.state.message}

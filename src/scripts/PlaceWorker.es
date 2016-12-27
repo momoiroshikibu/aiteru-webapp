@@ -12,7 +12,7 @@ export default class PlaceWorker extends EventEmitter {
     }
 
     start() {
-        this.status = 'started';
+        this.status = 'pending';
         this.emitChange();
         PlaceService(this.placeId).then((place) => {
             this.result = place;

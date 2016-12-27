@@ -1,6 +1,7 @@
 import React from 'react';
 import {Component} from 'react';
 import UserLinkComponent from './UserLinkComponent.jsx';
+import PlaceService from './PlaceService.es';
 
 export default class PlaceComponent extends Component {
 
@@ -14,25 +15,13 @@ export default class PlaceComponent extends Component {
 
 
     componentWillMount() {
-        const self = this;
-        fetch(`/api/v1/places/${this.state.placeId}`, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': localStorage.getItem('authorization') // TODO
-            },
-            method: 'GET'
-        }).then((response) => {
-            return response.json();
-        }).then((place) => {
-            self.setState({
-                place: place
-            });
+        PlaceService(this.state.placeId).then((place) => {
+            this.setState({place});
         }).catch((error) => {
-            self.setState({
+            this.setState({
                 message: 'error!'
             });
         });
-
     }
 
     render() {

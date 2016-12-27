@@ -17,12 +17,12 @@ export default class LoginComponent extends Component {
         return (
             <div>
                 <div>{this.state.message}</div>
-            <form onSubmit={this.attempt.bind(this)}>
+            <form onSubmit={::this.attempt}>
                 <div>
-                    <input type="text" value={this.state.loginId} onChange={this.onChangeLoginId.bind(this)} />
+                    <input type="text" value={this.state.loginId} onChange={::this.onChangeLoginId} />
                 </div>
                 <div>
-                    <input type="password" value={this.state.password} onChange={this.onChangePassword.bind(this)} />
+                    <input type="password" value={this.state.password} onChange={::this.onChangePassword} />
                 </div>
                 <button>Login</button>
             </form>

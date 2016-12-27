@@ -1,5 +1,6 @@
 import React from 'react';
 import {Component} from 'react';
+import UserLinkComponent from './UserLinkComponent.jsx';
 
 export default class PlaceComponent extends Component {
 
@@ -71,7 +72,7 @@ export default class PlaceComponent extends Component {
                     </tr>
                     <tr>
                         <th>createdUserId</th>
-                        <td>{place.createdUserId}</td>
+                        <td><UserLinkComponent userId={place.createdUserId} /></td>
                     </tr>
                     <tr>
                         <th>updatedAt</th>

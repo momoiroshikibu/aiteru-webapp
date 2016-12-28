@@ -14,8 +14,8 @@ export default class RoutingComponent extends Component {
     }
 
     componentWillMount() {
-        this.router.on('change', this.onChangeRoute.bind(this));
-        this.router.on('notfound', this.onNotFound.bind(this));
+        this.router.on('change',   ::this.onChangeRoute);
+        this.router.on('notfound', ::this.onNotFound);
     }
 
     onChangeRoute(path) {
@@ -26,18 +26,18 @@ export default class RoutingComponent extends Component {
         this.setState({
             component: NotFoundComponent,
             args: path
-        })
+        });
     }
 
     render() {
-        if (!this.state.component) {
-            return (<p>Routing: Nothing to show.</p>)
+        const component = this.state.component;
+        if (!component) {
+            return false;
         }
 
-        const element = React.createElement(this.state.component, {
-            args: this.state.args
-});
-        // {this.state.component(this.state.args)}
+        const element = (component.prototype.render)
+                      ? React.createElement(component, {args: this.state.args})
+                      : component(this.state.args);
         return (
             <div>
                 {element}

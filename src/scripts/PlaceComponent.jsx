@@ -1,53 +1,15 @@
 import React from 'react';
-import {Component} from 'react';
+import WorkerComponent from './WorkerComponent.jsx';
 import UserLinkComponent from './UserLinkComponent.jsx';
-import PlaceService from './PlaceService.es';
 import PlaceWorker from './PlaceWorker.es';
 
-export default class PlaceComponent extends Component {
+export default class PlaceComponent extends WorkerComponent {
 
     constructor(props) {
-        super();
-        const worker = new PlaceWorker(props.args[0]);
-        this.state = {
-            worker: worker,
-            status: worker.getStatus()
-        };
-        worker.on('change', ::this.onChangeWorkerStatus);
-        worker.start();
+        super(PlaceWorker, props.args[0]);
     }
 
-    onChangeWorkerStatus() {
-        this.setState({
-            status: this.state.worker.getStatus()
-        });
-    }
-
-    componentWillReceiveProps(nextProps) {
-        console.log('wilReceiveProps', nextProps);
-        const newWorker = new PlaceWorker(nextProps.args[0]);
-        this.setState({
-            worker: newWorker,
-            status: newWorker.getStatus()
-        });
-        newWorker.on('change', ::this.onChangeWorkerStatus);
-        newWorker.start();
-    }
-
-    render() {
-
-        const worker = this.state.worker;
-        if (['notstarted', 'pending'].indexOf(this.state.worker.getStatus()) > -1) {
-            return (
-                <h1>fetching...</h1>
-            )
-        };
-
-        const place = worker.getResult();
-        if (!place) {
-            return (<h1>Not Found</h1>);
-        }
-
+    renderSuccess(place) {
         const ownerElements = (place.ownerIds || []).map((id) => <UserLinkComponent key={id} userId={id} />);
         const collaboratorElements = (place.collaboratorIds || []).map((id) => <UserLinkComponent key={id} userId={id} />);
 
@@ -89,6 +51,10 @@ export default class PlaceComponent extends Component {
                 </table>
             </div>
         );
+    }
+
+    renderFailure(e) {
+        return (<p>{e}</p>);
     }
 
 }

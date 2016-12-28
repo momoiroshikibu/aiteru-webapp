@@ -1,0 +1,68 @@
+import React from 'react';
+import {Component} from 'react';
+import UserLinkComponent from './UserLinkComponent.jsx';
+import UsersWorker from './UsersWorker.es';
+
+export default class WorkerComponent extends Component {
+
+    constructor(Worker, ...args) {
+        super();
+        const worker = new Worker(...args);
+        this.state = {
+            worker: worker,
+            status: worker.getStatus()
+        };
+        worker.on('change', ::this.onChangeWorkerStatus);
+        worker.start();
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const newWorker = new UsersWorker();
+        this.setState({
+            worker: newWorker,
+            status: newWorker.getStatus()
+        });
+        newWorker.on('change', ::this.onChangeWorkerStatus);
+        newWorker.start();
+    }
+
+    onChangeWorkerStatus() {
+        this.setState({
+            status: this.state.worker.getStatus()
+        });
+    }
+
+    renderNotStarted() {
+        return (<h1>Not Started</h1>);
+    }
+
+    renderPending() {
+        return (<h1>Pending</h1>);
+    }
+
+    renderSuccess(result) {
+        return (<h1>Success</h1>);
+    }
+
+    renderFailure() {
+        return (<h1>Failure</h1>);
+    }
+
+    render() {
+        const worker = this.state.worker;
+        const status = worker.getStatus();
+        switch(status) {
+        case 'notstarted':
+            return this.renderNotStarted();
+        case 'pending':
+            return this.renderPending();
+        case 'success':
+            return this.renderSuccess(worker.getResult());
+        case 'failure':
+            return this.renderFailure(worker.getFailure());
+        default:
+            return (<h1>Unknown Status: {status}</h1>);
+        }
+    }
+
+}

@@ -7,10 +7,12 @@ import RoutingComponent from './scripts/RoutingComponent.jsx';
 import LoginComponent from './scripts/LoginComponent.jsx';
 import PlaceComponent from './scripts/PlaceComponent.jsx';
 import UserComponent from './scripts/UserComponent.jsx';
+import UsersComponent from './scripts/UsersComponent.jsx';
 
 const router = new Router();
 
 router.add('/places/:placeId', PlaceComponent);
+router.add('/users', UsersComponent);
 router.add('/users/:userId', UserComponent);
 router.add('/login', LoginComponent);
 

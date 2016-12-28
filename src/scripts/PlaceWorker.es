@@ -1,47 +1,24 @@
 import {EventEmitter} from 'events';
+import Worker from './Worker.es';
 import PlaceService from './PlaceService.es';
 
-export default class PlaceWorker extends EventEmitter {
+export default class PlaceWorker extends Worker {
 
     constructor(placeId) {
         super();
         this.placeId = placeId;
-        this.place = null;
-        this.result = null;
-        this.status = 'notstarted';
     }
 
-    start() {
-        this.status = 'pending';
-        this.emitChange();
-        PlaceService(this.placeId).then((place) => {
-            this.result = place;
-            this.succeed();
-        }).catch(() => {
-            this.fail();
-        });
+    async work() {
+        try {
+            const place = await PlaceService(this.placeId);
+            if (place){
+                this.succeed(place);
+            } else {
+                this.fail('Place Not Found', this.placeId);
+            }
+        } catch(e) {
+            this.fail(e);
+        }
     }
-
-    getResult() {
-        return this.result;
-    }
-
-    succeed() {
-        this.status = 'success';
-        this.emitChange();
-    }
-
-    fail() {
-        this.status = 'failure';
-        this.emitChange();
-    }
-
-    getStatus() {
-        return this.status;
-    }
-
-    emitChange() {
-        this.emit('change', this.status);
-    }
-
 }

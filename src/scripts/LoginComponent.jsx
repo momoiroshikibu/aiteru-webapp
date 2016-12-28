@@ -1,6 +1,6 @@
 import React from 'react';
 import {Component} from 'react';
-import LoginService from './LoginService.es';
+import LoginRepository from './LoginRepository.es';
 
 export default class LoginComponent extends Component {
 
@@ -46,11 +46,12 @@ export default class LoginComponent extends Component {
     attempt(event) {
         event.preventDefault();
 
-        LoginService(this.state.loginId, this.state.password).then((accessToken) => {
+        LoginRepository.login(this.state.loginId, this.state.password).then((accessToken) => {
             localStorage.setItem('authorization', accessToken); // TODO
             this.setState({
                 message: 'Login Success'
             });
+            window.location = '#/places'; // TODO
         }).catch((error) => {
             this.setState({
                 message: 'Login Failure'

@@ -2,36 +2,53 @@ import React from 'react';
 import {Component} from 'react';
 import UserLinkComponent from './UserLinkComponent.jsx';
 import PlaceService from './PlaceService.es';
+import PlaceWorker from './PlaceWorker.es';
 
 export default class PlaceComponent extends Component {
 
     constructor(props) {
         super();
+        const worker = new PlaceWorker(props.args[0]);
         this.state = {
-            worker: props.worker,
-            status: props.worker.getStatus()
+            worker: worker,
+            status: worker.getStatus()
         };
+//        this.listenWorkerStatus();
+        worker.on('change', ::this.onChangeWorkerStatus);
+        worker.start();
     }
 
-
-    componentWillMount() {
-        this.state.worker.on('change', () => {
-            this.setState({
-                status: this.state.worker.getStatus()
-            });
+    onChangeWorkerStatus() {
+        this.setState({
+            status: this.state.worker.getStatus()
         });
-        this.state.worker.start();
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log('wilReceiveProps', nextProps);
+        const newWorker = new PlaceWorker(nextProps.args[0]);
+        this.setState({
+            worker: newWorker,
+            status: newWorker.getStatus()
+        });
+        newWorker.on('change', ::this.onChangeWorkerStatus);
+        newWorker.start();
     }
 
     render() {
 
-        if (this.state.status === 'pending') {
+        const worker = this.state.worker;
+        if (['notstarted', 'pending'].indexOf(this.state.worker.getStatus()) > -1) {
             return (
                 <h1>fetching...</h1>
             )
         };
 
-        const place = this.state.worker.getResult() || {};
+        const place = worker.getResult();
+        if (!place) {
+            return (<h1>Not Found</h1>);
+        }
+
         const ownerElements = (place.ownerIds || []).map((id) => <UserLinkComponent userId={id} />);
         const collaboratorElements = (place.collaboratorIds || []).map((id) => <UserLinkComponent userId={id} />);
 

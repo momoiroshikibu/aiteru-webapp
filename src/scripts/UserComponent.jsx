@@ -1,38 +1,25 @@
 import React from 'react';
-import {Component} from 'react';
+import WorkerComponent from './WorkerComponent.jsx';
 import UserLinkComponent from './UserLinkComponent.jsx';
-import UserService from './UserService.es';
+import UserWorker from './UserWorker.es';
 
-export default class UserComponent extends Component {
+export default class UserComponent extends WorkerComponent {
 
     constructor(props) {
-        super();
-        this.state = {
-            userId: props.args[0],
-            user: null
-        };
+        super(UserWorker, props.args[0]);
     }
 
-    componentWillMount() {
-        UserService(this.state.userId).then((user) => {
-            this.setState({user});
-        }).catch((error) => {
-            this.setState({message: 'error!'});
-        });
+
+    renderPending() {
+        return (<p>fetching</p>
+        );
     }
 
-    render() {
+    renderFailure(failure) {
+        return (<p>User Not Found</p>);
+    }
 
-        if (!this.state.user) {
-            return (
-                <marqee>
-                    fetching
-                </marqee>
-            );
-        }
-
-        const user = this.state.user;
-
+    renderSuccess(user) {
         return (
             <div className="user">
                 <h1 className="user-name">{user.name}</h1>

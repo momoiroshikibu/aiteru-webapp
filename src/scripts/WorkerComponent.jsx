@@ -5,25 +5,25 @@ import UsersWorker from './UsersWorker.es';
 
 export default class WorkerComponent extends Component {
 
-    constructor(Worker, ...args) {
+    constructor(workerClass, ...args) {
         super();
-        const worker = new Worker(...args);
+        this.workerClass = workerClass;
+        this.initialize(args);
+    }
+
+    componentWillReceiveProps({args}) {
+        this.initialize(args);
+    }
+
+    initialize(args) {
+        const worker = new this.workerClass(...args);
         this.state = {
             worker: worker,
             status: worker.getStatus()
         };
+
         worker.on('change', ::this.onChangeWorkerStatus);
         worker.start();
-    }
-
-    componentWillReceiveProps(nextProps) {
-        const newWorker = new UsersWorker();
-        this.setState({
-            worker: newWorker,
-            status: newWorker.getStatus()
-        });
-        newWorker.on('change', ::this.onChangeWorkerStatus);
-        newWorker.start();
     }
 
     onChangeWorkerStatus() {

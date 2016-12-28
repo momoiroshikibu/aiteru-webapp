@@ -13,9 +13,14 @@ export default class PlaceComponent extends WorkerComponent {
         const ownerElements = (place.ownerIds || []).map((id) => <UserLinkComponent key={id} userId={id} />);
         const collaboratorElements = (place.collaboratorIds || []).map((id) => <UserLinkComponent key={id} userId={id} />);
 
+        const openStatus = (place.isOpen)
+                         ? "OPEN"
+                         : "CLOSED";
+
         return (
             <div className="place">
                 <h1 className="place-name">{place.name}</h1>
+                <h2 className="place-is-open">{openStatus}</h2>
                 <p className="message">
                     {this.state.message}
                 </p>

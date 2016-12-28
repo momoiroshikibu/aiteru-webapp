@@ -2,6 +2,7 @@ import React from 'react';
 import WorkerComponent from './WorkerComponent.jsx';
 import UserLinkComponent from './UserLinkComponent.jsx';
 import PlaceWorker from './PlaceWorker.es';
+import PlaceRepository from './PlaceRepository.es';
 
 export default class PlaceComponent extends WorkerComponent {
 
@@ -54,11 +55,35 @@ export default class PlaceComponent extends WorkerComponent {
                             <th>updatedUserId</th>
                             <td>{place.updatedUserId}</td>
                         </tr>
+                        <tr>
+                            <th>statusUpdatedUserId</th>
+                            <td><UserLinkComponent userId={place.statusUpdatedUserId} /></td>
+                        </tr>
+                        <tr>
+                            <th>statusUpdatedAt</th>
+                            <td>{place.statusUpdatedAt}</td>
+                        </tr>
                     </tbody>
                 </table>
+                {this.renderToggleButton(place.id, place.isOpen)}
             </div>
         );
     }
+
+    renderToggleButton(placeId, isOpen) {
+        const self = this;
+        const toggleStatus = () => {
+            PlaceRepository.updatePlaceStatus(placeId, !isOpen).then(() => {
+                self.state.worker.start();
+            })
+        }
+        return (<button type="button" onClick={toggleStatus}>Toggle Status</button>)
+    }
+
+    /* toggleStatus() {
+     *     console.log('yeah');
+     *     PlaceRepository.updatePlaceStatus()
+     * }*/
 
     renderFailure(e) {
         return (<p>{e}</p>);

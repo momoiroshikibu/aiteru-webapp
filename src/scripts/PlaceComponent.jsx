@@ -20,34 +20,36 @@ export default class PlaceComponent extends WorkerComponent {
                     {this.state.message}
                 </p>
                 <table className="place-attributes">
-                    <tr>
-                        <th>ID</th>
-                        <td>{place.id}</td>
-                    </tr>
-                    <tr>
-                        <th>ownerIds</th>
-                        <td>{ownerElements}</td>
-                    </tr>
-                    <tr>
-                        <th>collaboratorIds</th>
-                        <td>{collaboratorElements}</td>
-                    </tr>
-                    <tr>
-                        <th>createdAt</th>
-                        <td>{place.createdAt}</td>
-                    </tr>
-                    <tr>
-                        <th>createdUserId</th>
-                        <td><UserLinkComponent userId={place.createdUserId} /></td>
-                    </tr>
-                    <tr>
-                        <th>updatedAt</th>
-                        <td>{place.updatedAt}</td>
-                    </tr>
-                    <tr>
-                        <th>updatedUserId</th>
-                        <td>{place.updatedUserId}</td>
-                    </tr>
+                    <tbody>
+                        <tr>
+                            <th>ID</th>
+                            <td>{place.id}</td>
+                        </tr>
+                        <tr>
+                            <th>ownerIds</th>
+                            <td>{ownerElements}</td>
+                        </tr>
+                        <tr>
+                            <th>collaboratorIds</th>
+                            <td>{collaboratorElements}</td>
+                        </tr>
+                        <tr>
+                            <th>createdAt</th>
+                            <td>{place.createdAt}</td>
+                        </tr>
+                        <tr>
+                            <th>createdUserId</th>
+                            <td><UserLinkComponent userId={place.createdUserId} /></td>
+                        </tr>
+                        <tr>
+                            <th>updatedAt</th>
+                            <td>{place.updatedAt}</td>
+                        </tr>
+                        <tr>
+                            <th>updatedUserId</th>
+                            <td>{place.updatedUserId}</td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         );

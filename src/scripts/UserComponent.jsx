@@ -27,26 +27,28 @@ export default class UserComponent extends WorkerComponent {
                     {this.state.message}
                 </p>
                 <table className="user-attributes">
-                    <tr>
-                        <th>ID</th>
-                        <td>{user.id}</td>
-                    </tr>
-                    <tr>
-                        <th>createdAt</th>
-                        <td>{user.createdAt}</td>
-                    </tr>
-                    <tr>
-                        <th>createdUserId</th>
-                        <td><UserLinkComponent userId={user.id} /></td>
-                    </tr>
-                    <tr>
-                        <th>updatedAt</th>
-                        <td>{user.updatedAt}</td>
-                    </tr>
-                    <tr>
-                        <th>updatedUserId</th>
-                        <td><UserLinkComponent userId={user.id} /></td>
-                    </tr>
+                    <tbody>
+                        <tr>
+                            <th>ID</th>
+                            <td>{user.id}</td>
+                        </tr>
+                        <tr>
+                            <th>createdAt</th>
+                            <td>{user.createdAt}</td>
+                        </tr>
+                        <tr>
+                            <th>createdUserId</th>
+                            <td><UserLinkComponent userId={user.id} /></td>
+                        </tr>
+                        <tr>
+                            <th>updatedAt</th>
+                            <td>{user.updatedAt}</td>
+                        </tr>
+                        <tr>
+                            <th>updatedUserId</th>
+                            <td><UserLinkComponent userId={user.id} /></td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         );

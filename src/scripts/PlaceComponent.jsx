@@ -13,7 +13,6 @@ export default class PlaceComponent extends Component {
             worker: worker,
             status: worker.getStatus()
         };
-//        this.listenWorkerStatus();
         worker.on('change', ::this.onChangeWorkerStatus);
         worker.start();
     }
@@ -49,8 +48,8 @@ export default class PlaceComponent extends Component {
             return (<h1>Not Found</h1>);
         }
 
-        const ownerElements = (place.ownerIds || []).map((id) => <UserLinkComponent userId={id} />);
-        const collaboratorElements = (place.collaboratorIds || []).map((id) => <UserLinkComponent userId={id} />);
+        const ownerElements = (place.ownerIds || []).map((id) => <UserLinkComponent key={id} userId={id} />);
+        const collaboratorElements = (place.collaboratorIds || []).map((id) => <UserLinkComponent key={id} userId={id} />);
 
         return (
             <div className="place">

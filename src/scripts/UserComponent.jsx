@@ -6,7 +6,7 @@ import UserWorker from './UserWorker.es';
 export default class UserComponent extends WorkerComponent {
 
     constructor(props) {
-        super(UserWorker, props.args[0]);
+        super(UserWorker, props.args);
     }
 
 

@@ -3,9 +3,9 @@ import UserRepository from './UserRepository.es';
 
 export default class UserWorker extends Worker {
 
-    constructor(userId) {
+    constructor(props) {
         super();
-        this.userId = userId;;
+        this.userId = props.userId;;
     }
 
     async work() {

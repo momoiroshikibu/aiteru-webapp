@@ -15,10 +15,6 @@ export default class Worker extends EventEmitter {
         this.work();
     }
 
-    getResult() {
-        return this.result;
-    }
-
     succeed(result) {
         this.result = result;
         this.status = 'success';
@@ -29,6 +25,14 @@ export default class Worker extends EventEmitter {
         this.failure = failure;
         this.status = 'failure';
         this.emitChange();
+    }
+
+    rework() {
+        this.work();
+    }
+
+    getResult() {
+        return this.result;
     }
 
     getStatus() {

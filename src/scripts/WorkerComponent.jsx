@@ -5,7 +5,7 @@ import UsersWorker from './UsersWorker.es';
 
 export default class WorkerComponent extends Component {
 
-    constructor(workerClass, ...args) {
+    constructor(workerClass, args) {
         super();
         this.workerClass = workerClass;
         this.initialize(args);
@@ -16,7 +16,7 @@ export default class WorkerComponent extends Component {
     }
 
     initialize(args) {
-        const worker = new this.workerClass(...args);
+        const worker = new this.workerClass(args);
         this.state = {
             worker: worker,
             status: worker.getStatus()

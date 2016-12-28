@@ -7,7 +7,7 @@ import PlaceRepository from './PlaceRepository.es';
 export default class PlaceComponent extends WorkerComponent {
 
     constructor(props) {
-        super(PlaceWorker, props.args[0]);
+        super(PlaceWorker, props.args);
     }
 
     renderSuccess(place) {
@@ -74,16 +74,11 @@ export default class PlaceComponent extends WorkerComponent {
         const self = this;
         const toggleStatus = () => {
             PlaceRepository.updatePlaceStatus(placeId, !isOpen).then(() => {
-                self.state.worker.start();
+                self.state.worker.rework();
             })
         }
         return (<button type="button" onClick={toggleStatus}>Toggle Status</button>)
     }
-
-    /* toggleStatus() {
-     *     console.log('yeah');
-     *     PlaceRepository.updatePlaceStatus()
-     * }*/
 
     renderFailure(e) {
         return (<p>{e}</p>);

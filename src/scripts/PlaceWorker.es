@@ -4,9 +4,9 @@ import PlaceRepository from './PlaceRepository.es';
 
 export default class PlaceWorker extends Worker {
 
-    constructor(placeId) {
+    constructor(props) {
         super();
-        this.placeId = placeId;
+        this.placeId = props.placeId;
     }
 
     async work() {

@@ -23,7 +23,9 @@ export default class WorkerComponent extends Component {
         };
 
         worker.on('change', ::this.onChangeWorkerStatus);
-        worker.start();
+        setTimeout(() => {
+            worker.start();
+        }, 0);
     }
 
     onChangeWorkerStatus() {

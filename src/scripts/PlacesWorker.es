@@ -2,7 +2,7 @@ import {EventEmitter} from 'events';
 import Worker from './Worker.es';
 import PlaceRepository from './PlaceRepository.es';
 
-export default class PlaceWorker extends Worker {
+export default class PlacesWorker extends Worker {
 
     constructor(placeId) {
         super();
@@ -11,12 +11,8 @@ export default class PlaceWorker extends Worker {
 
     async work() {
         try {
-            const place = await PlaceRepository.fetchPlace(this.placeId);
-            if (place){
-                this.succeed(place);
-            } else {
-                this.fail('Place Not Found', this.placeId);
-            }
+            const places = await PlaceRepository.fetchPlaces();
+            this.succeed(places);
         } catch(e) {
             this.fail(e);
         }

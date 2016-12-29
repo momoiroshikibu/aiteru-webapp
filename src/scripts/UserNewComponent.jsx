@@ -1,19 +1,20 @@
 import React from 'react';
-import WorkerComponent from './WorkerComponent.jsx';
-import UserRepository from './UserRepository.es';
-import UserNewWorker from './UserNewWorker.es';
+import ActorComponent from './ActorComponent.jsx';
+import UserNewActor from './UserNewActor.es';
 
-export default class UserNewComponent extends WorkerComponent {
+export default class UserNewComponent extends ActorComponent {
 
     constructor(props) {
-        super(UserNewWorker, props.args, {
+        super(UserNewActor, props.args, {
             renderers: {
+//                initialized: Renderer.initialized,
                 success: Renderer.success
             }
         });
+        super.emitEvent('initialized');
     }
 
-    renderPending() {
+    [`@initialized`] (actor, event, result) {
         return (
             <div>
                 <div>{this.state.message}</div>
@@ -26,17 +27,26 @@ export default class UserNewComponent extends WorkerComponent {
         )
     }
 
-    register(e) {
-        e.preventDefault();
-        this.state.worker.register()
+    [`@register:success`] (actor, event, user) {
+        return (
+            <div>
+                {JSON.stringify(user)}
+            </div>
+        )
     }
 
+    register(e) {
+        e.preventDefault();
+        super.getActor().register()
+    }
 
 }
 
 class Renderer {
+
     static success() {
-        return (<h1>YEAH!!!</h1>)
+        return (<h1>SUCCESS!!!</h1>)
     }
+
 }
 

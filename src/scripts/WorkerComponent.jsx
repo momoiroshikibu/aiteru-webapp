@@ -35,46 +35,15 @@ export default class WorkerComponent extends Component {
         });
     }
 
-    renderNotStarted() {
-        return (<h1>Not Started</h1>);
-    }
-
-    renderPending() {
-        return (<h1>Pending</h1>);
-    }
-
-    renderSuccess(result) {
-        return (<h1>Success</h1>);
-    }
-
-    renderFailure() {
-        return (<h1>Failure</h1>);
-    }
-
     render() {
         const worker = this.state.worker;
         const status = worker.getStatus();
-
         const renderer = this.renderers[status];
         if (renderer) {
             return renderer(worker.getResult());
         }
 
-        // compatible
-
-
-        switch(status) {
-        case 'notstarted':
-            return this.renderNotStarted();
-        case 'pending':
-            return this.renderPending();
-        case 'success':
-            return this.renderSuccess(worker.getResult());
-        case 'failure':
-            return this.renderFailure(worker.getFailure());
-        default:
-            return (<h1>Unknown Status: {status}</h1>);
-        }
+        return (<h1>Unknown Status: {status}</h1>);
     }
 
 }

@@ -43,22 +43,15 @@ export default class ActorComponent extends Component {
             return false;
         }
 
-        // Stateless Function
-        let renderer = this.renderers[event];
+        const renderer = this.renderers[event] || // Stateless Function
+              (() => { // Stateful Component
+                  const renderer = this['@' + event];
+                  if (!renderer) {
+                      return undefined;
+                  }
+                  return renderer.bind(this);
+              })();
 
-        // Stateful Component
-        if (!renderer) {
-            // event 'notfound' => renderOnNotfound
-            // ex) renderCapitalizedeventName
-//            const rendererFunctionName = 'renderOn' + event.charAt(0).toUpperCase() + event.substring(1);
-            const rendererFunctionName = '@' + event;
-            renderer = this[rendererFunctionName];
-
-            // bind context
-            if (renderer) {
-                renderer = renderer.bind(this);
-            }
-        }
         return (renderer)
             ? renderer(actor, event, result)
             : (<h1>Unknown Event: {event}</h1>);

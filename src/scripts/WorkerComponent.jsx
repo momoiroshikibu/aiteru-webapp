@@ -35,15 +35,34 @@ export default class WorkerComponent extends Component {
         });
     }
 
+
+    [`renderNotStarted`]() {return false;}
+    [`renderPending`]() {return false;}
+    [`success`]() {return false;}
+    [`failure`]() {return false;}
+
     render() {
         const worker = this.state.worker;
         const status = worker.getStatus();
+
         const renderer = this.renderers[status];
         if (renderer) {
             return renderer(worker.getResult());
         }
 
-        return (<h1>Unknown Status: {status}</h1>);
+        // compatible
+        switch(status) {
+        case 'notstarted':
+            return this.renderNotStarted();
+        case 'pending':
+            return this.renderPending();
+        case 'success':
+            return this.renderSuccess(worker.getResult());
+        case 'failure':
+            return this.renderFailure(worker.getFailure());
+        default:
+            return (<h1>Unknown Status: {status}</h1>);
+        }
     }
 
 }

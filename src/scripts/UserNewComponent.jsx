@@ -37,7 +37,7 @@ export default class UserNewComponent extends ActorComponent {
 
     register(e) {
         e.preventDefault();
-        super.getActor().register()
+        super.getActor().register(e.target.userName.value);
     }
 
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import ActorComponent from './ActorComponent.jsx';
 import UserNewActor from './UserNewActor.es';
+import UserLinkComponent from './UserLinkComponent.jsx'
 
 export default class UserNewComponent extends ActorComponent {
 
@@ -20,7 +21,20 @@ export default class UserNewComponent extends ActorComponent {
                 <div>{this.state.message}</div>
                 <form onSubmit={::this.register}>
                     <label>User Name</label>
-                    <input type="text" name="userName"/>
+                    <input type="text" name="userName" />
+                    <button>Register</button>
+                </form>
+            </div>
+        )
+    }
+
+    [`@register:validationError`] (actor, event, result) {
+        return (
+            <div>
+                <p>{JSON.stringify(result)}</p>
+                <form onSubmit={::this.register}>
+                    <label>User Name</label>
+                    <input type="text" name="userName" />
                     <button>Register</button>
                 </form>
             </div>
@@ -30,7 +44,8 @@ export default class UserNewComponent extends ActorComponent {
     [`@register:success`] (actor, event, user) {
         return (
             <div>
-                {JSON.stringify(user)}
+                <p>User Created</p>
+                <UserLinkComponent userId={user.id} userName={user.name} />
             </div>
         )
     }

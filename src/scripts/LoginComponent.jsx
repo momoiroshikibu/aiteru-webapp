@@ -1,6 +1,6 @@
 import React from 'react';
 import {Component} from 'react';
-import LoginRepository from './LoginRepository.es';
+import LoginRepository from './repositories/LoginRepository.es';
 
 export default class LoginComponent extends Component {
 

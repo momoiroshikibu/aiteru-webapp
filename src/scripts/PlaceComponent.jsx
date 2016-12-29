@@ -2,7 +2,7 @@ import React from 'react';
 import WorkerComponent from './WorkerComponent.jsx';
 import UserLinkComponent from './UserLinkComponent.jsx';
 import PlaceWorker from './PlaceWorker.es';
-import PlaceRepository from './PlaceRepository.es';
+import PlaceRepository from './repositories/PlaceRepository.es';
 
 export default class PlaceComponent extends WorkerComponent {
 
@@ -14,9 +14,7 @@ export default class PlaceComponent extends WorkerComponent {
         const ownerElements = (place.ownerIds || []).map((id) => <UserLinkComponent key={id} userId={id} />);
         const collaboratorElements = (place.collaboratorIds || []).map((id) => <UserLinkComponent key={id} userId={id} />);
 
-        const openStatus = (place.isOpen)
-                         ? "OPEN"
-                         : "CLOSED";
+        const openStatus = (place.isOpen)? "OPEN" : "CLOSED";
 
         return (
             <div className="place">
@@ -75,9 +73,9 @@ export default class PlaceComponent extends WorkerComponent {
         const toggleStatus = () => {
             PlaceRepository.updatePlaceStatus(placeId, !isOpen).then(() => {
                 self.state.worker.rework();
-            })
-        }
-        return (<button type="button" onClick={toggleStatus}>Toggle Status</button>)
+            });
+        };
+        return (<button type="button" onClick={toggleStatus}>Toggle Status</button>);
     }
 
     renderFailure(e) {

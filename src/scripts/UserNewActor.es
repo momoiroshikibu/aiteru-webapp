@@ -1,5 +1,5 @@
 import Actor from './Actor.es';
-import UserRepository from './UserRepository.es';
+import UserRepository from './repositories/UserRepository.es';
 
 export default class UserNewWorker extends Actor {
 

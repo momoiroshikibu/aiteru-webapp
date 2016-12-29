@@ -1,6 +1,6 @@
 import {EventEmitter} from 'events';
 import Worker from './Worker.es';
-import PlaceRepository from './PlaceRepository.es';
+import PlaceRepository from './repositories/PlaceRepository.es';
 
 export default class PlaceWorker extends Worker {
 

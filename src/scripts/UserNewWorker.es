@@ -1,5 +1,5 @@
 import Worker from './Worker.es';
-import UserRepository from './UserRepository.es';
+import UserRepository from './repositories/UserRepository.es';
 
 export default class UserNewWorker extends Worker {
 

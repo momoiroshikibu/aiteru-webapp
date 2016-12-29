@@ -5,9 +5,10 @@ import UsersWorker from './UsersWorker.es';
 
 export default class WorkerComponent extends Component {
 
-    constructor(workerClass, args) {
+    constructor(workerClass, args, options = {}) {
         super();
         this.workerClass = workerClass;
+        this.renderers = options.renderers || {};
         this.initialize(args);
     }
 
@@ -53,6 +54,15 @@ export default class WorkerComponent extends Component {
     render() {
         const worker = this.state.worker;
         const status = worker.getStatus();
+
+        const renderer = this.renderers[status];
+        if (renderer) {
+            return renderer(worker.getResult());
+        }
+
+        // compatible
+
+
         switch(status) {
         case 'notstarted':
             return this.renderNotStarted();

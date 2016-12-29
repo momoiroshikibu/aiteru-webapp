@@ -9,11 +9,13 @@ import PlaceComponent from './scripts/PlaceComponent.jsx';
 import PlacesComponent from './scripts/PlacesComponent.jsx';
 import UserComponent from './scripts/UserComponent.jsx';
 import UsersComponent from './scripts/UsersComponent.jsx';
+import UserNewComponent from './scripts/UserNewComponent.jsx';
 
 const router = new Router();
 
 router.add('/places', PlacesComponent);
 router.add('/places/:placeId', PlaceComponent);
+router.add('/users/new', UserNewComponent);
 router.add('/users', UsersComponent);
 router.add('/users/:userId', UserComponent);
 router.add('/login', LoginComponent);

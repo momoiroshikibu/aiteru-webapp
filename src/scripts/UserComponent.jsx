@@ -6,7 +6,13 @@ import UserWorker from './UserWorker.es';
 export default class UserComponent extends WorkerComponent {
 
     constructor(props) {
-        super(UserWorker, props.args);
+        super(UserWorker, props.args, {
+            renderers: {
+                pending: Renderer.pending,
+                failure: Renderer.failure,
+                success: Renderer.success
+            }
+        });
     }
 
 
@@ -54,4 +60,47 @@ export default class UserComponent extends WorkerComponent {
         );
     }
 
+}
+
+
+class Renderer {
+    static pending() {
+        return (<p>fetching</p>);
+    }
+
+    static failure() {
+        return (<p>User Not Found</p>);
+    }
+
+    static success(user) {
+        return (
+            <div className="user">
+                <h1 className="user-name">{user.name}</h1>
+                <table className="user-attributes">
+                    <tbody>
+                        <tr>
+                            <th>ID</th>
+                            <td>{user.id}</td>
+                        </tr>
+                        <tr>
+                            <th>createdAt</th>
+                            <td>{user.createdAt}</td>
+                        </tr>
+                        <tr>
+                            <th>createdUserId</th>
+                            <td><UserLinkComponent userId={user.id} /></td>
+                        </tr>
+                        <tr>
+                            <th>updatedAt</th>
+                            <td>{user.updatedAt}</td>
+                        </tr>
+                        <tr>
+                            <th>updatedUserId</th>
+                            <td><UserLinkComponent userId={user.id} /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        );
+    }
 }

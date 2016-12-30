@@ -38,8 +38,8 @@ export default class WorkerComponent extends Component {
 
     [`renderNotStarted`]() {return false;}
     [`renderPending`]() {return false;}
-    [`success`]() {return false;}
-    [`failure`]() {return false;}
+    [`renderSuccess`]() {return false;}
+    [`renderFailure`]() {return false;}
 
     render() {
         const worker = this.state.worker;

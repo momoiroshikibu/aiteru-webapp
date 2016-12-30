@@ -8,20 +8,22 @@ import MenuItem from 'material-ui/MenuItem';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 
 
+import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 
 export default function ApplicationComponent(props) {
     return (
         <div>
-            <MuiThemeProvider>
+            <MuiThemeProvider muiTheme={getMuiTheme()}>
                 <AppBar
                     title="Aiteru?"
                     iconElementLeft={
                         <IconMenu
-                         iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
-                         anchorOrigin={{horizontal: 'left', vertical: 'top'}}
-                         targetOrigin={{horizontal: 'left', vertical: 'top'}}>
+                iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
+                anchorOrigin={{horizontal: 'left', vertical: 'top'}}
+                targetOrigin={{horizontal: 'left', vertical: 'top'}}>
                             <MenuItem primaryText="places" onTouchTap={() => {
                                     window.location.hash ="#/places"
                                 }}/>

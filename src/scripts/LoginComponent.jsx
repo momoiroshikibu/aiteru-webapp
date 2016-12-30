@@ -27,7 +27,7 @@ export default class LoginComponent extends Component {
                 <div>
                     <MuiThemeProvider muiTheme={getMuiTheme()}>
                         <TextField
-                            hintText="Hint Text"
+                            hintText="Login ID"
                             onChange={::this.onChangeLoginId}
                         />
                     </MuiThemeProvider>
@@ -36,7 +36,7 @@ export default class LoginComponent extends Component {
                 <div>
                     <MuiThemeProvider muiTheme={getMuiTheme()}>
                         <TextField
-                            hintText="Password Field"
+                            hintText="Password"
                             floatingLabelText="Password"
                             type="password"
                             onChange={::this.onChangePassword}

@@ -42,7 +42,6 @@ export default class PlacesComponent extends WorkerComponent {
             <div>
                 <TabComponent />
                 <MuiThemeProvider muiTheme={getMuiTheme()}>
-                    
                     <List>
                         {placeLinks}
                     </List>

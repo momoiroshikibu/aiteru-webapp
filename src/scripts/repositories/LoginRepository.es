@@ -8,9 +8,15 @@ export default class LoginRepository {
                 name: loginId,
                 address: password
             });
+
+            if (responseBody == null) {
+                throw 'authentiacation failed';
+            }
+
             return responseBody.AccessToken;
+
         } catch (e) {
-            return undefined;
+            throw e;
         }
     }
 }

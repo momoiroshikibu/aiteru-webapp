@@ -10,6 +10,8 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
+import TransitionUtil from './utils/TransitionUtil.es';
+
 export default class LoginComponent extends Component {
 
     constructor() {
@@ -23,30 +25,35 @@ export default class LoginComponent extends Component {
 
     render() {
         return (
-            <form onSubmit={this.attempt}>
-                <div>
-                    <MuiThemeProvider muiTheme={getMuiTheme()}>
-                        <TextField
-                            hintText="Login ID"
-                            onChange={::this.onChangeLoginId}
-                        />
-                    </MuiThemeProvider>
-                </div>
+            <div className="login-component">
+                <h1>Login</h1>
+                <div className="message">{this.state.message}</div>
+                <form onSubmit={this.attempt}>
+                    <div>
+                        <MuiThemeProvider muiTheme={getMuiTheme()}>
+                            <TextField
+                                hintText="Login ID"
+                                floatingLabelText="Login ID"
+                                onChange={::this.onChangeLoginId}
+                            />
+                        </MuiThemeProvider>
+                    </div>
 
-                <div>
+                    <div>
+                        <MuiThemeProvider muiTheme={getMuiTheme()}>
+                            <TextField
+                                hintText="Password"
+                                floatingLabelText="Password"
+                                type="password"
+                                onChange={::this.onChangePassword}
+                            />
+                        </MuiThemeProvider>
+                    </div>
                     <MuiThemeProvider muiTheme={getMuiTheme()}>
-                        <TextField
-                            hintText="Password"
-                            floatingLabelText="Password"
-                            type="password"
-                            onChange={::this.onChangePassword}
-                        />
+                        <RaisedButton label="Login" primary={true} onClick={::this.attempt} />
                     </MuiThemeProvider>
-                </div>
-                <MuiThemeProvider muiTheme={getMuiTheme()}>
-                    <RaisedButton label="Login" primary={true} onClick={::this.attempt} />
-                </MuiThemeProvider>
-            </form>
+                </form>
+            </div>
         );
     }
 
@@ -64,17 +71,15 @@ export default class LoginComponent extends Component {
 
 
     attempt(event) {
-        //        event.preventDefault();
-
         LoginRepository.login(this.state.loginId, this.state.password).then((accessToken) => {
             localStorage.setItem('authorization', accessToken); // TODO
             this.setState({
                 message: 'Login Success'
             });
-            window.location = '#/places'; // TODO
+            TransitionUtil.emit('/places');
         }).catch((error) => {
             this.setState({
-                message: 'Login Failure'
+                message: 'Login Failed.'
             });
         });
     }

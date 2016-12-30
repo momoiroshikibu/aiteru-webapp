@@ -10,6 +10,7 @@ import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
+import TabComponent from './TabComponent.jsx';
 import TransitionUtil from './utils/TransitionUtil.es';
 
 
@@ -39,7 +40,9 @@ export default class PlacesComponent extends WorkerComponent {
         });
         return (
             <div>
+                <TabComponent />
                 <MuiThemeProvider muiTheme={getMuiTheme()}>
+                    
                     <List>
                         {placeLinks}
                     </List>

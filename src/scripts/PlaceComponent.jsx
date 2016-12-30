@@ -4,6 +4,15 @@ import UserLinkComponent from './UserLinkComponent.jsx';
 import PlaceWorker from './PlaceWorker.es';
 import PlaceRepository from './repositories/PlaceRepository.es';
 
+
+import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import Toggle from 'material-ui/Toggle';
+import RaisedButton from 'material-ui/RaisedButton';
+
+
+
 export default class PlaceComponent extends WorkerComponent {
 
     constructor(props) {
@@ -19,7 +28,7 @@ export default class PlaceComponent extends WorkerComponent {
         return (
             <div className="place">
                 <h1 className="place-name">{place.name}</h1>
-                <h2 className="place-is-open">{openStatus}</h2>
+                <h2 className={"place-is-open " + openStatus}>{openStatus}</h2>
                 <p className="message">
                     {this.state.message}
                 </p>
@@ -70,12 +79,24 @@ export default class PlaceComponent extends WorkerComponent {
 
     renderToggleButton(placeId, isOpen) {
         const self = this;
-        const toggleStatus = () => {
-            PlaceRepository.updatePlaceStatus(placeId, !isOpen).then(() => {
+        const toggleStatus = (event, newStatus) => {
+            PlaceRepository.updatePlaceStatus(placeId, newStatus).then(() => {
                 self.state.worker.rework();
             });
         };
-        return (<button type="button" onClick={toggleStatus}>Toggle Status</button>);
+//        <button type="button" onClick={toggleStatus}>Toggle Status</button>
+        /* <Toggle
+         * label="Open"
+         * />
+         */
+        return (
+            <MuiThemeProvider muiTheme={getMuiTheme()}>
+                <Toggle label="Open"
+                        toggled={isOpen}
+                        onToggle={toggleStatus}/>
+
+            </MuiThemeProvider>
+        );
     }
 
     renderFailure(e) {

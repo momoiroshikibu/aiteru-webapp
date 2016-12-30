@@ -22,6 +22,7 @@ export default class Worker extends EventEmitter {
     }
 
     fail(failure) {
+        console.error(failure);
         this.failure = failure;
         this.status = 'failure';
         this.emitChange();

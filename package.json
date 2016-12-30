@@ -32,8 +32,10 @@
   },
   "dependencies": {
     "babel-preset-es2016": "^6.16.0",
+    "material-ui": "^0.16.6",
     "path-to-regexp": "^1.7.0",
     "react": "^15.4.1",
-    "react-dom": "^15.4.1"
+    "react-dom": "^15.4.1",
+    "react-tap-event-plugin": "^2.0.1"
   }
 }

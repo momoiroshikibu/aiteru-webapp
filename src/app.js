@@ -10,6 +10,9 @@ import UserComponent from './scripts/UserComponent.jsx';
 import UsersComponent from './scripts/UsersComponent.jsx';
 import UserNewComponent from './scripts/UserNewComponent.jsx';
 
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
+
 const router = new Router();
 
 router.add('/login', LoginComponent);

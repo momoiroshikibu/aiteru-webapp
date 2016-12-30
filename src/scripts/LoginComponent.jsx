@@ -2,6 +2,14 @@ import React from 'react';
 import {Component} from 'react';
 import LoginRepository from './repositories/LoginRepository.es';
 
+
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+
+
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+
 export default class LoginComponent extends Component {
 
     constructor() {
@@ -10,23 +18,35 @@ export default class LoginComponent extends Component {
             loginId: '',
             password: '',
             message: ''
-        }
+        };
     }
 
     render() {
         return (
-            <div>
-                <div>{this.state.message}</div>
-            <form onSubmit={::this.attempt}>
+            <form onSubmit={this.attempt}>
                 <div>
-                    <input type="text" value={this.state.loginId} onChange={::this.onChangeLoginId} />
+                    <MuiThemeProvider muiTheme={getMuiTheme()}>
+                        <TextField
+                            hintText="Hint Text"
+                            onChange={::this.onChangeLoginId}
+                        />
+                    </MuiThemeProvider>
                 </div>
+
                 <div>
-                    <input type="password" value={this.state.password} onChange={::this.onChangePassword} />
+                    <MuiThemeProvider muiTheme={getMuiTheme()}>
+                        <TextField
+                            hintText="Password Field"
+                            floatingLabelText="Password"
+                            type="password"
+                            onChange={::this.onChangePassword}
+                        />
+                    </MuiThemeProvider>
                 </div>
-                <button>Login</button>
+                <MuiThemeProvider muiTheme={getMuiTheme()}>
+                    <RaisedButton label="Login" primary={true} onClick={::this.attempt} />
+                </MuiThemeProvider>
             </form>
-            </div>
         );
     }
 
@@ -44,7 +64,7 @@ export default class LoginComponent extends Component {
 
 
     attempt(event) {
-        event.preventDefault();
+        //        event.preventDefault();
 
         LoginRepository.login(this.state.loginId, this.state.password).then((accessToken) => {
             localStorage.setItem('authorization', accessToken); // TODO

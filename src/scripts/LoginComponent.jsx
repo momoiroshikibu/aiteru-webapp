@@ -27,7 +27,9 @@ export default class LoginComponent extends Component {
         return (
             <div className="login-component">
                 <h1>Login</h1>
-                <div className="message">{this.state.message}</div>
+                <p className="message">
+                    {this.state.message}
+                </p>
                 <form onSubmit={this.attempt}>
                     <div>
                         <MuiThemeProvider muiTheme={getMuiTheme()}>
@@ -50,7 +52,10 @@ export default class LoginComponent extends Component {
                         </MuiThemeProvider>
                     </div>
                     <MuiThemeProvider muiTheme={getMuiTheme()}>
-                        <RaisedButton label="Login" primary={true} onClick={::this.attempt} />
+                        <RaisedButton className="login-button"
+                                      label="Login"
+                                      primary={true}
+                                      onClick={::this.attempt} />
                     </MuiThemeProvider>
                 </form>
             </div>

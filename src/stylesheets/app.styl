@@ -1,17 +1,36 @@
+$error_color = #f44e03
+
 html
   font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: #888;
+
+body, h1, h2, h3, h4, h5, h6
+  margin: 0;
 
 body
-  font-size: 13px;
-  line-height: 20px;
+  font-size: 15px;
+  line-height: 24px;
+
+body
+  font-size: 15px;
+  line-height: 24px;
 
 .login-component
+  margin-top: 20px;
   text-align: center;
-  color: #888;
+
+  .message
+    color: $error_color;
+
+  .login-button
+    margin-top: 20px;
 
 .place
   text-align: center;
+
   .place-name
+    margin: 20px;
     font-size: 3em
 
   .place-is-open
@@ -22,12 +41,15 @@ body
     display: inline-block;
     padding: 20px;
     border-radius: 10px;
+
   .place-is-open.OPEN
     color: #03A9F4;
     border-color: #03A9F4;
+
   .place-is-open.CLOSED
-    color: #f44e03;
-    border-color: #f44e03;
+    color: $error_color;
+    border-color: $error_color;
+
   .place-attributes
     th
       text-align: left
@@ -36,9 +58,28 @@ body
 
 .user
   .user-name
-    font-size: 2em
-  .user-attributes
-    th
-      text-align: left
-    td
-      text-align: center
+    text-align: center;
+    font-size: 3em;
+    margin: 20px;
+
+  .user-info
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+
+.attribute-section
+  display: table;
+
+  .attribute
+    display: table-row;
+    height: 40px;
+
+    .attribute-label
+      width: 120px;
+      text-align: right;
+      display: table-cell;
+
+    .attribute-content
+      display: table-cell;
+      text-align: left;
+      padding-left: 60px;

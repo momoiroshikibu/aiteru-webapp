@@ -31,6 +31,9 @@ router.add('/users/:userId', UserComponent);
 const resolveLocationHash = () => router.resolve(window.location.hash);
 window.addEventListener('DOMContentLoaded', resolveLocationHash);
 window.addEventListener('hashchange', resolveLocationHash);
-EventBus.on('Fetcher:Authentication:Failed', () => {TransitionUtil.emit('/login')});
+EventBus.on('Fetcher:Authentication:Failed', () => {
+    TransitionUtil.emit('/login');
+    EventBus.emit('change:application:message', 'Access authentication expired. Please login again.');
+});
 
 ReactDOM.render(<ApplicationComponent router={router} />, document.getElementById('application-container'));

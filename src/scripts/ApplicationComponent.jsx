@@ -30,17 +30,22 @@ export default class ApplicationComponent extends Component {
     }
 
     render() {
+
+        const message = (this.state.message)
+                      ? (
+                          <MuiThemeProvider muiTheme={getMuiTheme()}>
+                              <Snackbar
+                                  open={!!this.state.message}
+                                  message={this.state.message}
+                                  autoHideDuration={3000} />
+                          </MuiThemeProvider>
+                      )
+                      : false;
         return (
             <div>
                 <AppBarComponent />
                 <RoutingComponent router={this.router}/>
-                <MuiThemeProvider muiTheme={getMuiTheme()}>
-                    <Snackbar
-                        open={!!this.state.message}
-                        message={this.state.message}
-                        autoHideDuration={3000}
-                    />
-                </MuiThemeProvider>
+                {message}
             </div>
         );
     }

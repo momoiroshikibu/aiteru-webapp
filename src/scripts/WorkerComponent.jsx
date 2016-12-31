@@ -17,7 +17,6 @@ export default class WorkerComponent extends Component {
     }
 
     initialize(args) {
-
         if (!this.state) {
             const worker = new this.workerClass(args);
             this.state = {
@@ -30,13 +29,12 @@ export default class WorkerComponent extends Component {
             }, 0);
         } else {
             // reuse
+            this.state.worker.updateArgs(args.args);
             this.state.worker.updateParams(args.params);
             setTimeout(() => {
                 this.state.worker.work();
             }, 0);
-
         }
-
     }
 
     onChangeWorkerStatus() {

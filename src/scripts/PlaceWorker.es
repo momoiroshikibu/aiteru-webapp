@@ -21,4 +21,9 @@ export default class PlaceWorker extends Worker {
             this.fail(e);
         }
     }
+
+    updateArgs(args) {
+        this.placeId = args.placeId;
+    }
+
 }

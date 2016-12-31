@@ -11,6 +11,8 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {List, ListItem} from 'material-ui/List';
 import TransitionUtil from './utils/TransitionUtil.es';
 
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
 export default class UsersComponent extends WorkerComponent {
 
@@ -30,12 +32,26 @@ export default class UsersComponent extends WorkerComponent {
             );
         });
 
+        const style = {
+            marginRight: 20,
+            position: 'fixed',
+            bottom: '20px',
+            right: 0
+        };
+
         return (
+            <div>
             <MuiThemeProvider muiTheme={getMuiTheme()}>
                 <List>
                     {userListItems}
                 </List>
             </MuiThemeProvider>
+            <MuiThemeProvider muiTheme={getMuiTheme()}>
+                <FloatingActionButton style={style} onTouchTap={() => {TransitionUtil.emit('/users/new')}}>
+                    <ContentAdd />
+                </FloatingActionButton>
+            </MuiThemeProvider>
+            </div>
         );
     }
 

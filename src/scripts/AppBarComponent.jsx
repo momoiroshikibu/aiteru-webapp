@@ -57,8 +57,9 @@ export default class AppBarComponent extends Component {
                             docked={false}
                             onRequestChange={::this.closeDrawer}>
                         <Subheader inset={true}>Menus</Subheader>
-                        <MenuItem primaryText="places" onTouchTap={() => {::this.navigate('/places')}}/>
-                        <MenuItem primaryText="users" onTouchTap={() => {::this.navigate('/users')}}/>
+                        <MenuItem primaryText="places" onTouchTap={() => {::this.navigate('/places')}} />
+                        <MenuItem primaryText="users" onTouchTap={() => {::this.navigate('/users')}} />
+                        <MenuItem primaryText="add user" onTouchTap={() => {::this.navigate('/users/new')}} />
                     </Drawer>
                 </MuiThemeProvider>
             </div>

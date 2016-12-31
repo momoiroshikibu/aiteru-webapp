@@ -1,7 +1,7 @@
 import Actor from './Actor.es';
 import UserRepository from './repositories/UserRepository.es';
 
-export default class UserNewWorker extends Actor {
+export default class UserNewActor extends Actor {
 
     constructor(props) {
         super();
@@ -28,7 +28,8 @@ export default class UserNewWorker extends Actor {
 
         try {
             const user = await UserRepository.addUser(userName);
-            return this.emitEvent('register:success', user);
+            this.emitEvent('register:success', user);
+            return user;
         } catch(e) {
             return this.emitEvent('register:failure', e);
         }

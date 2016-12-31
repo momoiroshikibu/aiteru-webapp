@@ -1,44 +1,71 @@
 import React from 'react';
 import ActorComponent from './ActorComponent.jsx';
 import UserNewActor from './UserNewActor.es';
-import UserLinkComponent from './UserLinkComponent.jsx'
+import UserLinkComponent from './UserLinkComponent.jsx';
+
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+import TransitionUtil from './utils/TransitionUtil.es';
+import EventBus from './utils/EventBus.es';
 
 export default class UserNewComponent extends ActorComponent {
 
     constructor(props) {
         super(UserNewActor, props.args, {
             renderers: {
-//                initialized: Renderer.initialized,
                 success: Renderer.success
             }
         });
+        setTimeout(() => {
+            this.setState({
+                userName: ''
+            });
+        }, 0);
         super.emitEvent('initialized');
     }
 
     [`@initialized`] (actor, event, result) {
         return (
-            <div>
-                <div>{this.state.message}</div>
-                <form onSubmit={::this.register}>
-                    <label>User Name</label>
-                    <input type="text" name="userName" />
-                    <button>Register</button>
+            <div className="user-new-component">
+                <h1>New User</h1>
+                <p className="message">
+                    {this.state.message}
+                </p>
+                <form onSubmit={this.attempt}>
+                    <div>
+                        <MuiThemeProvider muiTheme={getMuiTheme()}>
+                            <TextField
+                                hintText="User Name"
+                                floatingLabelText="User Name"
+                                value={this.state.userName}
+                                onChange={::this.updateUserName}
+                            />
+                        </MuiThemeProvider>
+                    </div>
+
+                    <div>
+                        <MuiThemeProvider muiTheme={getMuiTheme()}>
+                            <RaisedButton className="user-create-button"
+                                          label="Create"
+                                          primary={true}
+                                          onClick={::this.register}
+                            />
+                        </MuiThemeProvider>
+                    </div>
                 </form>
             </div>
-        )
+        );
     }
 
     [`@register:validationError`] (actor, event, result) {
         return (
             <div>
                 <p>{JSON.stringify(result)}</p>
-                <form onSubmit={::this.register}>
-                    <label>User Name</label>
-                    <input type="text" name="userName" />
-                    <button>Register</button>
-                </form>
+                {::this[`@initialized`](actor, event, result)}
             </div>
-        )
+        );
     }
 
     [`@register:success`] (actor, event, user) {
@@ -47,12 +74,21 @@ export default class UserNewComponent extends ActorComponent {
                 <p>User Created</p>
                 <UserLinkComponent userId={user.id} userName={user.name} />
             </div>
-        )
+        );
+    }
+
+    updateUserName(event, newValue) {
+        this.setState({
+            userName: newValue
+        });
     }
 
     register(e) {
         e.preventDefault();
-        super.getActor().register(e.target.userName.value);
+        this.getActor().register(this.state.userName).then((user) => {
+            TransitionUtil.emit(`/users/${user.id}`);
+            EventBus.emit('change:application:message', 'Uesr Created');
+        });
     }
 
 }
@@ -60,7 +96,7 @@ export default class UserNewComponent extends ActorComponent {
 class Renderer {
 
     static success() {
-        return (<h1>SUCCESS!!!</h1>)
+        return (<h1>SUCCESS!!!</h1>);
     }
 
 }

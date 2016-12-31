@@ -15,13 +15,16 @@ export default class ActorComponent extends Component {
     }
 
     initialize(args) {
-        const actor = new this.actorClass(args);
-        actor.on('event', ::this.onActorEvent);
-        this.state = {
-            actor: actor,
-            event: undefined,
-            result: undefined
-        };
+        const isInitialized = !!this.state;
+        if (!isInitialized) {
+            const actor = new this.actorClass(args);
+            actor.on('event', ::this.onActorEvent);
+            this.state = {
+                actor: actor,
+                event: undefined,
+                result: undefined
+            };
+        }
     }
 
     onActorEvent(event, result) {

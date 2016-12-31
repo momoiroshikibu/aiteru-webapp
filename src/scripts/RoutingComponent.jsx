@@ -9,23 +9,30 @@ export default class RoutingComponent extends Component {
         this.router = props.router;
         this.state = {
             component: null,
-            args: null
+            args: null,
+            params: null
         };
     }
 
     componentWillMount() {
         this.router.on('change',   ::this.onChangeRoute);
+        this.router.on('update', ::this.onUpdateCondition);
         this.router.on('notfound', ::this.onNotFound);
     }
 
-    onChangeRoute(path) {
+    onChangeRoute(path, params) {
         this.setState(this.router.getCurrentComponent());
     }
 
-    onNotFound(path) {
+    onUpdateCondition(path, params) {
+        this.setState(this.router.getCurrentComponent());
+    }
+
+    onNotFound(path, params) {
         this.setState({
             component: NotFoundComponent,
-            args: path
+            args: path,
+            params: params
         });
     }
 

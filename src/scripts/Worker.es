@@ -2,7 +2,7 @@ import {EventEmitter} from 'events';
 
 export default class Worker extends EventEmitter {
 
-    constructor(placeId) {
+    constructor() {
         super();
         this.result = null;
         this.failure = null;

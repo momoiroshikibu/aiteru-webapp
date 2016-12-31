@@ -10,6 +10,10 @@ export default class PlacesWorker extends Worker {
         this.params = params;
     }
 
+    updateParams(params) {
+        this.params = params;
+    }
+
     async work() {
         try {
             const places = await PlaceRepository.fetchPlaces(this.params);

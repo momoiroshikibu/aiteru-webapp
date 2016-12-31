@@ -40,7 +40,7 @@ export default class PlacesComponent extends WorkerComponent {
         });
         return (
             <div>
-                <TabComponent />
+                <TabComponent placesWorker={this.state.worker} />
                 <MuiThemeProvider muiTheme={getMuiTheme()}>
                     <List>
                         {placeLinks}

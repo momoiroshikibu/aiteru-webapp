@@ -17,16 +17,26 @@ export default class WorkerComponent extends Component {
     }
 
     initialize(args) {
-        const worker = new this.workerClass(args);
-        this.state = {
-            worker: worker,
-            status: worker.getStatus()
-        };
 
-        worker.on('change', ::this.onChangeWorkerStatus);
-        setTimeout(() => {
-            worker.start();
-        }, 0);
+        if (!this.state) {
+            const worker = new this.workerClass(args);
+            this.state = {
+                worker: worker,
+                status: worker.getStatus()
+            };
+            worker.on('change', ::this.onChangeWorkerStatus);
+            setTimeout(() => {
+                this.state.worker.start();
+            }, 0);
+        } else {
+            // reuse
+            this.state.worker.updateParams(args.params);
+            setTimeout(() => {
+                this.state.worker.work();
+            }, 0);
+
+        }
+
     }
 
     onChangeWorkerStatus() {

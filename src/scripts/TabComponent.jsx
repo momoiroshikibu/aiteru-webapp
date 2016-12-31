@@ -12,7 +12,7 @@ import ToggleInterminateCheckBox from 'material-ui/svg-icons/toggle/indeterminat
 
 import TransitionUtil from './utils/TransitionUtil.es';
 
-export default function TabComponent() {
+export default function TabComponent({placesWorker}) {
     return (
         <MuiThemeProvider muiTheme={getMuiTheme()}>
             <Tabs>
@@ -23,3 +23,23 @@ export default function TabComponent() {
         </MuiThemeProvider>
     )
 }
+
+
+/* <Tab icon={<ToggleStar />} onClick={() => {TransitionUtil.emit('/places?filter=favorites');}} />
+ * <Tab icon={<ToggleCheckBox />} onClick={() => {TransitionUtil.emit('/places?filter=open');}} />
+ * <Tab icon={<ToggleInterminateCheckBox />} onClick={() => {TransitionUtil.emit('/places?filter=closed');}} />*/
+
+
+
+
+/* export default function TabComponent({placesWorker}) {
+ *     return (
+ *         <MuiThemeProvider muiTheme={getMuiTheme()}>
+ *             <Tabs>
+ *                 <Tab icon={<ToggleStar />} onClick={() => {placesWorker.work({filter: 'favorites'})}} />
+ *                 <Tab icon={<ToggleCheckBox />} onClick={() => {placesWorker.work({filter: 'open'})}} />
+ *                 <Tab icon={<ToggleInterminateCheckBox />} onClick={() => {placesWorker.work({filter: 'closed'})}} />
+ *             </Tabs>
+ *         </MuiThemeProvider>
+ *     )
+ * }*/

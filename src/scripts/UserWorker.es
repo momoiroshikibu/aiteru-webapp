@@ -17,4 +17,8 @@ export default class UserWorker extends Worker {
         }
     }
 
+    updateArgs(args) {
+        this.userId = args.userId;
+    }
+
 }

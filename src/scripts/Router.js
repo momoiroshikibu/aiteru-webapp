@@ -37,6 +37,7 @@ export default class Router extends EventEmitter {
         }
 
         this.currentPath = path;
+        this.currentParams = params;
         this.currentComponent = route.component;
         const matches = route.regexp.exec(path);
         this.currentArgs = route.regexp.keys.reduce((keyValues, key, i) => {
@@ -50,6 +51,7 @@ export default class Router extends EventEmitter {
     getCurrentComponent() {
         return {
             component: this.currentComponent,
+            params: this.currentParams,
             args: this.currentArgs
         }
     }

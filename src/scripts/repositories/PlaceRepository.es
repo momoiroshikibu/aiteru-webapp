@@ -2,9 +2,9 @@ import Fetcher from './Fetcher.es';
 
 export default class PlaceRepository {
 
-    static async fetchPlaces() {
+    static async fetchPlaces(queryParams) {
         try {
-            return await Fetcher.get('/api/v1/places');
+            return await Fetcher.get('/api/v1/places', queryParams);
         } catch (e) {
             return undefined;
         }

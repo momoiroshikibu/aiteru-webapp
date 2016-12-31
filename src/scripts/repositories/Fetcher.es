@@ -1,9 +1,14 @@
 import EventBus from '../utils/EventBus.es';
+import QueryString from 'querystring';
 
 export default class Fetcher {
 
-    static async get(path) {
-        const response = await fetch(path, {
+    static async get(path, queryParams) {
+
+        const requestPath = (queryParams)
+              ? path + '?' + QueryString.stringify(queryParams)
+              : path;
+        const response = await fetch(requestPath, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': localStorage.getItem('authorization') // TODO

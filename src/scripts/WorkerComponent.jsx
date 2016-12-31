@@ -12,7 +12,7 @@ export default class WorkerComponent extends Component {
         this.initialize(args);
     }
 
-    componentWillReceiveProps({args}) {
+    componentWillReceiveProps(args) {
         this.initialize(args);
     }
 

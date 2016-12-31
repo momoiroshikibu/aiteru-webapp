@@ -4,14 +4,15 @@ import PlaceRepository from './repositories/PlaceRepository.es';
 
 export default class PlacesWorker extends Worker {
 
-    constructor(placeId) {
+    constructor({args, params}) {
         super();
-        this.placeId = placeId;
+        this.args = args;
+        this.params = params;
     }
 
     async work() {
         try {
-            const places = await PlaceRepository.fetchPlaces();
+            const places = await PlaceRepository.fetchPlaces(this.params);
             this.succeed(places);
         } catch(e) {
             this.fail(e);

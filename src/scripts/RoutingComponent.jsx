@@ -36,7 +36,10 @@ export default class RoutingComponent extends Component {
         }
 
         const element = (component.prototype.render)
-                      ? React.createElement(component, {args: this.state.args})
+                      ? React.createElement(component, {
+                          args: this.state.args,
+                          params: this.state.params
+                      })
                       : component(this.state.args);
         return (
             <div>

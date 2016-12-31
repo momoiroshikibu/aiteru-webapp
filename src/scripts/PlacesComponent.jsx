@@ -17,7 +17,7 @@ import TransitionUtil from './utils/TransitionUtil.es';
 export default class PlacesComponent extends WorkerComponent {
 
     constructor(props) {
-        super(PlacesWorker);
+        super(PlacesWorker, props);
     }
 
     gotoPlacePage() {

@@ -10,6 +10,9 @@ import UserComponent from './scripts/UserComponent.jsx';
 import UsersComponent from './scripts/UsersComponent.jsx';
 import UserNewComponent from './scripts/UserNewComponent.jsx';
 
+import EventBus from './scripts/utils/EventBus.es';
+import TransitionUtil from './scripts/utils/TransitionUtil.es';
+
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
@@ -28,5 +31,6 @@ router.add('/users/:userId', UserComponent);
 const resolveLocationHash = () => router.resolve(window.location.hash);
 window.addEventListener('DOMContentLoaded', resolveLocationHash);
 window.addEventListener('hashchange', resolveLocationHash);
+EventBus.on('Fetcher:Authentication:Failed', () => {TransitionUtil.emit('/login')});
 
 ReactDOM.render(<ApplicationComponent router={router} />, document.getElementById('application-container'));

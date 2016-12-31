@@ -1,3 +1,5 @@
+import EventBus from '../utils/EventBus.es';
+
 export default class Fetcher {
 
     static async get(path) {
@@ -8,6 +10,9 @@ export default class Fetcher {
             },
             method: 'GET'
         });
+
+        checkAuthOrThrow(response);
+
         return await response.json();
     }
 
@@ -20,6 +25,17 @@ export default class Fetcher {
             method: 'POST',
             body: JSON.stringify(body)
         });
+
+        checkAuthOrThrow(response);
+
         return await response.json();
+    }
+}
+
+
+function checkAuthOrThrow(response) {
+    if (response.status === 401) {
+        EventBus.emit('Fetcher:Authentication:Failed');
+        throw 'Fetcher:Authentication:Failed';
     }
 }

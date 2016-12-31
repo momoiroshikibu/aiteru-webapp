@@ -48,4 +48,12 @@ export default class Worker extends EventEmitter {
         this.emit('change', this.status);
     }
 
+    updateArgs(args) {
+        // should be overrided
+    }
+
+    updateParams(params) {
+        // should be overrided
+    }
+
 }

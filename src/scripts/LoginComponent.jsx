@@ -12,6 +12,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 import TransitionUtil from './utils/TransitionUtil.es';
 
+import EventBus from './utils/EventBus.es';
+
 export default class LoginComponent extends Component {
 
     constructor() {
@@ -77,11 +79,9 @@ export default class LoginComponent extends Component {
 
     attempt(event) {
         LoginRepository.login(this.state.loginId, this.state.password).then((accessToken) => {
-            localStorage.setItem('authorization', accessToken); // TODO
-            this.setState({
-                message: 'Login Success'
-            });
+            
             TransitionUtil.emit('/places');
+            EventBus.emit('change:application:message', 'Login Success');
         }).catch((error) => {
             this.setState({
                 message: 'Login Failed.'

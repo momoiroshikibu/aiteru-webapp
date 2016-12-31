@@ -13,8 +13,9 @@ export default class LoginRepository {
                 throw 'authentiacation failed';
             }
 
-            return responseBody.AccessToken;
-
+            const accessToken = responseBody.AccessToken;
+            localStorage.setItem('authorization', accessToken);
+            return accessToken;
         } catch (e) {
             throw e;
         }

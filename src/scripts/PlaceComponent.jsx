@@ -29,50 +29,50 @@ export default class PlaceComponent extends WorkerComponent {
             <div className="place">
                 <h1 className="place-name">{place.name}</h1>
                 <h2 className={"place-is-open " + openStatus}>{openStatus}</h2>
-                <p className="message">
-                    {this.state.message}
-                </p>
-                <table className="place-attributes">
-                    <tbody>
-                        <tr>
-                            <th>ID</th>
-                            <td>{place.id}</td>
-                        </tr>
-                        <tr>
-                            <th>ownerIds</th>
-                            <td>{ownerElements}</td>
-                        </tr>
-                        <tr>
-                            <th>collaboratorIds</th>
-                            <td>{collaboratorElements}</td>
-                        </tr>
-                        <tr>
-                            <th>createdAt</th>
-                            <td>{place.createdAt}</td>
-                        </tr>
-                        <tr>
-                            <th>createdUserId</th>
-                            <td><UserLinkComponent userId={place.createdUserId} /></td>
-                        </tr>
-                        <tr>
-                            <th>updatedAt</th>
-                            <td>{place.updatedAt}</td>
-                        </tr>
-                        <tr>
-                            <th>updatedUserId</th>
-                            <td>{place.updatedUserId}</td>
-                        </tr>
-                        <tr>
-                            <th>statusUpdatedUserId</th>
-                            <td><UserLinkComponent userId={place.statusUpdatedUserId} /></td>
-                        </tr>
-                        <tr>
-                            <th>statusUpdatedAt</th>
-                            <td>{place.statusUpdatedAt}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                {this.renderToggleButton(place.id, place.isOpen)}
+                <div className="place-info">
+                    <div className="attribute-section">
+                        <div className="attribute">
+                            <div className="attribute-label">ID</div>
+                            <div className="attribute-content">{place.id}</div>
+                        </div>
+                        <div className="attribute">
+                            <div className="attribute-label">Owners</div>
+                            <div className="attribute-content">{ownerElements}</div>
+                        </div>
+                        <div className="attribute">
+                            <div className="attribute-label">Collaborators</div>
+                            <div className="attribute-content">{collaboratorElements}</div>
+                        </div>
+                        <div className="attribute">
+                            <div className="attribute-label">Created At</div>
+                            <div className="attribute-content">{place.createdAt}</div>
+                        </div>
+                        <div className="attribute">
+                            <div className="attribute-label">Created User ID</div>
+                            <div className="attribute-content">{place.createdUserId}</div>
+                        </div>
+                        <div className="attribute">
+                            <div className="attribute-label">Updated At</div>
+                            <div className="attribute-content">{place.updatedAt}</div>
+                        </div>
+                        <div className="attribute">
+                            <div className="attribute-label">Updated User ID</div>
+                            <div className="attribute-content">{place.updatedUserId}</div>
+                        </div>
+                        <div className="attribute">
+                            <div className="attribute-label">Status Updated User ID</div>
+                            <div className="attribute-content">{place.statusUpdatedUserId}</div>
+                        </div>
+                        <div className="attribute">
+                            <div className="attribute-label">Status Updated At</div>
+                            <div className="attribute-content">{place.statusUpdatedAt}</div>
+                        </div>
+                        <div className="attribute">
+                            <div className="attribute-label">Status</div>
+                            <div className="attribute-content">{this.renderToggleButton(place.id, place.isOpen)}</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }
@@ -84,17 +84,10 @@ export default class PlaceComponent extends WorkerComponent {
                 self.state.worker.rework();
             });
         };
-//        <button type="button" onClick={toggleStatus}>Toggle Status</button>
-        /* <Toggle
-         * label="Open"
-         * />
-         */
         return (
             <MuiThemeProvider muiTheme={getMuiTheme()}>
-                <Toggle label="Open"
-                        toggled={isOpen}
+                <Toggle toggled={isOpen}
                         onToggle={toggleStatus}/>
-
             </MuiThemeProvider>
         );
     }

@@ -5,9 +5,12 @@
   "main": "index.js",
   "scripts": {
     "build:all": "rm -rf dist/* && mkdir -p dist && npm run build:html && npm run build:js && npm run build:css",
+    "dev:all": "npm run build:all && $(npm run dev:js & npm run dev:css)",
     "build:html": "rm -f dist/index.html && sed -e s/\\{\\{this-is-commit-hash\\}\\}/$(git rev-parse HEAD)/g index.html > dist/index.html",
     "build:js": "COMMIT_HASH=$(git rev-parse HEAD) webpack",
+    "dev:js": "COMMIT_HASH=$(git rev-parse HEAD) webpack --watch",
     "build:css": "stylus src/stylesheets/app.styl -o dist/assets/app.$(git rev-parse HEAD).css",
+    "dev:css": "stylus -w src/stylesheets/app.styl -o dist/assets/app.$(git rev-parse HEAD).css",
     "server:h2o": "mkdir -p tmp/h2o && cd tools/h2o && h2o",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

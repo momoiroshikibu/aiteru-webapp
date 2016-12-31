@@ -1,4 +1,5 @@
 import pathToRegexp from 'path-to-regexp';
+import QueryString from 'querystring';
 
 import {EventEmitter} from 'events';
 
@@ -20,7 +21,9 @@ export default class Router extends EventEmitter {
         return this;
     }
 
-    resolve(path) {
+    resolve(rawPath) {
+        const [path, query] = rawPath.split('?');
+        const params = QueryString.parse(query);
         const route = this.routes.find((route) => {
             return !!route.regexp.exec(path);
         });
@@ -29,7 +32,7 @@ export default class Router extends EventEmitter {
             this.currentPath = null;
             this.currentComponent = null;
             this.currentArgs = null;
-            this.emit('notfound', path);
+            this.emit('notfound', path, params);
             return;
         }
 
@@ -40,7 +43,7 @@ export default class Router extends EventEmitter {
             keyValues[key.name] = matches[i + 1];
             return keyValues;
         }, {});
-        this.emit('change', path);
+        this.emit('change', path, params);
     }
 
 

@@ -3,6 +3,10 @@ import WorkerComponent from './WorkerComponent.jsx';
 import UserLinkComponent from './UserLinkComponent.jsx';
 import UserWorker from './UserWorker.es';
 
+import LoadingComponent from './LoadingComponent.jsx';
+
+
+
 export default class UserComponent extends WorkerComponent {
 
     constructor(props) {
@@ -13,12 +17,6 @@ export default class UserComponent extends WorkerComponent {
                 success: Renderer.success
             }
         });
-    }
-
-
-    renderPending() {
-        return (<p>fetching</p>
-        );
     }
 
     renderFailure(failure) {
@@ -65,7 +63,9 @@ export default class UserComponent extends WorkerComponent {
 
 class Renderer {
     static pending() {
-        return (<p>fetching</p>);
+        return (
+            <LoadingComponent />
+        );
     }
 
     static failure() {

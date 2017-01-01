@@ -5,8 +5,15 @@ import TabComponent from './TabComponent.jsx';
 import TransitionUtil from './utils/TransitionUtil.es';
 import PlacesWorker from './PlacesWorker.es';
 import ActionInfo from 'material-ui/svg-icons/action/info';
+import ActionGrade from 'material-ui/svg-icons/action/grade';
+import RemoveCircle from 'material-ui/svg-icons/content/remove-circle';
 import {List, ListItem} from 'material-ui/List';
 
+
+import {
+    red200,
+    lightGreen200
+} from 'material-ui/styles/colors'
 
 export default class PlacesComponent extends WorkerComponent {
 
@@ -22,8 +29,12 @@ export default class PlacesComponent extends WorkerComponent {
         const placeLinks = places.map((place) => {
             const placeId = place.id;
             const href = `#/places/${placeId}`;
+            const statusIcon = (place.status.isOpen)
+                             ? (<div className="open"></div>)
+                             : (<div className="closed"></div>);
             return (
                 <ListItem key={placeId}
+                          leftIcon={statusIcon}
                           rightIcon={<ActionInfo />}
                           primaryText={place.name}
                           secondaryText={place.id}
@@ -32,7 +43,7 @@ export default class PlacesComponent extends WorkerComponent {
             );
         });
         return (
-            <div>
+            <div className="places-component">
                 <TabComponent placesWorker={this.state.worker} />
                 <List>
                     {placeLinks}

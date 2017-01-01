@@ -4,9 +4,10 @@ export default class UserRepository {
 
     static async addUser(userName) {
         try {
-            return await Fetcher.post('/api/v1/users', {
+            const response = await Fetcher.post('/api/v1/users', {
                 name: userName
             });
+            return response.user;
         } catch (e) {
             return undefined;
         }

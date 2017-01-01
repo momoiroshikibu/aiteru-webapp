@@ -13,7 +13,7 @@ export default class LoginRepository {
                 throw 'authentiacation failed';
             }
 
-            const accessToken = responseBody.AccessToken;
+            const accessToken = responseBody.session.AccessToken;
             localStorage.setItem('authorization', accessToken);
             return accessToken;
         } catch (e) {

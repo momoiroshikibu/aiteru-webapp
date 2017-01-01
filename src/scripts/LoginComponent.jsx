@@ -19,6 +19,14 @@ export default class LoginComponent extends Component {
         };
     }
 
+    componentDidMount() {
+        EventBus.emit('change:application:title', 'Login');
+    }
+
+    getTitle() {
+        return 'Login';
+    }
+
     render() {
         return (
             <div className="login-component">

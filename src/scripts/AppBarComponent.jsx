@@ -9,14 +9,33 @@ import MenuItem from 'material-ui/MenuItem';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import MenuIcon from 'material-ui/svg-icons/navigation/menu';
 import TransitionUtil from './utils/TransitionUtil.es';
+import EventBus from './utils/EventBus.es';
 
 export default class AppBarComponent extends Component {
 
     constructor(props) {
         super(props);
+        /* this.router = props.router;*/
         this.state = {
-            openDrawer: false
+            openDrawer: false,
+            title: null
         }
+    }
+
+    componentWillReceiveProps({title}) {
+        this.setState({
+            title: title
+        });
+    }
+
+    componentWillMount() {
+        EventBus.on('change:application:title', ::this.onChangeTitle);
+    }
+
+    onChangeTitle(title) {
+        this.setState({
+            title: title
+        });
     }
 
     openDrawer() {
@@ -40,7 +59,7 @@ export default class AppBarComponent extends Component {
         return (
             <div>
                 <AppBar
-                    title="Aiteru?"
+                    title={this.state.title}
                     iconElementLeft="navigation-menu"
                     iconElementLeft={<IconButton><MenuIcon onTouchTap={::this.openDrawer}/></IconButton>}
                 />

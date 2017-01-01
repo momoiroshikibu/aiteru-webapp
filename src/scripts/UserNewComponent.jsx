@@ -23,6 +23,10 @@ export default class UserNewComponent extends ActorComponent {
         super.emitEvent('initialized');
     }
 
+    getTitle() {
+        return 'New User';
+    }
+
     [`@initialized`] (actor, event, result) {
         return (
             <div className="user-new-component">

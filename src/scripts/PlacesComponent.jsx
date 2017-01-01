@@ -14,6 +14,10 @@ export default class PlacesComponent extends WorkerComponent {
         super(PlacesWorker, props);
     }
 
+    getTitle() {
+        return 'Places';
+    }
+
     gotoPlacePage() {
         console.log('gotoPlacePage');
         TransitionUtil.emit('/places/1');

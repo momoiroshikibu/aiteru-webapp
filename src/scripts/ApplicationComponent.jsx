@@ -40,7 +40,7 @@ export default class ApplicationComponent extends Component {
             <MuiThemeProvider muiTheme={theme}>
                 <div>
                     <AppBarComponent />
-                    <RoutingComponent router={this.router}/>
+                    <RoutingComponent router={this.router} />
                     {message}
                 </div>
             </MuiThemeProvider>

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Component} from 'react';
+import EventBus from './utils/EventBus.es';
 
 export default class ActorComponent extends Component {
 
@@ -39,6 +40,17 @@ export default class ActorComponent extends Component {
         }, 0);
     }
 
+    getTitle() {
+        // shoud be overrided
+        return null;
+    }
+
+    emitTitleChange(title) {
+        setTimeout(() => {
+            EventBus.emit('change:application:title', title);
+        }, 0);
+    }
+
     render() {
         const {actor, event, result} = this.state;
 
@@ -54,6 +66,8 @@ export default class ActorComponent extends Component {
                   }
                   return renderer.bind(this);
               })();
+
+        this.emitTitleChange(this.getTitle());
 
         return (renderer)
             ? renderer(actor, event, result)

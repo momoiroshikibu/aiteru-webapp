@@ -16,6 +16,10 @@ export default class UserComponent extends WorkerComponent {
         });
     }
 
+    getTitle() {
+        return 'User';
+    }
+
     renderFailure(failure) {
         return (<p>User Not Found</p>);
     }

@@ -2,6 +2,7 @@ import React from 'react';
 import {Component} from 'react';
 import UserLinkComponent from './UserLinkComponent.jsx';
 import UsersWorker from './UsersWorker.es';
+import EventBus from './utils/EventBus.es';
 
 export default class WorkerComponent extends Component {
 
@@ -43,6 +44,17 @@ export default class WorkerComponent extends Component {
         });
     }
 
+    getTitle() {
+        // should be overrided
+        return null;
+    }
+
+    emitTitleChange(title) {
+        setTimeout(() => {
+            EventBus.emit('change:application:title', title);
+        }, 0);
+    }
+
 
     [`renderNotStarted`]() {return false;}
     [`renderPending`]() {return false;}
@@ -57,6 +69,9 @@ export default class WorkerComponent extends Component {
         if (renderer) {
             return renderer(worker.getResult());
         }
+
+        // change title
+        this.emitTitleChange(this.getTitle());
 
         // compatible
         switch(status) {

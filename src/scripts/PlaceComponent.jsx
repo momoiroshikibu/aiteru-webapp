@@ -14,6 +14,10 @@ export default class PlaceComponent extends WorkerComponent {
         super(PlaceWorker, props.args);
     }
 
+    getTitle() {
+        return 'Place';
+    }
+
     renderSuccess(place) {
         const ownerElements = (place.ownerIds || []).map((id) => <UserLinkComponent key={id} userId={id} />);
         const collaboratorElements = (place.collaboratorIds || []).map((id) => <UserLinkComponent key={id} userId={id} />);

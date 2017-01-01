@@ -15,6 +15,10 @@ export default class UsersComponent extends WorkerComponent {
         super(UsersWorker);
     }
 
+    getTitle() {
+        return 'Users';
+    }
+
     renderSuccess(users) {
 
         const userListItems = users.map((user) => {

@@ -18,11 +18,6 @@ export default class PlacesComponent extends WorkerComponent {
         return 'Places';
     }
 
-    gotoPlacePage() {
-        console.log('gotoPlacePage');
-        TransitionUtil.emit('/places/1');
-    }
-
     renderSuccess(places) {
         const placeLinks = places.map((place) => {
             const placeId = place.id;
@@ -32,7 +27,7 @@ export default class PlacesComponent extends WorkerComponent {
                           rightIcon={<ActionInfo />}
                           primaryText={place.name}
                           secondaryText={place.id}
-                          onClick={this.gotoPlacePage}
+                          onClick={() => {TransitionUtil.emit(`/places/${placeId}`)}}
                 />
             );
         });

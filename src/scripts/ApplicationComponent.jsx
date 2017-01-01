@@ -3,10 +3,10 @@ import {Component} from 'react';
 import RoutingComponent from './RoutingComponent.jsx';
 import AppBarComponent from './AppBarComponent.jsx';
 import EventBus from './utils/EventBus.es';
+import Snackbar from 'material-ui/Snackbar';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import Snackbar from 'material-ui/Snackbar';
+import theme from './theme.es';
 
 export default class ApplicationComponent extends Component {
 
@@ -30,7 +30,6 @@ export default class ApplicationComponent extends Component {
     }
 
     render() {
-
         const message = (this.state.message)
                       ? (<Snackbar
                               open={!!this.state.message}
@@ -38,7 +37,7 @@ export default class ApplicationComponent extends Component {
                               autoHideDuration={3000} />)
                       : false;
         return (
-            <MuiThemeProvider muiTheme={getMuiTheme()}>
+            <MuiThemeProvider muiTheme={theme}>
                 <div>
                     <AppBarComponent />
                     <RoutingComponent router={this.router}/>

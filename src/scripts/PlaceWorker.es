@@ -11,7 +11,7 @@ export default class PlaceWorker extends Worker {
 
     async work() {
         try {
-            const place = await PlaceRepository.fetchPlaceWithStatus(this.placeId);
+            const place = await PlaceRepository.fetchPlace(this.placeId);
             if (place) {
                 this.succeed(place);
             } else {

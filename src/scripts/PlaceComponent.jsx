@@ -22,7 +22,7 @@ export default class PlaceComponent extends WorkerComponent {
         const ownerElements = (place.ownerIds || []).map((id) => <UserLinkComponent key={id} userId={id} />);
         const collaboratorElements = (place.collaboratorIds || []).map((id) => <UserLinkComponent key={id} userId={id} />);
 
-        const openStatus = (place.isOpen)? "OPEN" : "CLOSED";
+        const openStatus = (place.status.isOpen)? 'OPEN' : 'CLOSED';
 
         return (
             <div className="place">
@@ -60,15 +60,15 @@ export default class PlaceComponent extends WorkerComponent {
                         </div>
                         <div className="attribute">
                             <div className="attribute-label">Status Updated User ID</div>
-                            <div className="attribute-content">{place.statusUpdatedUserId}</div>
+                            <div className="attribute-content">{place.status.updatedUserId}</div>
                         </div>
                         <div className="attribute">
                             <div className="attribute-label">Status Updated At</div>
-                            <div className="attribute-content">{place.statusUpdatedAt}</div>
+                            <div className="attribute-content">{place.status.updatedAt}</div>
                         </div>
                         <div className="attribute">
                             <div className="attribute-label">Status</div>
-                            <div className="attribute-content">{this.renderToggleButton(place.id, place.isOpen)}</div>
+                            <div className="attribute-content">{this.renderToggleButton(place.id, place.status.isOpen)}</div>
                         </div>
                     </div>
                 </div>

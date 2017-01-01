@@ -13,7 +13,8 @@ export default class PlaceRepository {
 
     static async fetchPlace(placeId) {
         try {
-            return await Fetcher.get(`/api/v1/places/${placeId}`);
+            const response = await Fetcher.get(`/api/v1/places/${placeId}`);
+            return response.place;
         } catch (e) {
             return undefined;
         }
@@ -22,21 +23,6 @@ export default class PlaceRepository {
     static async fetchPlaceStatus(placeId) {
         try {
             return await Fetcher.get(`/api/v1/places/${placeId}/status`);
-        } catch (e) {
-            return undefined;
-        }
-    }
-
-    static async fetchPlaceWithStatus(placeId) {
-        try {
-            const [place, status] = await Promise.all([
-                PlaceRepository.fetchPlace(placeId),
-                PlaceRepository.fetchPlaceStatus(placeId)
-            ]);
-            place.isOpen = status.isOpen;
-            place.statusUpdatedUserId = status.updatedUserId;
-            place.statusUpdatedAt = status.updatedAt;
-            return place;
         } catch (e) {
             return undefined;
         }

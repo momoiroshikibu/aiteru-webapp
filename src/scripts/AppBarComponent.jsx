@@ -3,12 +3,6 @@ import {Component} from 'react';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import Subheader from 'material-ui/Subheader';
-
-
-import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-
 import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
@@ -45,23 +39,21 @@ export default class AppBarComponent extends Component {
     render() {
         return (
             <div>
-                <MuiThemeProvider muiTheme={getMuiTheme()}>
-                    <AppBar
-                        title="Aiteru?"
-                        iconElementLeft="navigation-menu"
-                        iconElementLeft={<IconButton><MenuIcon onTouchTap={::this.openDrawer}/></IconButton>}
-                    />
-                </MuiThemeProvider>
-                <MuiThemeProvider muiTheme={getMuiTheme()}>
-                    <Drawer open={this.state.openDrawer}
-                            docked={false}
-                            onRequestChange={::this.closeDrawer}>
-                        <Subheader inset={true}>Menus</Subheader>
-                        <MenuItem primaryText="places" onTouchTap={() => {::this.navigate('/places')}} />
-                        <MenuItem primaryText="users" onTouchTap={() => {::this.navigate('/users')}} />
-                        <MenuItem primaryText="add user" onTouchTap={() => {::this.navigate('/users/new')}} />
-                    </Drawer>
-                </MuiThemeProvider>
+                <AppBar
+                    title="Aiteru?"
+                    iconElementLeft="navigation-menu"
+                    iconElementLeft={<IconButton><MenuIcon onTouchTap={::this.openDrawer}/></IconButton>}
+                />
+
+                <Drawer open={this.state.openDrawer}
+                        docked={false}
+                        onRequestChange={::this.closeDrawer}>
+                    <Subheader inset={true}>Menus</Subheader>
+                    <MenuItem primaryText="places" onTouchTap={() => {::this.navigate('/places')}} />
+                    <MenuItem primaryText="users" onTouchTap={() => {::this.navigate('/users')}} />
+                    <MenuItem primaryText="add user" onTouchTap={() => {::this.navigate('/users/new')}} />
+                </Drawer>
+
             </div>
         )
     }

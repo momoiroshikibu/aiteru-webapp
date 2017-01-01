@@ -1,17 +1,11 @@
 import React from 'react';
 import WorkerComponent from './WorkerComponent.jsx';
 import UserLinkComponent from './UserLinkComponent.jsx';
+import TabComponent from './TabComponent.jsx';
+import TransitionUtil from './utils/TransitionUtil.es';
 import PlacesWorker from './PlacesWorker.es';
 import ActionInfo from 'material-ui/svg-icons/action/info';
 import {List, ListItem} from 'material-ui/List';
-
-
-import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-
-import TabComponent from './TabComponent.jsx';
-import TransitionUtil from './utils/TransitionUtil.es';
 
 
 export default class PlacesComponent extends WorkerComponent {
@@ -41,11 +35,9 @@ export default class PlacesComponent extends WorkerComponent {
         return (
             <div>
                 <TabComponent placesWorker={this.state.worker} />
-                <MuiThemeProvider muiTheme={getMuiTheme()}>
-                    <List>
-                        {placeLinks}
-                    </List>
-                </MuiThemeProvider>
+                <List>
+                    {placeLinks}
+                </List>
             </div>
         );
     }

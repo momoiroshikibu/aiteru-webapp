@@ -1,18 +1,12 @@
 import React from 'react';
 import {Component} from 'react';
 import LoginRepository from './repositories/LoginRepository.es';
-
-
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-
+import TransitionUtil from './utils/TransitionUtil.es';
+import EventBus from './utils/EventBus.es';
 
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import TransitionUtil from './utils/TransitionUtil.es';
-
-import EventBus from './utils/EventBus.es';
 
 export default class LoginComponent extends Component {
 
@@ -34,31 +28,24 @@ export default class LoginComponent extends Component {
                 </p>
                 <form onSubmit={this.attempt}>
                     <div>
-                        <MuiThemeProvider muiTheme={getMuiTheme()}>
-                            <TextField
-                                hintText="Login ID"
-                                floatingLabelText="Login ID"
-                                onChange={::this.onChangeLoginId}
-                            />
-                        </MuiThemeProvider>
+                        <TextField
+                            hintText="Login ID"
+                            floatingLabelText="Login ID"
+                            onChange={::this.onChangeLoginId}
+                        />
                     </div>
-
                     <div>
-                        <MuiThemeProvider muiTheme={getMuiTheme()}>
-                            <TextField
-                                hintText="Password"
-                                floatingLabelText="Password"
-                                type="password"
-                                onChange={::this.onChangePassword}
-                            />
-                        </MuiThemeProvider>
+                        <TextField
+                            hintText="Password"
+                            floatingLabelText="Password"
+                            type="password"
+                            onChange={::this.onChangePassword}
+                        />
                     </div>
-                    <MuiThemeProvider muiTheme={getMuiTheme()}>
-                        <RaisedButton className="login-button"
-                                      label="Login"
-                                      primary={true}
-                                      onClick={::this.attempt} />
-                    </MuiThemeProvider>
+                    <RaisedButton className="login-button"
+                                  label="Login"
+                                  primary={true}
+                                  onClick={::this.attempt} />
                 </form>
             </div>
         );

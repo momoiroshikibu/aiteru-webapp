@@ -32,21 +32,19 @@ export default class ApplicationComponent extends Component {
     render() {
 
         const message = (this.state.message)
-                      ? (
-                          <MuiThemeProvider muiTheme={getMuiTheme()}>
-                              <Snackbar
-                                  open={!!this.state.message}
-                                  message={this.state.message}
-                                  autoHideDuration={3000} />
-                          </MuiThemeProvider>
-                      )
+                      ? (<Snackbar
+                              open={!!this.state.message}
+                              message={this.state.message}
+                              autoHideDuration={3000} />)
                       : false;
         return (
-            <div>
-                <AppBarComponent />
-                <RoutingComponent router={this.router}/>
-                {message}
-            </div>
+            <MuiThemeProvider muiTheme={getMuiTheme()}>
+                <div>
+                    <AppBarComponent />
+                    <RoutingComponent router={this.router}/>
+                    {message}
+                </div>
+            </MuiThemeProvider>
         );
     }
 }

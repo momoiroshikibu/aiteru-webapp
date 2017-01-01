@@ -3,11 +3,6 @@ import WorkerComponent from './WorkerComponent.jsx';
 import UserLinkComponent from './UserLinkComponent.jsx';
 import PlaceWorker from './PlaceWorker.es';
 import PlaceRepository from './repositories/PlaceRepository.es';
-
-
-import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import Toggle from 'material-ui/Toggle';
 import RaisedButton from 'material-ui/RaisedButton';
 
@@ -85,10 +80,8 @@ export default class PlaceComponent extends WorkerComponent {
             });
         };
         return (
-            <MuiThemeProvider muiTheme={getMuiTheme()}>
-                <Toggle toggled={isOpen}
-                        onToggle={toggleStatus}/>
-            </MuiThemeProvider>
+            <Toggle toggled={isOpen}
+                    onToggle={toggleStatus}/>
         );
     }
 

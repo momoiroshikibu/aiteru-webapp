@@ -1,11 +1,8 @@
 import React from 'react';
 import WorkerComponent from './WorkerComponent.jsx';
 import UserLinkComponent from './UserLinkComponent.jsx';
-import UserWorker from './UserWorker.es';
-
 import LoadingComponent from './LoadingComponent.jsx';
-
-
+import UserWorker from './UserWorker.es';
 
 export default class UserComponent extends WorkerComponent {
 

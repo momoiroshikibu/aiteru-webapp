@@ -2,13 +2,10 @@ import React from 'react';
 import ActorComponent from './ActorComponent.jsx';
 import UserNewActor from './UserNewActor.es';
 import UserLinkComponent from './UserLinkComponent.jsx';
-
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
 import TransitionUtil from './utils/TransitionUtil.es';
 import EventBus from './utils/EventBus.es';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
 
 export default class UserNewComponent extends ActorComponent {
 
@@ -35,24 +32,19 @@ export default class UserNewComponent extends ActorComponent {
                 </p>
                 <form onSubmit={this.attempt}>
                     <div>
-                        <MuiThemeProvider muiTheme={getMuiTheme()}>
-                            <TextField
-                                hintText="User Name"
-                                floatingLabelText="User Name"
-                                value={this.state.userName}
-                                onChange={::this.updateUserName}
-                            />
-                        </MuiThemeProvider>
+                        <TextField
+                            hintText="User Name"
+                            floatingLabelText="User Name"
+                            value={this.state.userName}
+                            onChange={::this.updateUserName}
+                        />
                     </div>
-
                     <div>
-                        <MuiThemeProvider muiTheme={getMuiTheme()}>
-                            <RaisedButton className="user-create-button"
-                                          label="Create"
-                                          primary={true}
-                                          onClick={::this.register}
-                            />
-                        </MuiThemeProvider>
+                        <RaisedButton className="user-create-button"
+                                      label="Create"
+                                      primary={true}
+                                      onClick={::this.register}
+                        />
                     </div>
                 </form>
             </div>

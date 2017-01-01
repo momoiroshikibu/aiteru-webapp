@@ -20,14 +20,6 @@ export default class PlaceRepository {
         }
     }
 
-    static async fetchPlaceStatus(placeId) {
-        try {
-            return await Fetcher.get(`/api/v1/places/${placeId}/status`);
-        } catch (e) {
-            return undefined;
-        }
-    }
-
     static async updatePlaceStatus(placeId, status) {
         try {
             return await Fetcher.post(`/api/v1/places/${placeId}/status`, {

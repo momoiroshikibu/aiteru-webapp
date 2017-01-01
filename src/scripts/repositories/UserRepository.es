@@ -14,7 +14,8 @@ export default class UserRepository {
 
     static async fetchUsers() {
         try {
-            return await Fetcher.get('/api/v1/users');
+            const response = await Fetcher.get('/api/v1/users');
+            return response.users;
         } catch (e) {
             return undefined;
         }
@@ -22,7 +23,8 @@ export default class UserRepository {
 
     static async fetchUser(userId) {
         try {
-            return await Fetcher.get(`/api/v1/users/${userId}`);
+            const response = await Fetcher.get(`/api/v1/users/${userId}`);
+            return response.user;
         } catch (e) {
             return undefined;
         }

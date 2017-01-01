@@ -4,7 +4,8 @@ export default class PlaceRepository {
 
     static async fetchPlaces(queryParams) {
         try {
-            return await Fetcher.get('/api/v1/places', queryParams);
+            const response = await Fetcher.get('/api/v1/places', queryParams);
+            return response.places;
         } catch (e) {
             return undefined;
         }

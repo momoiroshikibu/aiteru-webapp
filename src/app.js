@@ -16,11 +16,16 @@ import TransitionUtil from './scripts/utils/TransitionUtil.es';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
+import PlacesComponentPresenter from './scripts/PlacesComponentPresenter.es';
+
 const router = new Router();
 
 router.add('/login', LoginComponent);
 
-router.add('/places', PlacesComponent);
+router.add('/places', (params) => {
+    const presenter = new PlacesComponentPresenter(params);
+    return presenter;
+});
 router.add('/places/:placeId', PlaceComponent);
 
 router.add('/users', UsersComponent);

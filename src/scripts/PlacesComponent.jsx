@@ -1,5 +1,6 @@
 import React from 'react';
-import WorkerComponent from './WorkerComponent.jsx';
+//import WorkerComponent from './WorkerComponent.jsx';
+import {Component} from 'react';
 import UserLinkComponent from './UserLinkComponent.jsx';
 import TabComponent from './TabComponent.jsx';
 import TransitionUtil from './utils/TransitionUtil.es';
@@ -15,18 +16,51 @@ import {
     lightGreen200
 } from 'material-ui/styles/colors'
 
-export default class PlacesComponent extends WorkerComponent {
+export default class PlacesComponent extends Component {
 
-    constructor(props) {
-        super(PlacesWorker, props);
+    constructor({presenter}) {
+        super();
+        this.initialize(presenter);
     }
 
-    getTitle() {
-        return 'Places';
+    /* componentWillMount() {
+     *     console.log('compoentWillMount');
+     *     this.state.presenter.run();
+     * }*/
+
+    // Since presenter instances are reused. This event won't work.
+    /* componentWillReceiveProps({presenter}) {
+     *     if (!presenter) {
+     *         presenter = presenter.presenter;
+     *     }
+     *     this.initialize(presenter);
+     * }
+     */
+
+    initialize(presenter) {
+        presenter.run();
+        presenter.on('change', ::this.onChangePresenter);
+        this.state = {
+            presenter: presenter,
+            version: presenter.getVersion()
+        }
     }
 
-    renderSuccess(places) {
-        const placeLinks = places.map((place) => {
+    onChangePresenter(presenter) {
+        if (!presenter.hasUpdates(this.state.version)) {
+            return;
+        }
+        this.setState({
+            presenter: presenter,
+            version: presenter.getVersion()
+        });
+    }
+
+    render() {
+        if (!this.state) {
+            return false;
+        }
+        const placeLinks = this.state.presenter.getPlaces().map((place) => {
             const placeId = place.id;
             const href = `#/places/${placeId}`;
             const statusIcon = (place.status.isOpen)
@@ -44,7 +78,7 @@ export default class PlacesComponent extends WorkerComponent {
         });
         return (
             <div className="places-component">
-                <TabComponent placesWorker={this.state.worker} />
+                <TabComponent />
                 <List>
                     {placeLinks}
                 </List>

@@ -10,7 +10,8 @@ export default class RoutingComponent extends Component {
         this.state = {
             component: null,
             args: null,
-            params: null
+            params: null,
+            presenter: null
         };
     }
 
@@ -25,7 +26,8 @@ export default class RoutingComponent extends Component {
     }
 
     onUpdateCondition(path, params) {
-        this.setState(this.router.getCurrentComponent());
+        //        this.setState(this.router.getCurrentComponent());
+        this.presenter.updateParams(params);
     }
 
     onNotFound(path, params) {
@@ -37,10 +39,24 @@ export default class RoutingComponent extends Component {
     }
 
     render() {
-        const component = this.state.component;
+        var component = this.state.component;
         if (!component) {
             return false;
         }
+
+
+        if (typeof component === 'function' && component.name === '') {
+//             const presenter = component({
+//                 args: this.state.args,
+//                 params: this.state.params
+//             });
+            const presenter = component(this.state.params);
+            this.presenter = presenter;
+            return React.createElement(presenter.getComponentClass(), {
+                presenter: presenter
+            });
+        }
+
 
         const element = (component.prototype.render)
                       ? React.createElement(component, {

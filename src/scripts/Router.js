@@ -39,6 +39,7 @@ export default class Router extends EventEmitter {
         this.currentPath = path;
         this.currentParams = params;
         const event = (this.currentComponent === route.component)? 'update' : 'change';
+        console.log(event);
 
         this.currentComponent = route.component;
         const matches = route.regexp.exec(path);

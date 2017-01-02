@@ -5,7 +5,7 @@ import ToggleCheckBox from 'material-ui/svg-icons/toggle/check-box';
 import ToggleInterminateCheckBox from 'material-ui/svg-icons/toggle/indeterminate-check-box';
 import TransitionUtil from './utils/TransitionUtil.es';
 
-export default function TabComponent({placesWorker}) {
+export default function TabComponent() {
     return (
         <Tabs>
             <Tab icon={<ToggleStar />} onClick={() => {TransitionUtil.emit('/places?filter=favorites');}} />

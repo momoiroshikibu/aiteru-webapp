@@ -1,13 +1,13 @@
 import React from 'react';
 import {Component} from 'react';
 import AppBar from 'material-ui/AppBar';
+import IconButton from 'material-ui/IconButton';
+import MenuIcon from 'material-ui/svg-icons/navigation/menu';
+
 import Drawer from 'material-ui/Drawer';
 import Subheader from 'material-ui/Subheader';
-import IconButton from 'material-ui/IconButton';
-import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import MenuIcon from 'material-ui/svg-icons/navigation/menu';
+
 import TransitionUtil from './utils/TransitionUtil.es';
 import EventBus from './utils/EventBus.es';
 
@@ -67,10 +67,12 @@ export default class AppBarComponent extends Component {
                 <Drawer open={this.state.openDrawer}
                         docked={false}
                         onRequestChange={::this.closeDrawer}>
-                    <Subheader inset={true}>Menus</Subheader>
-                    <MenuItem primaryText="places" onTouchTap={() => {::this.navigate('/places')}} />
-                    <MenuItem primaryText="users" onTouchTap={() => {::this.navigate('/users')}} />
-                    <MenuItem primaryText="add user" onTouchTap={() => {::this.navigate('/users/new')}} />
+                    <Subheader inset={true}>Places</Subheader>
+                    <MenuItem primaryText="show places" onTouchTap={() => {::this.navigate('/places')}} />
+                    <MenuItem primaryText="add new place" onTouchTap={() => {::this.navigate('/places/new')}} />
+                    <Subheader inset={true}>Users</Subheader>
+                    <MenuItem primaryText="show users" onTouchTap={() => {::this.navigate('/users')}} />
+                    <MenuItem primaryText="add new user" onTouchTap={() => {::this.navigate('/users/new')}} />
                 </Drawer>
 
             </div>

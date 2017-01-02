@@ -6,6 +6,7 @@ export default class PlacesComponentPresenter extends Presenter {
 
     constructor(params) {
         super(PlacesComponent);
+        this.screenTitle = 'Places';
         this.params = params;
         this.places = [];
         this.on('update', this.run);
@@ -21,6 +22,7 @@ export default class PlacesComponentPresenter extends Presenter {
     }
 
     async run() {
+        super.run();
         try {
             const places = await PlaceRepository.fetchPlaces(this.params);
             this.places = places;

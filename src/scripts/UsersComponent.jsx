@@ -6,8 +6,7 @@ import UsersWorker from './UsersWorker.es';
 import {List, ListItem} from 'material-ui/List';
 import TransitionUtil from './utils/TransitionUtil.es';
 
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
+import FloatingActionButtonComponent from './FloatingActionButtonComponent.jsx';
 
 export default class UsersComponent extends WorkerComponent {
 
@@ -31,25 +30,12 @@ export default class UsersComponent extends WorkerComponent {
             );
         });
 
-        const style = {
-            marginRight: 20,
-            position: 'fixed',
-            bottom: '20px',
-            right: 0
-        };
-
         return (
             <div>
-
                 <List>
                     {userListItems}
                 </List>
-
-
-                <FloatingActionButton style={style} onTouchTap={() => {TransitionUtil.emit('/users/new')}}>
-                    <ContentAdd />
-                </FloatingActionButton>
-
+                <FloatingActionButtonComponent path='/users/new' />
             </div>
         );
     }

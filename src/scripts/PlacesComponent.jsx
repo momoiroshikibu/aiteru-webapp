@@ -3,12 +3,12 @@ import PresenterComponent from './PresenterComponent.jsx';
 import TabComponent from './TabComponent.jsx';
 import TransitionUtil from './utils/TransitionUtil.es';
 import {List, ListItem} from 'material-ui/List';
+import FloatingActionButtonComponent from './FloatingActionButtonComponent.jsx';
 
 export default class PlacesComponent extends PresenterComponent {
 
     constructor({presenter}) {
         super(presenter);
-//        this.initialize(presenter);
     }
 
     render() {
@@ -17,7 +17,6 @@ export default class PlacesComponent extends PresenterComponent {
         }
         const placeLinks = this.state.presenter.getPlaces().map((place) => {
             const placeId = place.id;
-            const href = `#/places/${placeId}`;
             const statusIcon = (place.status.isOpen)
                              ? (<div className="open"></div>)
                              : (<div className="closed"></div>);
@@ -37,6 +36,7 @@ export default class PlacesComponent extends PresenterComponent {
                 <List>
                     {placeLinks}
                 </List>
+                <FloatingActionButtonComponent path='/places/new' />
             </div>
         );
     }

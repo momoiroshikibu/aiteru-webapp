@@ -34,10 +34,10 @@ export default class PlacesComponent extends WorkerComponent {
                              : (<div className="closed"></div>);
             return (
                 <ListItem key={placeId}
+                          className="place"
                           leftIcon={statusIcon}
-                          rightIcon={<ActionInfo />}
                           primaryText={place.name}
-                          secondaryText={place.id}
+                          secondaryText={place.status.updatedAt}
                           onClick={() => {TransitionUtil.emit(`/places/${placeId}`)}}
                 />
             );

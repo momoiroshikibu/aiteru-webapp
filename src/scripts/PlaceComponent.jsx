@@ -25,7 +25,7 @@ export default class PlaceComponent extends WorkerComponent {
         const openStatus = (place.status.isOpen)? 'OPEN' : 'CLOSED';
 
         return (
-            <div className="place">
+            <div className="place-component">
                 <h1 className="place-name">{place.name}</h1>
                 <h2 className={"place-is-open " + openStatus}>{openStatus}</h2>
                 <div className="place-info">

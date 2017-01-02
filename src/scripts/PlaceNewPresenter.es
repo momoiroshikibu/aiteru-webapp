@@ -7,7 +7,7 @@ export default class PlaceNewPresenter extends Presenter {
 
     constructor(params) {
         super(PlaceNewComponent);
-        this.screenTitle = () => {return 'New User';};
+        this.screenTitle = () => {return 'New Place';};
         this.name = '';
         this.owners = [];
         this.collaborators = [];

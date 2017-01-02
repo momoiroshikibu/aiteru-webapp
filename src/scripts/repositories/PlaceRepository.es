@@ -20,6 +20,20 @@ export default class PlaceRepository {
         }
     }
 
+    static async addPlace({name, owners, collaborators}) {
+        try {
+            const response = await Fetcher.post(`/api/v1/places`, {
+                name: name,
+                owners: owners || [],
+                collaborators: collaborators || []
+            });
+            return response.place;
+        } catch (e) {
+            return undefined;
+        }
+    }
+
+
     static async updatePlaceStatus(placeId, status) {
         try {
             return await Fetcher.post(`/api/v1/places/${placeId}/status`, {

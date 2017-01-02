@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import ApplicationComponent from './scripts/ApplicationComponent.jsx';
 import LoginComponent from './scripts/LoginComponent.jsx';
 import PlaceComponent from './scripts/PlaceComponent.jsx';
+import PlaceNewPresenter from './scripts/PlaceNewPresenter.es';
 import PlacesComponent from './scripts/PlacesComponent.jsx';
 import UserComponent from './scripts/UserComponent.jsx';
 import UsersComponent from './scripts/UsersComponent.jsx';
@@ -23,9 +24,12 @@ const router = new Router();
 router.add('/login', LoginComponent);
 
 router.add('/places', (params) => {
-    const presenter = new PlacesComponentPresenter(params);
-    return presenter;
+    return new PlacesComponentPresenter(params);
 });
+router.add('/places/new', (params) => {
+    return new PlaceNewPresenter(params);
+});
+
 router.add('/places/:placeId', PlaceComponent);
 
 router.add('/users', UsersComponent);

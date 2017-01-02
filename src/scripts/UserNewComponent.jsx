@@ -23,7 +23,7 @@ export default class UserNewComponent extends PresenterComponent {
             <div className="user-new-component">
                 <h1>New User</h1>
                 <p className="message">
-                    {this.state.message}
+                    {presenter.getMessage()}
                 </p>
                 <form onSubmit={::presenter.register}>
                     <div>

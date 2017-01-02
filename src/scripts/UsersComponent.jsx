@@ -1,31 +1,32 @@
 import React from 'react';
-import WorkerComponent from './WorkerComponent.jsx';
-import UserLinkComponent from './UserLinkComponent.jsx';
-import UsersWorker from './UsersWorker.es';
-
-import {List, ListItem} from 'material-ui/List';
-import TransitionUtil from './utils/TransitionUtil.es';
-
+import UsersPresenter from './UsersPresenter.es';
+import PresenterComponent from './PresenterComponent.jsx';
 import FloatingActionButtonComponent from './FloatingActionButtonComponent.jsx';
+import {List, ListItem} from 'material-ui/List';
 
-export default class UsersComponent extends WorkerComponent {
+export default class UsersComponent extends PresenterComponent {
 
-    constructor(props) {
-        super(UsersWorker);
+    constructor({presenter}) {
+        super(presenter);
     }
 
-    getTitle() {
-        return 'Users';
-    }
+    render() {
 
-    renderSuccess(users) {
+        if (!this.state) {
+            return false;
+        }
+
+        const presenter = super.getPresenter();
+        const users = presenter.getUsers();
+
 
         const userListItems = users.map((user) => {
+            const userId = user.id;
             return (
-                <ListItem key={user.id}
+                <ListItem key={userId}
                           primaryText={user.name}
-                          secondaryText={user.id}
-                          onClick={() => {TransitionUtil.emit(`/users/${user.id}`)}}
+                          secondaryText={userId}
+                          onClick={() => {presenter.navigate(userId)}}
                 />
             );
         });

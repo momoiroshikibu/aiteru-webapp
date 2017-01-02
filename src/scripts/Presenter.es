@@ -33,7 +33,10 @@ export default class Presenter extends EventEmitter {
         this.emit('change', this);
     }
 
-    async run() {
+    ready() {
+        if (this.initialize) {
+            this.initialize();
+        }
         // should be overrided
         setTimeout(() => {
             EventBus.emit('change:application:title', this.getScreenTitle());

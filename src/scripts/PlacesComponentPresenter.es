@@ -9,7 +9,7 @@ export default class PlacesComponentPresenter extends Presenter {
         this.screenTitle = 'Places';
         this.params = params;
         this.places = [];
-        this.on('update', this.run);
+        this.on('update', this.fetch);
     }
 
     getPlaces() {
@@ -21,8 +21,11 @@ export default class PlacesComponentPresenter extends Presenter {
         this.emit('update');
     }
 
-    async run() {
-        super.run();
+    async initialize() {
+        this.fetch();
+    }
+
+    async fetch() {
         try {
             const places = await PlaceRepository.fetchPlaces(this.params);
             this.places = places;

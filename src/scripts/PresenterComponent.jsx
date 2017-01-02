@@ -9,7 +9,7 @@ export default class PresenterComponent extends Component {
     }
 
     initialize(presenter) {
-        presenter.run();
+        presenter.ready();
         presenter.on('change', ::this.onChangePresenter);
         this.state = {
             presenter: presenter,

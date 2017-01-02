@@ -6,6 +6,7 @@ import ApplicationComponent from './scripts/ApplicationComponent.jsx';
 import LoginComponent from './scripts/LoginComponent.jsx';
 import PlaceComponent from './scripts/PlaceComponent.jsx';
 import PlaceNewPresenter from './scripts/PlaceNewPresenter.es';
+import PlacePresenter from './scripts/PlacePresenter.es';
 import PlacesComponent from './scripts/PlacesComponent.jsx';
 import UserComponent from './scripts/UserComponent.jsx';
 import UsersComponent from './scripts/UsersComponent.jsx';
@@ -23,14 +24,16 @@ const router = new Router();
 
 router.add('/login', LoginComponent);
 
-router.add('/places', (params) => {
-    return new PlacesComponentPresenter(params);
+router.add('/places', ({queryParams}) => {
+    return new PlacesComponentPresenter(queryParams);
 });
-router.add('/places/new', (params) => {
-    return new PlaceNewPresenter(params);
+router.add('/places/new', () => {
+    return new PlaceNewPresenter();
 });
 
-router.add('/places/:placeId', PlaceComponent);
+router.add('/places/:placeId', ({pathParams}) => {
+    return new PlacePresenter(pathParams.placeId);
+});
 
 router.add('/users', UsersComponent);
 router.add('/users/new', UserNewComponent);

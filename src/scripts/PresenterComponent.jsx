@@ -27,6 +27,10 @@ export default class PresenterComponent extends Component {
         });
     }
 
+    getPresenter() {
+        return this.state.presenter;
+    }
+
     render() {
         // should be overrided
  //        if (!this.state) {

@@ -1,24 +1,26 @@
 import React from 'react';
-import WorkerComponent from './WorkerComponent.jsx';
+import PresenterComponent from './PresenterComponent.jsx';
 import UserLinkComponent from './UserLinkComponent.jsx';
+import LoadingComponent from './LoadingComponent.jsx';
 import PlaceWorker from './PlaceWorker.es';
 import PlaceRepository from './repositories/PlaceRepository.es';
 import Toggle from 'material-ui/Toggle';
 import RaisedButton from 'material-ui/RaisedButton';
 
+export default class PlaceComponent extends PresenterComponent {
 
-
-export default class PlaceComponent extends WorkerComponent {
-
-    constructor(props) {
-        super(PlaceWorker, props.args);
+    constructor({presenter}) {
+        super(presenter);
     }
 
-    getTitle() {
-        return 'Place';
-    }
+    render() {
 
-    renderSuccess(place) {
+        const presenter = super.getPresenter();
+        const place = presenter.getPlace();
+        if (!place) {
+            return (<LoadingComponent />);
+        }
+
         const ownerElements = (place.ownerIds || []).map((id) => <UserLinkComponent key={id} userId={id} />);
         const collaboratorElements = (place.collaboratorIds || []).map((id) => <UserLinkComponent key={id} userId={id} />);
 
@@ -87,10 +89,6 @@ export default class PlaceComponent extends WorkerComponent {
             <Toggle toggled={isOpen}
                     onToggle={toggleStatus}/>
         );
-    }
-
-    renderFailure(e) {
-        return (<p>{e}</p>);
     }
 
 }

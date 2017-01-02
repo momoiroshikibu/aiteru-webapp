@@ -50,7 +50,10 @@ export default class RoutingComponent extends Component {
 //                 args: this.state.args,
 //                 params: this.state.params
 //             });
-            const presenter = component(this.state.params);
+            const presenter = component({
+                pathParams: this.state.args,
+                queryParams: this.params
+            });
             this.presenter = presenter;
             return React.createElement(presenter.getComponentClass(), {
                 presenter: presenter

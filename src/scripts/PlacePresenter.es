@@ -29,4 +29,13 @@ export default class PlacePresenter extends Presenter {
         }
     }
 
+    async updateStatus(newStatus) {
+        try {
+            const result = await PlaceRepository.updatePlaceStatus(this.placeId, newStatus);
+            return await this.fetch();
+        } catch(e) {
+            console.error(e);
+        }
+    }
+
 }

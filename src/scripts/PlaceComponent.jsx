@@ -2,10 +2,7 @@ import React from 'react';
 import PresenterComponent from './PresenterComponent.jsx';
 import UserLinkComponent from './UserLinkComponent.jsx';
 import LoadingComponent from './LoadingComponent.jsx';
-import PlaceWorker from './PlaceWorker.es';
-import PlaceRepository from './repositories/PlaceRepository.es';
 import Toggle from 'material-ui/Toggle';
-import RaisedButton from 'material-ui/RaisedButton';
 
 export default class PlaceComponent extends PresenterComponent {
 
@@ -79,11 +76,8 @@ export default class PlaceComponent extends PresenterComponent {
     }
 
     renderToggleButton(placeId, isOpen) {
-        const self = this;
         const toggleStatus = (event, newStatus) => {
-            PlaceRepository.updatePlaceStatus(placeId, newStatus).then(() => {
-                self.state.worker.rework();
-            });
+            this.getPresenter().updateStatus(newStatus);
         };
         return (
             <Toggle toggled={isOpen}

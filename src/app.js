@@ -11,6 +11,7 @@ import PlacesComponent from './scripts/PlacesComponent.jsx';
 import UserComponent from './scripts/UserComponent.jsx';
 import UsersComponent from './scripts/UsersComponent.jsx';
 import UserNewComponent from './scripts/UserNewComponent.jsx';
+import UserPresenter from './scripts/UserPresenter.es';
 
 import EventBus from './scripts/utils/EventBus.es';
 import TransitionUtil from './scripts/utils/TransitionUtil.es';
@@ -37,7 +38,9 @@ router.add('/places/:placeId', ({pathParams}) => {
 
 router.add('/users', UsersComponent);
 router.add('/users/new', UserNewComponent);
-router.add('/users/:userId', UserComponent);
+router.add('/users/:userId', ({pathParams}) => {
+    return new UserPresenter(pathParams.userId);
+});
 
 
 const resolveLocationHash = () => router.resolve(window.location.hash);

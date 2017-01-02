@@ -1,79 +1,22 @@
 import React from 'react';
-import WorkerComponent from './WorkerComponent.jsx';
+import PresenterComponent from './PresenterComponent.jsx';
 import UserLinkComponent from './UserLinkComponent.jsx';
 import LoadingComponent from './LoadingComponent.jsx';
-import UserWorker from './UserWorker.es';
 
-export default class UserComponent extends WorkerComponent {
+export default class UserComponent extends PresenterComponent {
 
-    constructor(props) {
-        super(UserWorker, props.args, {
-            renderers: {
-                pending: Renderer.pending,
-                failure: Renderer.failure,
-                success: Renderer.success
-            }
-        });
+    constructor({presenter}) {
+        super(presenter);
     }
 
-    getTitle() {
-        return 'User';
-    }
+    render() {
 
-    renderFailure(failure) {
-        return (<p>User Not Found</p>);
-    }
+        const presenter = super.getPresenter();
+        const user = presenter.getUser();
+        if (!user) {
+            return (<LoadingComponent />);
+        }
 
-    renderSuccess(user) {
-        return (
-            <div className="user">
-                <h1 className="user-name">{user.name}</h1>
-                <p className="message">
-                    {this.state.message}
-                </p>
-                <table className="user-attributes">
-                    <tbody>
-                        <tr>
-                            <th>ID</th>
-                            <td>{user.id}</td>
-                        </tr>
-                        <tr>
-                            <th>createdAt</th>
-                            <td>{user.createdAt}</td>
-                        </tr>
-                        <tr>
-                            <th>createdUserId</th>
-                            <td><UserLinkComponent userId={user.id} /></td>
-                        </tr>
-                        <tr>
-                            <th>updatedAt</th>
-                            <td>{user.updatedAt}</td>
-                        </tr>
-                        <tr>
-                            <th>updatedUserId</th>
-                            <td><UserLinkComponent userId={user.id} /></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        );
-    }
-
-}
-
-
-class Renderer {
-    static pending() {
-        return (
-            <LoadingComponent />
-        );
-    }
-
-    static failure() {
-        return (<p>User Not Found</p>);
-    }
-
-    static success(user) {
         return (
             <div className="user">
                 <h1 className="user-name">{user.name}</h1>
@@ -89,7 +32,7 @@ class Renderer {
                         </div>
                         <div className="attribute">
                             <div className="attribute-label">Created User ID</div>
-                            <div className="attribute-content">{user.createdUserId}</div>
+                            <div className="attribute-content"><UserLinkComponent userId={user.createdUserId} /></div>
                         </div>
                         <div className="attribute">
                             <div className="attribute-label">Updated At</div>
@@ -97,11 +40,12 @@ class Renderer {
                         </div>
                         <div className="attribute">
                             <div className="attribute-label">Updated User ID</div>
-                            <div className="attribute-content">{user.updatedUserId}</div>
+                            <div className="attribute-content"><UserLinkComponent userId={user.updatedUserId} /></div>
                         </div>
                     </div>
                 </div>
             </div>
         );
     }
+
 }

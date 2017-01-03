@@ -2,6 +2,9 @@ import React from 'react';
 import PresenterComponent from './PresenterComponent.jsx';
 import FloatingActionButtonComponent from './FloatingActionButtonComponent.jsx';
 import {List, ListItem} from 'material-ui/List';
+import Avatar from 'material-ui/Avatar';
+import ChanrioImage from './ChanrioImage.es';
+
 
 export default class UsersComponent extends PresenterComponent {
 
@@ -24,7 +27,17 @@ export default class UsersComponent extends PresenterComponent {
             return (
                 <ListItem key={userId}
                           primaryText={user.name}
-                          secondaryText={userId}
+                          innerDivStyle={{fontSize: '20pt',
+                                          minHeight: '20px'
+                          }}
+                leftAvatar={<Avatar size={30}
+                                    style={{marginTop: '6px'}}
+                                    src={'data:image/png;base64,' + ChanrioImage} />}
+                          rightIcon={(<div style={{
+                              fontSize: '13px',
+                              textAlign: 'center',
+                              paddingTop: '6px'
+                          }}>{user.id}</div>)}
                           onClick={() => {presenter.navigate(userId)}}
                 />
             );

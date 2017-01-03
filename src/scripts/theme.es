@@ -5,6 +5,11 @@ import {
     green100,
     indigoA200,
     pinkA200,
+    cyan200,
+    blueGrey100,
+    greenA100,
+    greenA400,
+    limeA100,
     grey100, grey300, grey400, grey500,
     white, darkBlack, fullBlack,
 } from 'material-ui/styles/colors';
@@ -16,7 +21,7 @@ const theme = getMuiTheme({
     spacing: spacing,
     fontFamily: 'Roboto, sans-serif',
     palette: {
-        primary1Color: indigoA200,
+        primary1Color: cyan200,
         primary2Color: green100,
         primary3Color: grey400,
         accent1Color: pinkA200,

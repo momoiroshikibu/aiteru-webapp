@@ -3,6 +3,7 @@ import PresenterComponent from './PresenterComponent.jsx';
 import UserLinkComponent from './UserLinkComponent.jsx';
 import LoadingComponent from './LoadingComponent.jsx';
 import Toggle from 'material-ui/Toggle';
+import DateFormatter from '../utils/DateFormatter.es';
 
 export default class PlaceComponent extends PresenterComponent {
 
@@ -27,50 +28,29 @@ export default class PlaceComponent extends PresenterComponent {
             <div className="place-component">
                 <h1 className="place-name">{place.name}</h1>
                 <h2 className={"place-is-open " + openStatus}>{openStatus}</h2>
-                <div className="place-info">
-                    <div className="attribute-section">
-                        <div className="attribute">
-                            <div className="attribute-label">ID</div>
-                            <div className="attribute-content">{place.id}</div>
-                        </div>
-                        <div className="attribute">
-                            <div className="attribute-label">Owners</div>
-                            <div className="attribute-content">{ownerElements}</div>
-                        </div>
-                        <div className="attribute">
-                            <div className="attribute-label">Collaborators</div>
-                            <div className="attribute-content">{collaboratorElements}</div>
-                        </div>
-                        <div className="attribute">
-                            <div className="attribute-label">Created At</div>
-                            <div className="attribute-content">{place.createdAt}</div>
-                        </div>
-                        <div className="attribute">
-                            <div className="attribute-label">Created User ID</div>
-                            <div className="attribute-content">{place.createdUserId}</div>
-                        </div>
-                        <div className="attribute">
-                            <div className="attribute-label">Updated At</div>
-                            <div className="attribute-content">{place.updatedAt}</div>
-                        </div>
-                        <div className="attribute">
-                            <div className="attribute-label">Updated User ID</div>
-                            <div className="attribute-content">{place.updatedUserId}</div>
-                        </div>
-                        <div className="attribute">
-                            <div className="attribute-label">Status Updated User ID</div>
-                            <div className="attribute-content">{place.status.updatedUserId}</div>
-                        </div>
-                        <div className="attribute">
-                            <div className="attribute-label">Status Updated At</div>
-                            <div className="attribute-content">{place.status.updatedAt}</div>
-                        </div>
-                        <div className="attribute">
-                            <div className="attribute-label">Status</div>
-                            <div className="attribute-content">{this.renderToggleButton(place.id, place.status.isOpen)}</div>
-                        </div>
+
+                <div style={{fontSize: '24pt',
+                             marginTop: '20px'}}>
+                    {DateFormatter.formatTimeAgo(place.status.updatedAt)}
+                </div>
+
+                <div style={{fontSize: '16pt',
+                             marginTop: '48px'}}>
+                    {place.status.updatedAt}
+                </div>
+
+                <div style={{fontSize: '16pt'}}>
+                    {presenter.getStatusUpdatedUser().name}
+                </div>
+                <div style={{display: 'flex',
+                             justifyContent: 'center',
+                             marginTop: '20px'}}>
+                    <div style={{fontSize: '14pt'}}>switch status to {(place.status.isOpen)? 'close' : 'open'}</div>
+                    <div>
+                        {this.renderToggleButton(place.id, place.status.isOpen)}
                     </div>
                 </div>
+
             </div>
         );
     }
@@ -81,6 +61,7 @@ export default class PlaceComponent extends PresenterComponent {
         };
         return (
             <Toggle toggled={isOpen}
+                    style={{width: 'auto'}}
                     onToggle={toggleStatus}/>
         );
     }

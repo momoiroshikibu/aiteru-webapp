@@ -60,6 +60,11 @@ export default class AppBarComponent extends Component {
             <div>
                 <AppBar
                     title={this.state.title}
+                    titleStyle={{
+                        textAlign: 'center',
+                        marginLeft: '-40px',
+                        fontWeight: 'bold'
+                    }}
                     iconElementLeft="navigation-menu"
                     iconElementLeft={<IconButton><MenuIcon onTouchTap={::this.openDrawer}/></IconButton>}
                 />

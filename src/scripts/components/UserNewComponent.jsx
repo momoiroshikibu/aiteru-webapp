@@ -20,7 +20,10 @@ export default class UserNewComponent extends PresenterComponent {
         const presenter = super.getPresenter();
         return (
             <div className="user-new-component">
-                <h1>New User</h1>
+                <p>
+                    You can create a user.<br />
+                    Input user's information, and Tap CREATE button.
+                </p>
                 <p className="message">
                     {presenter.getMessage()}
                 </p>

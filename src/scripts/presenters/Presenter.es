@@ -33,6 +33,10 @@ export default class Presenter extends EventEmitter {
         this.emit('change', this);
     }
 
+    updateParams(/*{pathParams, queryParams}*/) {
+        // can be overrided
+    }
+
     ready() {
         if (this.initialize) {
             this.initialize();

@@ -31,8 +31,21 @@ export default class PlaceNewPresenter extends Presenter {
         return this.collaborators;
     }
 
+    getMessage() {
+        return this.message;
+    }
+
+    setMessage(message) {
+        this.message = message;
+        this.emitChange();
+    }
+
     // parent
     async register() {
+        if (!this.name) {
+            this.setMessage('Place Name cannot be empty.');
+            return;
+        }
         try {
             const place = await PlaceRepository.addPlace({
                 name: this.name,

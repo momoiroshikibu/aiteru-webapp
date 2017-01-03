@@ -12,17 +12,12 @@ export default class PlaceNewComponent extends PresenterComponent {
     }
 
     render() {
-        if (!this.state) {
-            return (<div>'yeah'</div>);
-        }
-
         const presenter = this.state.presenter;
-
         return (
             <div className="place-new-component">
                 <h1>New Place</h1>
                 <p className="message">
-                    {this.state.message}
+                    {presenter.getMessage()}
                 </p>
                 <form onSubmit={presenter.register}>
                     <div>
@@ -48,9 +43,5 @@ export default class PlaceNewComponent extends PresenterComponent {
     onChangeName(event, value) {
         this.state.presenter.setName(value);
     }
-
-    /* onRegister(event, value) {
-     *     this.state.presenter
-     * }*/
 
 }

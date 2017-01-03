@@ -15,6 +15,12 @@ export default class UserPresenter extends Presenter {
         return this.user;
     }
 
+    updateParams({pathParams}) {
+        this.userId = pathParams.userId;
+        this.fetch();
+    }
+
+
     async initialize() {
         this.fetch();
     }

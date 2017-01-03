@@ -1,3 +1,5 @@
+$open_color = #00E676
+$closed_color = #FF1744
 $error_color = #f44e03
 
 html
@@ -28,38 +30,38 @@ body
 
 .places-component
   .place
-    font-weight: bold !important
     .open
-      background-color: #86cf4d
+      background-color: $open_color
       border-radius: 12px
     .closed
-      background-color: #cf554d
+      background-color: $closed_color
       border-radius: 4px
 
 .place-component
   text-align: center;
 
   .place-name
-    margin: 20px;
+    margin: 32px;
     font-size: 3em
+    font-weight: normal;
 
   .place-is-open
-    font-size: 4em;
+    font-size: 5em;
     font-weight: bold;
     color: #03A9F4;
-    border: 5px solid;
+    border: 8px solid;
     display: inline-block;
-    padding: 20px;
+    padding: 32px;
     margin: 24px 0;
-    border-radius: 10px;
+    border-radius: 24px;
 
   .place-is-open.OPEN
-    color: #03A9F4;
-    border-color: #03A9F4;
+    color: $open_color;
+    border-color: $open_color;
 
   .place-is-open.CLOSED
-    color: $error_color;
-    border-color: $error_color;
+    color: $closed_color;
+    border-color: $closed_color;
 
   .place-info
     display: flex;

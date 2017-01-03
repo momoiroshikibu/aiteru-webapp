@@ -15,7 +15,10 @@ export default class PlaceNewComponent extends PresenterComponent {
         const presenter = this.state.presenter;
         return (
             <div className="place-new-component">
-                <h1>New Place</h1>
+                <p>
+                    You can create a place.<br />
+                    Input place's information, and Tap CREATE button.
+                </p>
                 <p className="message">
                     {presenter.getMessage()}
                 </p>

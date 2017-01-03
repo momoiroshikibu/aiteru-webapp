@@ -21,20 +21,28 @@ export default class RoutingComponent extends Component {
         this.router.on('notfound', ::this.onNotFound);
     }
 
-    onChangeRoute(path, params) {
-        this.setState(this.router.getCurrentComponent());
+    onChangeRoute() {
+        const router = this.router;
+        this.setState({
+            component: router.getCurrentComponent(),
+            pathParams: router.getCurrentPathParams(),
+            queryParams: router.getCurrentQueryParams()
+        });
     }
 
-    onUpdateCondition(path, params) {
-        //        this.setState(this.router.getCurrentComponent());
-        this.presenter.updateParams(params);
+    onUpdateCondition() {
+        const router = this.router;
+        this.presenter.updateParams({
+            pathParams: router.getCurrentPathParams(),
+            queryParams: router.getCurrentQueryParams()
+        });
     }
 
-    onNotFound(path, params) {
+    onNotFound(path, queryParams) {
         this.setState({
             component: NotFoundComponent,
-            args: path,
-            params: params
+            path: path,
+            queryParams: queryParams
         });
     }
 
@@ -44,15 +52,10 @@ export default class RoutingComponent extends Component {
             return false;
         }
 
-
         if (typeof component === 'function' && component.name === '') {
-//             const presenter = component({
-//                 args: this.state.args,
-//                 params: this.state.params
-//             });
             const presenter = component({
-                pathParams: this.state.args,
-                queryParams: this.params
+                pathParams: this.state.pathParams,
+                queryParams: this.state.queryParams
             });
             this.presenter = presenter;
             return React.createElement(presenter.getComponentClass(), {
@@ -60,13 +63,12 @@ export default class RoutingComponent extends Component {
             });
         }
 
-
         const element = (component.prototype.render)
                       ? React.createElement(component, {
-                          args: this.state.args,
-                          params: this.state.params
+                          pathParams: this.state.pathParams,
+                          queryParams: this.state.queryParams
                       })
-                      : component(this.state.args);
+                      : component(this.state.pathParams);
         return (
             <div>
                 {element}

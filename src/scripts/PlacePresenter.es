@@ -15,6 +15,11 @@ export default class PlacePresenter extends Presenter {
         return this.place;
     }
 
+    updateParams({pathParams}) {
+        this.placeId = pathParams.placeId;
+        this.fetch();
+    }
+
     async initialize() {
         this.fetch();
     }

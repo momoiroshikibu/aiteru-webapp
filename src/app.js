@@ -10,9 +10,9 @@ import PlacePresenter from './scripts/PlacePresenter.es';
 import PlacesComponent from './scripts/PlacesComponent.jsx';
 import UserComponent from './scripts/UserComponent.jsx';
 import UsersComponent from './scripts/UsersComponent.jsx';
-import UserNewComponent from './scripts/UserNewComponent.jsx';
 import UsersPresenter from './scripts/UsersPresenter.es';
 import UserPresenter from './scripts/UserPresenter.es';
+import UserNewPresenter from './scripts/UserNewPresenter.es';
 
 import EventBus from './scripts/utils/EventBus.es';
 import TransitionUtil from './scripts/utils/TransitionUtil.es';
@@ -40,7 +40,9 @@ router.add('/places/:placeId', ({pathParams}) => {
 router.add('/users', () => {
     return new UsersPresenter();
 });
-router.add('/users/new', UserNewComponent);
+router.add('/users/new', () => {
+    return new UserNewPresenter();
+});
 router.add('/users/:userId', ({pathParams}) => {
     return new UserPresenter(pathParams.userId);
 });

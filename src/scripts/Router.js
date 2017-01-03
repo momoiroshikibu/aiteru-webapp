@@ -10,7 +10,8 @@ export default class Router extends EventEmitter {
         this.routes = [];
         this.currentPath = null;
         this.currentComponent = null;
-        this.currentArgs = null;
+        this.currentPathParams = null;
+        this.currentQueryParams = null;
     }
 
     add(pattern, component) {
@@ -23,7 +24,7 @@ export default class Router extends EventEmitter {
 
     resolve(rawPath) {
         const [path, query] = rawPath.split('?');
-        const params = QueryString.parse(query);
+        const queryParams = QueryString.parse(query);
         const route = this.routes.find((route) => {
             return !!route.regexp.exec(path);
         });
@@ -31,32 +32,40 @@ export default class Router extends EventEmitter {
         if (!route) {
             this.currentPath = null;
             this.currentComponent = null;
-            this.currentArgs = null;
-            this.emit('notfound', path, params);
+            this.currentPathParams = null;
+            this.emit('notfound', path, queryParams);
             return;
         }
 
         this.currentPath = path;
-        this.currentParams = params;
+        this.currentQueryParams = queryParams;
         const event = (this.currentComponent === route.component)? 'update' : 'change';
         console.log(event);
 
         this.currentComponent = route.component;
         const matches = route.regexp.exec(path);
-        this.currentArgs = route.regexp.keys.reduce((keyValues, key, i) => {
+        this.currentPathParams = route.regexp.keys.reduce((keyValues, key, i) => {
             keyValues[key.name] = matches[i + 1];
             return keyValues;
         }, {});
-        this.emit(event, path, params);
+        this.emit(event);
     }
 
 
+    getCurrentPath() {
+        return this.currentPath;
+    }
+
     getCurrentComponent() {
-        return {
-            component: this.currentComponent,
-            params: this.currentParams,
-            args: this.currentArgs
-        }
+        return this.currentComponent;
+    }
+
+    getCurrentPathParams() {
+        return this.currentPathParams;
+    }
+
+    getCurrentQueryParams() {
+        return this.currentQueryParams;
     }
 }
 

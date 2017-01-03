@@ -4,10 +4,10 @@ import PlacesComponent from './PlacesComponent.jsx';
 
 export default class PlacesComponentPresenter extends Presenter {
 
-    constructor(params) {
+    constructor(queryParams) {
         super(PlacesComponent);
         this.screenTitle = 'Places';
-        this.params = params;
+        this.queryParams = queryParams;
         this.places = [];
         this.on('update', this.fetch);
     }
@@ -16,8 +16,8 @@ export default class PlacesComponentPresenter extends Presenter {
         return this.places;
     }
 
-    updateParams(params) {
-        this.params = params;
+    updateParams({queryParams}) {
+        this.queryParams = queryParams;
         this.emit('update');
     }
 
@@ -27,7 +27,7 @@ export default class PlacesComponentPresenter extends Presenter {
 
     async fetch() {
         try {
-            const places = await PlaceRepository.fetchPlaces(this.params);
+            const places = await PlaceRepository.fetchPlaces(this.queryParams);
             this.places = places;
             this.emitChange();
         } catch(e) {

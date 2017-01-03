@@ -15,6 +15,12 @@ export default class UserPresenter extends Presenter {
         return this.user;
     }
 
+    updateParams({pathParams}) {
+        this.userId = pathParams.userId;
+        this.fetch();
+    }
+
+
     async initialize() {
         this.fetch();
     }
@@ -27,10 +33,6 @@ export default class UserPresenter extends Presenter {
         } catch(e) {
             console.error(e);
         }
-    }
-
-    navigate() {
-        TransitionUtil.emit(`/users/${user.id}`)
     }
 
 }

@@ -33,5 +33,4 @@ export default class UsersComponentPresenter extends Presenter {
         TransitionUtil.emit(`/users/${userId}`);
     }
 
-
 }

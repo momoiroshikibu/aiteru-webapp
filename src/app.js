@@ -3,13 +3,11 @@ import Router from './scripts/Router.js';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ApplicationComponent from './scripts/ApplicationComponent.jsx';
-import LoginComponent from './scripts/LoginComponent.jsx';
-import PlaceComponent from './scripts/PlaceComponent.jsx';
+import LoginPresenter from './scripts/LoginPresenter.es';
 import PlaceNewPresenter from './scripts/PlaceNewPresenter.es';
 import PlacePresenter from './scripts/PlacePresenter.es';
-import PlacesComponent from './scripts/PlacesComponent.jsx';
-import UserComponent from './scripts/UserComponent.jsx';
-import UsersComponent from './scripts/UsersComponent.jsx';
+import PlacesPresenter from './scripts/PlacesPresenter.es';
+
 import UsersPresenter from './scripts/UsersPresenter.es';
 import UserPresenter from './scripts/UserPresenter.es';
 import UserNewPresenter from './scripts/UserNewPresenter.es';
@@ -20,33 +18,19 @@ import TransitionUtil from './scripts/utils/TransitionUtil.es';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
-import PlacesComponentPresenter from './scripts/PlacesComponentPresenter.es';
+
 
 const router = new Router();
 
-router.add('/login', LoginComponent);
+router.add('/login', () => { return new LoginPresenter(); });
 
-router.add('/places', ({queryParams}) => {
-    return new PlacesComponentPresenter(queryParams);
-});
-router.add('/places/new', () => {
-    return new PlaceNewPresenter();
-});
+router.add('/places', ({queryParams}) => { return new PlacesPresenter(queryParams); });
+router.add('/places/new', () => { return new PlaceNewPresenter(); });
+router.add('/places/:placeId', ({pathParams}) => { return new PlacePresenter(pathParams.placeId); });
 
-router.add('/places/:placeId', ({pathParams}) => {
-    return new PlacePresenter(pathParams.placeId);
-});
-
-router.add('/users', () => {
-    return new UsersPresenter();
-});
-router.add('/users/new', () => {
-    return new UserNewPresenter();
-});
-router.add('/users/:userId', ({pathParams}) => {
-    return new UserPresenter(pathParams.userId);
-});
-
+router.add('/users', () => { return new UsersPresenter(); });
+router.add('/users/new', () => { return new UserNewPresenter(); });
+router.add('/users/:userId', ({pathParams}) => { return new UserPresenter(pathParams.userId); });
 
 const resolveLocationHash = () => router.resolve(window.location.hash);
 window.addEventListener('DOMContentLoaded', resolveLocationHash);

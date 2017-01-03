@@ -2,7 +2,7 @@ import Presenter from './Presenter.es';
 import PlaceRepository from './repositories/PlaceRepository.es';
 import PlacesComponent from './PlacesComponent.jsx';
 
-export default class PlacesComponentPresenter extends Presenter {
+export default class PlacesPresenter extends Presenter {
 
     constructor(queryParams) {
         super(PlacesComponent);

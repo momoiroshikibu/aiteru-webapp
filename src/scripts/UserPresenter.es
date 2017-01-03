@@ -29,8 +29,4 @@ export default class UserPresenter extends Presenter {
         }
     }
 
-    navigate() {
-        TransitionUtil.emit(`/users/${user.id}`)
-    }
-
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Component} from 'react';
+import PresenterComponent from './PresenterComponent.jsx';
 import LoginRepository from './repositories/LoginRepository.es';
 import TransitionUtil from './utils/TransitionUtil.es';
 import EventBus from './utils/EventBus.es';
@@ -8,33 +8,21 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
 
-export default class LoginComponent extends Component {
+export default class LoginComponent extends PresenterComponent {
 
-    constructor() {
-        super();
-        this.state = {
-            loginId: '',
-            password: '',
-            message: ''
-        };
-    }
-
-    componentDidMount() {
-        EventBus.emit('change:application:title', 'Login');
-    }
-
-    getTitle() {
-        return 'Login';
+    constructor({presenter}) {
+        super(presenter);
     }
 
     render() {
+        const presenter = super.getPresenter();
         return (
             <div className="login-component">
                 <h1>Login</h1>
                 <p className="message">
-                    {this.state.message}
+                    {presenter.getMessage()}
                 </p>
-                <form onSubmit={this.attempt}>
+                <form onSubmit={::this.login}>
                     <div>
                         <TextField
                             hintText="Login ID"
@@ -53,34 +41,21 @@ export default class LoginComponent extends Component {
                     <RaisedButton className="login-button"
                                   label="Login"
                                   primary={true}
-                                  onClick={::this.attempt} />
+                                  onClick={::this.login} />
                 </form>
             </div>
         );
     }
 
     onChangeLoginId(e) {
-        this.setState({
-            loginId: e.target.value
-        });
+        super.getPresenter().setLoginId(e.target.value);
     }
 
     onChangePassword(e) {
-        this.setState({
-            password: e.target.value
-        });
+        super.getPresenter().setPassword(e.target.value);
     }
 
-
-    attempt(event) {
-        LoginRepository.login(this.state.loginId, this.state.password).then((accessToken) => {
-            
-            TransitionUtil.emit('/places');
-            EventBus.emit('change:application:message', 'Login Success');
-        }).catch((error) => {
-            this.setState({
-                message: 'Login Failed.'
-            });
-        });
+    login(event) {
+        super.getPresenter().login();
     }
 }

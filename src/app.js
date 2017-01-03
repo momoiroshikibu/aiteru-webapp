@@ -3,7 +3,7 @@ import Router from './scripts/Router.js';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ApplicationComponent from './scripts/ApplicationComponent.jsx';
-import LoginComponent from './scripts/LoginComponent.jsx';
+import LoginPresenter from './scripts/LoginPresenter.es';
 import PlaceComponent from './scripts/PlaceComponent.jsx';
 import PlaceNewPresenter from './scripts/PlaceNewPresenter.es';
 import PlacePresenter from './scripts/PlacePresenter.es';
@@ -24,7 +24,7 @@ import PlacesComponentPresenter from './scripts/PlacesComponentPresenter.es';
 
 const router = new Router();
 
-router.add('/login', LoginComponent);
+router.add('/login', () => {return new LoginPresenter()});
 
 router.add('/places', ({queryParams}) => {
     return new PlacesComponentPresenter(queryParams);

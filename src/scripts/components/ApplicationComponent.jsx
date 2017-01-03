@@ -2,11 +2,11 @@ import React from 'react';
 import {Component} from 'react';
 import RoutingComponent from './RoutingComponent.jsx';
 import AppBarComponent from './AppBarComponent.jsx';
-import EventBus from './utils/EventBus.es';
+import EventBus from '../utils/EventBus.es';
 import Snackbar from 'material-ui/Snackbar';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import theme from './theme.es';
+import theme from '../theme.es';
 
 export default class ApplicationComponent extends Component {
 

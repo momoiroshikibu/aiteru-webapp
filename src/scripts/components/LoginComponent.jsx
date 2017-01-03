@@ -1,12 +1,7 @@
 import React from 'react';
 import PresenterComponent from './PresenterComponent.jsx';
-import LoginRepository from './repositories/LoginRepository.es';
-import TransitionUtil from './utils/TransitionUtil.es';
-import EventBus from './utils/EventBus.es';
-
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-
 
 export default class LoginComponent extends PresenterComponent {
 

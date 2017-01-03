@@ -1,7 +1,7 @@
 import React from 'react';
 import PresenterComponent from './PresenterComponent.jsx';
 import TabComponent from './TabComponent.jsx';
-import TransitionUtil from './utils/TransitionUtil.es';
+import TransitionUtil from '../utils/TransitionUtil.es';
 import {List, ListItem} from 'material-ui/List';
 import FloatingActionButtonComponent from './FloatingActionButtonComponent.jsx';
 

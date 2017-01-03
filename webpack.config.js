@@ -5,7 +5,7 @@ module.exports = {
     devtool: 'source-map',
     context: __dirname + '/src',
     entry: {
-        app: './app.js'
+        app: './scripts/app.js'
     },
     output: {
         path: __dirname + '/dist/assets',

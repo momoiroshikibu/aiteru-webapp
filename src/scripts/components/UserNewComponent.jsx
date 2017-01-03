@@ -1,8 +1,8 @@
 import React from 'react';
 import PresenterComponent from './PresenterComponent.jsx';
 import UserLinkComponent from './UserLinkComponent.jsx';
-import TransitionUtil from './utils/TransitionUtil.es';
-import EventBus from './utils/EventBus.es';
+import TransitionUtil from '../utils/TransitionUtil.es';
+import EventBus from '../utils/EventBus.es';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 

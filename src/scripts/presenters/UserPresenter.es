@@ -1,6 +1,6 @@
 import Presenter from './Presenter.es';
-import UserRepository from './repositories/UserRepository.es';
-import UserComponent from './UserComponent.jsx';
+import UserRepository from '../repositories/UserRepository.es';
+import UserComponent from '../components/UserComponent.jsx';
 
 export default class UserPresenter extends Presenter {
 

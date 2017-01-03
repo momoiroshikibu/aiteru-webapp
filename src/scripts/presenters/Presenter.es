@@ -1,5 +1,5 @@
 import {EventEmitter} from 'events';
-import EventBus from './utils/EventBus.es';
+import EventBus from '../utils/EventBus.es';
 
 export default class Presenter extends EventEmitter {
 

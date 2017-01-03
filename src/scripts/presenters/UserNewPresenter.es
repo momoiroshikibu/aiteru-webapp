@@ -1,7 +1,7 @@
 import Presenter from './Presenter.es';
-import UserRepository from './repositories/UserRepository.es';
-import UserNewComponent from './UserNewComponent.jsx';
-import TransitionUtil from './utils/TransitionUtil.es';
+import UserRepository from '../repositories/UserRepository.es';
+import UserNewComponent from '../components/UserNewComponent.jsx';
+import TransitionUtil from '../utils/TransitionUtil.es';
 
 export default class UserNewPresenter extends Presenter {
 

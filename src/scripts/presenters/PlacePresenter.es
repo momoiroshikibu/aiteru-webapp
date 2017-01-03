@@ -1,6 +1,6 @@
 import Presenter from './Presenter.es';
-import PlaceRepository from './repositories/PlaceRepository.es';
-import PlaceComponent from './PlaceComponent.jsx';
+import PlaceRepository from '../repositories/PlaceRepository.es';
+import PlaceComponent from '../components/PlaceComponent.jsx';
 
 export default class PlacePresenter extends Presenter {
 

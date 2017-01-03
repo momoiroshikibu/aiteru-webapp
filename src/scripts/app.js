@@ -1,24 +1,23 @@
-import Router from './scripts/Router.js';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ApplicationComponent from './scripts/ApplicationComponent.jsx';
-import LoginPresenter from './scripts/LoginPresenter.es';
-import PlaceNewPresenter from './scripts/PlaceNewPresenter.es';
-import PlacePresenter from './scripts/PlacePresenter.es';
-import PlacesPresenter from './scripts/PlacesPresenter.es';
 
-import UsersPresenter from './scripts/UsersPresenter.es';
-import UserPresenter from './scripts/UserPresenter.es';
-import UserNewPresenter from './scripts/UserNewPresenter.es';
+import Router from './Router.js';
+import ApplicationComponent from './components/ApplicationComponent.jsx';
 
-import EventBus from './scripts/utils/EventBus.es';
-import TransitionUtil from './scripts/utils/TransitionUtil.es';
+import LoginPresenter from './presenters/LoginPresenter.es';
+import PlaceNewPresenter from './presenters/PlaceNewPresenter.es';
+import PlacePresenter from './presenters/PlacePresenter.es';
+import PlacesPresenter from './presenters/PlacesPresenter.es';
+
+import UsersPresenter from './presenters/UsersPresenter.es';
+import UserPresenter from './presenters/UserPresenter.es';
+import UserNewPresenter from './presenters/UserNewPresenter.es';
+
+import EventBus from './utils/EventBus.es';
+import TransitionUtil from './utils/TransitionUtil.es';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
-
-
 
 const router = new Router();
 

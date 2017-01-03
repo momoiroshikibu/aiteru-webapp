@@ -1,5 +1,4 @@
 import React from 'react';
-import UsersPresenter from './UsersPresenter.es';
 import PresenterComponent from './PresenterComponent.jsx';
 import FloatingActionButtonComponent from './FloatingActionButtonComponent.jsx';
 import {List, ListItem} from 'material-ui/List';

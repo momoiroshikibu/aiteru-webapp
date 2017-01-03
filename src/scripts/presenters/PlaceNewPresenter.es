@@ -1,7 +1,7 @@
 import Presenter from './Presenter.es';
-import PlaceRepository from './repositories/PlaceRepository.es';
-import PlaceNewComponent from './PlaceNewComponent.jsx';
-import TransitionUtil from './utils/TransitionUtil.es';
+import PlaceRepository from '../repositories/PlaceRepository.es';
+import PlaceNewComponent from '../components/PlaceNewComponent.jsx';
+import TransitionUtil from '../utils/TransitionUtil.es';
 
 export default class PlaceNewPresenter extends Presenter {
 

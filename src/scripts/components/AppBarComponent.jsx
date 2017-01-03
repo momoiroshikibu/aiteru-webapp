@@ -8,8 +8,8 @@ import Drawer from 'material-ui/Drawer';
 import Subheader from 'material-ui/Subheader';
 import MenuItem from 'material-ui/MenuItem';
 
-import TransitionUtil from './utils/TransitionUtil.es';
-import EventBus from './utils/EventBus.es';
+import TransitionUtil from '../utils/TransitionUtil.es';
+import EventBus from '../utils/EventBus.es';
 
 export default class AppBarComponent extends Component {
 

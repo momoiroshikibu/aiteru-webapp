@@ -1,8 +1,8 @@
 import Presenter from './Presenter.es';
-import LoginRepository from './repositories/LoginRepository.es';
-import LoginComponent from './LoginComponent.jsx';
-import TransitionUtil from './utils/TransitionUtil.es';
-import EventBus from './utils/EventBus.es';
+import LoginRepository from '../repositories/LoginRepository.es';
+import LoginComponent from '../components/LoginComponent.jsx';
+import TransitionUtil from '../utils/TransitionUtil.es';
+import EventBus from '../utils/EventBus.es';
 
 export default class LoginPresenter extends Presenter {
 

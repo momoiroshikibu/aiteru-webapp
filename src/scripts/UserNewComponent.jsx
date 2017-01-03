@@ -1,6 +1,5 @@
 import React from 'react';
 import PresenterComponent from './PresenterComponent.jsx';
-import UserNewActor from './UserNewActor.es';
 import UserLinkComponent from './UserLinkComponent.jsx';
 import TransitionUtil from './utils/TransitionUtil.es';
 import EventBus from './utils/EventBus.es';

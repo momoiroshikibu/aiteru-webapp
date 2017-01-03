@@ -10,7 +10,6 @@ import PlacePresenter from './scripts/PlacePresenter.es';
 import PlacesComponent from './scripts/PlacesComponent.jsx';
 import UserComponent from './scripts/UserComponent.jsx';
 import UsersComponent from './scripts/UsersComponent.jsx';
-import UserNewComponent from './scripts/UserNewComponent.jsx';
 import UsersPresenter from './scripts/UsersPresenter.es';
 import UserPresenter from './scripts/UserPresenter.es';
 import UserNewPresenter from './scripts/UserNewPresenter.es';

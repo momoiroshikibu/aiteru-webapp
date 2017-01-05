@@ -1,6 +1,7 @@
 import Presenter from './Presenter.es';
 import UserRepository from '../repositories/UserRepository.es';
 import UserComponent from '../components/UserComponent.jsx';
+import TransitionUtil from '../utils/TransitionUtil.es';
 
 export default class UserPresenter extends Presenter {
 
@@ -33,6 +34,10 @@ export default class UserPresenter extends Presenter {
         } catch(e) {
             console.error(e);
         }
+    }
+
+    navigateToEdit() {
+        TransitionUtil.emit(`/users/${this.userId}/edit`);
     }
 
 }

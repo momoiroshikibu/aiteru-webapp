@@ -2,6 +2,7 @@ import React from 'react';
 import PresenterComponent from './PresenterComponent.jsx';
 import UserLinkComponent from './UserLinkComponent.jsx';
 import LoadingComponent from './LoadingComponent.jsx';
+import RaisedButton from 'material-ui/RaisedButton';
 
 export default class UserComponent extends PresenterComponent {
 
@@ -43,6 +44,12 @@ export default class UserComponent extends PresenterComponent {
                             <div className="attribute-content"><UserLinkComponent userId={user.updatedUserId} /></div>
                         </div>
                     </div>
+                </div>
+                <div className="user-edit-button">
+                    <RaisedButton label="Edit"
+                                  primary={true}
+                                  onClick={::presenter.navigateToEdit}
+                    />
                 </div>
             </div>
         );

@@ -19,6 +19,7 @@ export default class UserEditPresenter extends Presenter {
 
     setUser(user) {
         this.user = user;
+        this.emitChange();
     }
 
     getName() {
@@ -47,8 +48,7 @@ export default class UserEditPresenter extends Presenter {
     async fetch() {
         try {
             const user = await UserRepository.fetchUser(this.userId);
-            this.user = user;
-            this.emitChange();
+            this.setUser(user);
         } catch(e) {
             console.error(e);
         }

@@ -5,7 +5,7 @@ import {EventEmitter} from 'events';
 
 export default class Router extends EventEmitter {
 
-    constructor(notFoundComponent) {
+    constructor() {
         super();
         this.routes = [];
         this.currentPath = null;
@@ -40,7 +40,6 @@ export default class Router extends EventEmitter {
         this.currentPath = path;
         this.currentQueryParams = queryParams;
         const event = (this.currentComponent === route.component)? 'update' : 'change';
-        console.log(event);
 
         this.currentComponent = route.component;
         const matches = route.regexp.exec(path);

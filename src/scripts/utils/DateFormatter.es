@@ -5,6 +5,6 @@ export default class DateFormatter {
         if (date == null) {
             return '';
         }
-        return new timeago().format(new Date(date).getTime() + (9 * 60 * 60 * 1000));
+        return new timeago().format(new Date(date).getTime());
     }
 }

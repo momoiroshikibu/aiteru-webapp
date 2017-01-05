@@ -12,6 +12,7 @@ import PlacesPresenter from './presenters/PlacesPresenter.es';
 import UsersPresenter from './presenters/UsersPresenter.es';
 import UserPresenter from './presenters/UserPresenter.es';
 import UserNewPresenter from './presenters/UserNewPresenter.es';
+import UserEditPresenter from './presenters/UserEditPresenter.es';
 
 import EventBus from './utils/EventBus.es';
 import TransitionUtil from './utils/TransitionUtil.es';
@@ -30,6 +31,8 @@ router.add('/places/:placeId', ({pathParams}) => { return new PlacePresenter(pat
 router.add('/users', () => { return new UsersPresenter(); });
 router.add('/users/new', () => { return new UserNewPresenter(); });
 router.add('/users/:userId', ({pathParams}) => { return new UserPresenter(pathParams.userId); });
+router.add('/users/:userId/edit', ({pathParams}) => { return new UserEditPresenter(pathParams.userId); });
+
 
 const resolveLocationHash = () => router.resolve(window.location.hash);
 window.addEventListener('DOMContentLoaded', resolveLocationHash);

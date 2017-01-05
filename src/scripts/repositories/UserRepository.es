@@ -13,6 +13,17 @@ export default class UserRepository {
         }
     }
 
+    static async updateUser(userId, userName) {
+        try {
+            const response = await Fetcher.put(`/api/v1/users/${userId}`, {
+                name: userName
+            });
+            return response.user;
+        } catch (e) {
+            return undefined;
+        }
+    }
+
     static async fetchUsers() {
         try {
             const response = await Fetcher.get('/api/v1/users');

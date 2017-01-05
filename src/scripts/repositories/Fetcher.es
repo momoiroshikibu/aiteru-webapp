@@ -35,6 +35,22 @@ export default class Fetcher {
 
         return await response.json();
     }
+
+    static async put(path, body) {
+        const response = await fetch(path, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.getItem('authorization') // TODO
+            },
+            method: 'PUT',
+            body: JSON.stringify(body)
+        });
+
+        checkAuthOrThrow(response);
+
+        return await response.json();
+    }
+
 }
 
 

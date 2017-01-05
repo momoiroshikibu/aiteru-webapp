@@ -5,6 +5,7 @@ import TransitionUtil from '../utils/TransitionUtil.es';
 import EventBus from '../utils/EventBus.es';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import DateFormatter from '../utils/DateFormatter.es';
 
 export default class UserEditComponent extends PresenterComponent {
 
@@ -39,7 +40,7 @@ export default class UserEditComponent extends PresenterComponent {
                         />
                     </div>
                     <div>
-                        <p>User info updated: <span>{user.updatedAt}</span></p>
+                        <p>User info updated: <span>{DateFormatter.formatTimeAgo(user.updatedAt)}</span></p>
                     </div>
                     <div>
                         <RaisedButton className="user-create-button"

@@ -74,4 +74,7 @@ export default class UserEditPresenter extends Presenter {
         }
     }
 
+    navigateToUser() {
+        TransitionUtil.emit(`/users/${this.user.id}`);
+    }
 }

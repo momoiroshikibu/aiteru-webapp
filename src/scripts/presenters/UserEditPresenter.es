@@ -17,6 +17,10 @@ export default class UserEditPresenter extends Presenter {
         return this.user;
     }
 
+    setUser(user) {
+        this.user = user;
+    }
+
     getName() {
         return this.user.name;
     }
@@ -58,10 +62,12 @@ export default class UserEditPresenter extends Presenter {
             return;
         }
 
+        this.setMessage('updating...');
+
         try {
             const user = await UserRepository.updateUser(this.user.id, this.user.name);
-            this.user = user;
-            this.setMessage('User info updated.')
+            this.setUser(user);
+            this.setMessage('User info updated.');
             this.emitChange();
         } catch(e) {
             console.error(e);

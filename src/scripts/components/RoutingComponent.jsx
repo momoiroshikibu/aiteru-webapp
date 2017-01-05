@@ -64,13 +64,13 @@ export default class RoutingComponent extends Component {
         }
 
         const element = (component.prototype.render)
-                      ? React.createElement(component, {
-                          pathParams: this.state.pathParams,
-                          queryParams: this.state.queryParams
-                      })
-                      : component(this.state.pathParams);
+              ? React.createElement(component, {
+                  pathParams: this.state.pathParams,
+                  queryParams: this.state.queryParams
+              })
+              : component(this.state.pathParams);
         return (
-            <div>
+                <div>
                 {element}
             </div>
         );

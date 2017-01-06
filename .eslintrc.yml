@@ -4,6 +4,7 @@ env:
 extends:
   - 'eslint:recommended'
   - 'plugin:react/recommended'
+parser: babel-eslint
 parserOptions:
   ecmaFeatures:
     experimentalObjectRestSpread: true
@@ -89,7 +90,7 @@ rules:
   max-statements-per-line: 'off'
   multiline-ternary:
     - error
-    - never
+    - always
   new-cap: error
   new-parens: error
   newline-after-var: 'off'
@@ -218,7 +219,7 @@ rules:
   sort-imports: 'off'
   sort-keys:
     - error
-    - desc
+    - asc
   sort-vars: error
   space-before-blocks: error
   space-before-function-paren: 'off'

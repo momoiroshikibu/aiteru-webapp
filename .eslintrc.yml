@@ -33,7 +33,12 @@ rules:
   callback-return: error
   camelcase: error
   capitalized-comments: error
-  class-methods-use-this: error
+  class-methods-use-this:
+    - error
+    - exceptMethods:
+        - getTitle
+        - updateParams
+        - navigate
   comma-dangle: error
   comma-spacing:
     - error

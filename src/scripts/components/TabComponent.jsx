@@ -5,12 +5,16 @@ import ToggleCheckBox from 'material-ui/svg-icons/toggle/check-box';
 import ToggleInterminateCheckBox from 'material-ui/svg-icons/toggle/indeterminate-check-box';
 import TransitionUtil from '../utils/TransitionUtil.es';
 
+/**
+ * TabComponent
+ * @returns {ReactComponent} ReactComponent
+ */
 export default function TabComponent() {
     return (
         <Tabs>
-            <Tab icon={<ToggleStar />} onClick={() => {TransitionUtil.emit('/places?filter=favorites');}} />
-            <Tab icon={<ToggleCheckBox />} onClick={() => {TransitionUtil.emit('/places?filter=open');}} />
-            <Tab icon={<ToggleInterminateCheckBox />} onClick={() => {TransitionUtil.emit('/places?filter=closed');}} />
+            <Tab icon={<ToggleStar />} onClick={() => { TransitionUtil.emit('/places?filter=favorites'); }} />
+            <Tab icon={<ToggleCheckBox />} onClick={() => { TransitionUtil.emit('/places?filter=open'); }} />
+            <Tab icon={<ToggleInterminateCheckBox />} onClick={() => { TransitionUtil.emit('/places?filter=closed'); }} />
         </Tabs>
-    )
+    );
 }

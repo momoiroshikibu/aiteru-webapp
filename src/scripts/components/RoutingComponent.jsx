@@ -1,5 +1,4 @@
-import React from 'react';
-import {Component} from 'react';
+import React, {Component} from 'react';
 import NotFoundComponent from './NotFoundComponent.jsx';
 
 export default class RoutingComponent extends Component {
@@ -9,14 +8,14 @@ export default class RoutingComponent extends Component {
         this.router = props.router;
         this.state = {
             component: null,
-            args: null,
-            params: null,
-            presenter: null
+            pathParams: null,
+            presenter: null,
+            queryParams: null
         };
     }
 
     componentWillMount() {
-        this.router.on('change',   ::this.onChangeRoute);
+        this.router.on('change', ::this.onChangeRoute);
         this.router.on('update', ::this.onUpdateCondition);
         this.router.on('notfound', ::this.onNotFound);
     }
@@ -47,7 +46,7 @@ export default class RoutingComponent extends Component {
     }
 
     render() {
-        var component = this.state.component;
+        const component = this.state.component;
         if (!component) {
             return false;
         }
@@ -58,9 +57,7 @@ export default class RoutingComponent extends Component {
                 queryParams: this.state.queryParams
             });
             this.presenter = presenter;
-            return React.createElement(presenter.getComponentClass(), {
-                presenter: presenter
-            });
+            return React.createElement(presenter.getComponentClass(), {presenter});
         }
 
         const element = (component.prototype.render)

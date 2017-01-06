@@ -6,9 +6,9 @@ import EventBus from '../utils/EventBus.es';
 
 export default class LoginPresenter extends Presenter {
 
-    constructor(params) {
+    constructor() {
         super(LoginComponent);
-        this.screenTitle = () => {return 'Login';};
+        this.screenTitle = () => { return 'Login'; };
         this.loginId = '';
         this.password = '';
         this.message = '';
@@ -53,10 +53,10 @@ export default class LoginPresenter extends Presenter {
         }
 
         try {
-            const accessToken = await LoginRepository.login(this.loginId, this.password);
+            await LoginRepository.login(this.loginId, this.password);
             TransitionUtil.emit('/places');
             EventBus.emit('change:application:message', 'Login Success');
-        } catch(e) {
+        } catch (e) {
             this.setMessage('Login Failed');
         }
     }

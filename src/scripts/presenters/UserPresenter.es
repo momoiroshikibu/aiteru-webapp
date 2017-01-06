@@ -23,17 +23,13 @@ export default class UserPresenter extends Presenter {
 
 
     async initialize() {
-        this.fetch();
+        await this.fetch();
     }
 
     async fetch() {
-        try {
-            const user = await UserRepository.fetchUser(this.userId);
-            this.user = user;
-            this.emitChange();
-        } catch(e) {
-            console.error(e);
-        }
+        const user = await UserRepository.fetchUser(this.userId);
+        this.user = user;
+        this.emitChange();
     }
 
     navigateToEdit() {

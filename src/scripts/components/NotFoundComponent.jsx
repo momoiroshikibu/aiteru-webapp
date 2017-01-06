@@ -1,5 +1,10 @@
 import React from 'react';
 
+/**
+ * NotFoundComponent
+ * @param {String} path - path
+ * @returns {ReactComponent} ReactComponent
+ */
 export default function NotFoundComponent(path) {
     return (
         <div>

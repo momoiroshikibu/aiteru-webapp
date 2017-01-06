@@ -1,10 +1,12 @@
-import timeago from 'timeago.js';
+import Timeago from 'timeago.js';
 
 export default class DateFormatter {
+
     static formatTimeAgo(date) {
-        if (date == null) {
+        if (date === null || typeof date === 'undefined') {
             return '';
         }
-        return new timeago().format(new Date(date).getTime());
+        return new Timeago().format(new Date(date).getTime());
     }
+
 }

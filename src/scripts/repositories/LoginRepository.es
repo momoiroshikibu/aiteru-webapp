@@ -5,12 +5,12 @@ export default class LoginRepository {
     static async login(loginId, password) {
         try {
             const responseBody = await Fetcher.post('/api/auth', {
-                name: loginId,
-                address: password
+                address: password,
+                name: loginId
             });
 
-            if (responseBody == null) {
-                throw 'authentiacation failed';
+            if (responseBody === null) {
+                throw new Error({error: 'authentiacation failed'});
             }
 
             const accessToken = responseBody.session.AccessToken;

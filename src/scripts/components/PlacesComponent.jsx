@@ -20,18 +20,18 @@ export default class PlacesComponent extends PresenterComponent {
             const placeId = place.id;
             const statusIconStyle = {
                 height: '20px',
-                width: '20px',
+                lineHeight: '14px',
                 marginTop: '14px',
                 minHeight: '20px',
-                lineHeight: '14px'
+                width: '20px'
             };
 
             const rightIconStyle = {
-                width: '200px',
-                marginTop: '16px',
                 color: '#bbb',
+                fontSize: '12pt',
+                marginTop: '16px',
                 textAlign: 'right',
-                fontSize: '12pt'
+                width: '200px'
             };
 
             const ago = DateFormatter.formatTimeAgo(place.status.updatedAt);
@@ -47,7 +47,7 @@ export default class PlacesComponent extends PresenterComponent {
                           rightIcon={rightIcon}
                           innerDivStyle={{fontSize: '20pt'}}
                           primaryText={place.name}
-                          onClick={() => {TransitionUtil.emit(`/places/${placeId}`)}}
+                onClick={() => { TransitionUtil.emit(`/places/${placeId}`); }}
                 />
             );
         });
@@ -57,7 +57,7 @@ export default class PlacesComponent extends PresenterComponent {
                 <List>
                     {placeLinks}
                 </List>
-                <FloatingActionButtonComponent path='/places/new' />
+                <FloatingActionButtonComponent path="/places/new" />
             </div>
         );
     }

@@ -5,9 +5,9 @@ import TransitionUtil from '../utils/TransitionUtil.es';
 
 export default class PlaceNewPresenter extends Presenter {
 
-    constructor(params) {
+    constructor() {
         super(PlaceNewComponent);
-        this.screenTitle = () => {return 'New Place';};
+        this.screenTitle = () => { return 'New Place'; };
         this.name = '';
         this.owners = [];
         this.collaborators = [];
@@ -40,22 +40,17 @@ export default class PlaceNewPresenter extends Presenter {
         this.emitChange();
     }
 
-    // parent
     async register() {
         if (!this.name) {
             this.setMessage('Place Name cannot be empty.');
             return;
         }
-        try {
-            const place = await PlaceRepository.addPlace({
-                name: this.name,
-                owners: this.owners,
-                collaborators: this.collaborators
-            });
-            TransitionUtil.emit(`/places/${place.id}`);
-        } catch(e) {
-            console.error(e);
-        }
+        const place = await PlaceRepository.addPlace({
+            collaborators: this.collaborators,
+            name: this.name,
+            owners: this.owners
+        });
+        TransitionUtil.emit(`/places/${place.id}`);
     }
 
 }

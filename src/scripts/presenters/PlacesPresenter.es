@@ -22,17 +22,13 @@ export default class PlacesPresenter extends Presenter {
     }
 
     async initialize() {
-        this.fetch();
+        await this.fetch();
     }
 
     async fetch() {
-        try {
-            const places = await PlaceRepository.fetchPlaces(this.queryParams);
-            this.places = places;
-            this.emitChange();
-        } catch(e) {
-            console.error(e);
-        }
+        const places = await PlaceRepository.fetchPlaces(this.queryParams);
+        this.places = places;
+        this.emitChange();
     }
 
 }

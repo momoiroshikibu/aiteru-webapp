@@ -7,7 +7,7 @@ export default class UserEditPresenter extends Presenter {
 
     constructor(userId) {
         super(UserEditComponent);
-        this.screenTitle = () => {return 'Edit User';};
+        this.screenTitle = () => { return 'Edit User'; };
         this.userId = userId;
         this.user = null;
         this.message = null;
@@ -42,20 +42,14 @@ export default class UserEditPresenter extends Presenter {
 
 
     async initialize() {
-        this.fetch();
+        await this.fetch();
     }
 
     async fetch() {
-        try {
-            const user = await UserRepository.fetchUser(this.userId);
-            this.setUser(user);
-        } catch(e) {
-            console.error(e);
-        }
+        const user = await UserRepository.fetchUser(this.userId);
+        this.setUser(user);
     }
 
-
-    // parent
     async update() {
         if (!this.user.name) {
             this.setMessage('User Name cannot be empty.');
@@ -64,14 +58,10 @@ export default class UserEditPresenter extends Presenter {
 
         this.setMessage('updating...');
 
-        try {
-            const user = await UserRepository.updateUser(this.user.id, this.user.name);
-            this.setUser(user);
-            this.setMessage('User info updated.');
-            this.emitChange();
-        } catch(e) {
-            console.error(e);
-        }
+        const user = await UserRepository.updateUser(this.user.id, this.user.name);
+        this.setUser(user);
+        this.setMessage('User info updated.');
+        this.emitChange();
     }
 
     navigateToUser() {

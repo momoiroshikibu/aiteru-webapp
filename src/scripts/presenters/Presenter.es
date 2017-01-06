@@ -29,19 +29,19 @@ export default class Presenter extends EventEmitter {
     }
 
     emitChange() {
-        this.version++;
+        this.version = this.version + 1;
         this.emit('change', this);
     }
 
-    updateParams(/*{pathParams, queryParams}*/) {
-        // can be overrided
+    updateParams() {
+        // Do nothing
     }
 
     ready() {
         if (this.initialize) {
             this.initialize();
         }
-        // should be overrided
+
         setTimeout(() => {
             EventBus.emit('change:application:title', this.getScreenTitle());
         }, 0);

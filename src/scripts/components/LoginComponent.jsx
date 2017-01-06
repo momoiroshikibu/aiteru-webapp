@@ -50,7 +50,7 @@ export default class LoginComponent extends PresenterComponent {
         super.getPresenter().setPassword(e.target.value);
     }
 
-    login(event) {
+    login() {
         super.getPresenter().login();
     }
 }

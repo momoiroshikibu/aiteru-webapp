@@ -1,5 +1,4 @@
-import React from 'react';
-import {Component} from 'react';
+import React, {Component} from 'react';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui/svg-icons/navigation/menu';
@@ -15,17 +14,14 @@ export default class AppBarComponent extends Component {
 
     constructor(props) {
         super(props);
-        /* this.router = props.router;*/
         this.state = {
             openDrawer: false,
             title: null
-        }
+        };
     }
 
     componentWillReceiveProps({title}) {
-        this.setState({
-            title: title
-        });
+        this.setState({title: title});
     }
 
     componentWillMount() {
@@ -33,21 +29,15 @@ export default class AppBarComponent extends Component {
     }
 
     onChangeTitle(title) {
-        this.setState({
-            title: title
-        });
+        this.setState({title: title});
     }
 
     openDrawer() {
-        this.setState({
-            openDrawer: true
-        });
+        this.setState({openDrawer: true});
     }
 
     closeDrawer() {
-        this.setState({
-            openDrawer: false
-        });
+        this.setState({openDrawer: false});
     }
 
     navigate(path) {
@@ -61,11 +51,10 @@ export default class AppBarComponent extends Component {
                 <AppBar
                     title={this.state.title}
                     titleStyle={{
-                        textAlign: 'center',
+                        fontWeight: 'bold',
                         marginLeft: '-40px',
-                        fontWeight: 'bold'
+                        textAlign: 'center'
                     }}
-                    iconElementLeft="navigation-menu"
                     iconElementLeft={<IconButton><MenuIcon onTouchTap={::this.openDrawer}/></IconButton>}
                 />
 
@@ -73,14 +62,14 @@ export default class AppBarComponent extends Component {
                         docked={false}
                         onRequestChange={::this.closeDrawer}>
                     <Subheader inset={true}>Places</Subheader>
-                    <MenuItem primaryText="show places" onTouchTap={() => {::this.navigate('/places')}} />
-                    <MenuItem primaryText="add new place" onTouchTap={() => {::this.navigate('/places/new')}} />
+                    <MenuItem primaryText="show places" onTouchTap={() => { ::this.navigate('/places'); }} />
+                    <MenuItem primaryText="add new place" onTouchTap={() => { ::this.navigate('/places/new'); }} />
                     <Subheader inset={true}>Users</Subheader>
-                    <MenuItem primaryText="show users" onTouchTap={() => {::this.navigate('/users')}} />
-                    <MenuItem primaryText="add new user" onTouchTap={() => {::this.navigate('/users/new')}} />
+                    <MenuItem primaryText="show users" onTouchTap={() => { ::this.navigate('/users'); }} />
+                    <MenuItem primaryText="add new user" onTouchTap={() => { ::this.navigate('/users/new'); }} />
                 </Drawer>
 
             </div>
-        )
+        );
     }
 }

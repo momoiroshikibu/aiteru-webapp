@@ -1,5 +1,4 @@
-import React from 'react';
-import {Component} from 'react';
+import React, {Component} from 'react';
 import RoutingComponent from './RoutingComponent.jsx';
 import AppBarComponent from './AppBarComponent.jsx';
 import EventBus from '../utils/EventBus.es';
@@ -13,9 +12,7 @@ export default class ApplicationComponent extends Component {
     constructor(props) {
         super();
         this.router = props.router;
-        this.state = {
-            message: null
-        };
+        this.state = {message: null};
         this.initialize();
     }
 
@@ -24,9 +21,7 @@ export default class ApplicationComponent extends Component {
     }
 
     onChangeApplicationMessage(message) {
-        this.setState({
-            message: message
-        });
+        this.setState({message: message});
     }
 
     render() {

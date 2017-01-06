@@ -8,7 +8,7 @@ export default class PlacePresenter extends Presenter {
     constructor(placeId) {
         super(PlaceComponent);
         this.screenTitle = 'Place';
-        this.placeId = placeId || 1;
+        this.placeId = placeId;
         this.place = null;
         this.statusUpdatedUser = null;
     }
@@ -18,7 +18,7 @@ export default class PlacePresenter extends Presenter {
     }
 
     getStatusUpdatedUser() {
-        return this.statusUpdatedUser || {}; // TODO
+        return this.statusUpdatedUser || {};
     }
 
     updateParams({pathParams}) {
@@ -27,30 +27,22 @@ export default class PlacePresenter extends Presenter {
     }
 
     async initialize() {
-        this.fetch();
+        await this.fetch();
     }
 
     async fetch() {
-        try {
-            const place = await PlaceRepository.fetchPlace(this.placeId);
-            this.place = place;
+        const place = await PlaceRepository.fetchPlace(this.placeId);
+        this.place = place;
 
-            const statusUpdatedUser = await UserRepository.fetchUser(this.place.status.updatedUserId);
-            this.statusUpdatedUser = statusUpdatedUser;
+        const statusUpdatedUser = await UserRepository.fetchUser(this.place.status.updatedUserId);
+        this.statusUpdatedUser = statusUpdatedUser;
 
-            this.emitChange();
-        } catch(e) {
-            console.error(e);
-        }
+        this.emitChange();
     }
 
     async updateStatus(newStatus) {
-        try {
-            const result = await PlaceRepository.updatePlaceStatus(this.placeId, newStatus);
-            return await this.fetch();
-        } catch(e) {
-            console.error(e);
-        }
+        await PlaceRepository.updatePlaceStatus(this.placeId, newStatus);
+        await this.fetch();
     }
 
 }

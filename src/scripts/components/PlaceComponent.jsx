@@ -1,6 +1,5 @@
 import React from 'react';
 import PresenterComponent from './PresenterComponent.jsx';
-import UserLinkComponent from './UserLinkComponent.jsx';
 import LoadingComponent from './LoadingComponent.jsx';
 import Toggle from 'material-ui/Toggle';
 import DateFormatter from '../utils/DateFormatter.es';
@@ -19,33 +18,40 @@ export default class PlaceComponent extends PresenterComponent {
             return (<LoadingComponent />);
         }
 
-        const ownerElements = (place.ownerIds || []).map((id) => <UserLinkComponent key={id} userId={id} />);
-        const collaboratorElements = (place.collaboratorIds || []).map((id) => <UserLinkComponent key={id} userId={id} />);
-
-        const openStatus = (place.status.isOpen)? 'OPEN' : 'CLOSED';
+        const openStatus = (place.status.isOpen)
+              ? 'OPEN'
+              : 'CLOSED';
 
         return (
             <div className="place-component">
                 <h1 className="place-name">{place.name}</h1>
-                <h2 className={"place-is-open " + openStatus}>{openStatus}</h2>
+                <h2 className={`place-is-open ${openStatus}`}>{openStatus}</h2>
 
-                <div style={{fontSize: '24pt',
-                             marginTop: '20px'}}>
+                <div style={{
+                    fontSize: '24pt',
+                    marginTop: '20px'
+                }}>
                     {DateFormatter.formatTimeAgo(place.status.updatedAt)}
                 </div>
 
-                <div style={{fontSize: '16pt',
-                             marginTop: '48px'}}>
+                <div style={{
+                    fontSize: '16pt',
+                    marginTop: '48px'
+                }}>
                     {place.status.updatedAt}
                 </div>
 
                 <div style={{fontSize: '16pt'}}>
                     {presenter.getStatusUpdatedUser().name}
                 </div>
-                <div style={{display: 'flex',
-                             justifyContent: 'center',
-                             marginTop: '20px'}}>
-                    <div style={{fontSize: '14pt'}}>switch status to {(place.status.isOpen)? 'close' : 'open'}</div>
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    marginTop: '20px'
+                }}>
+                    <div style={{fontSize: '14pt'}}>switch status to {(place.status.isOpen)
+                                                                    ? 'close'
+                                                                    : 'open'}</div>
                     <div>
                         {this.renderToggleButton(place.id, place.status.isOpen)}
                     </div>

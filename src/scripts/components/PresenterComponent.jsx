@@ -1,4 +1,3 @@
-import React from 'react';
 import {Component} from 'react';
 
 export default class PresenterComponent extends Component {
@@ -29,13 +28,6 @@ export default class PresenterComponent extends Component {
 
     getPresenter() {
         return this.state.presenter;
-    }
-
-    render() {
-        // should be overrided
- //        if (!this.state) {
-//             return false;
-//         }
     }
 
 }

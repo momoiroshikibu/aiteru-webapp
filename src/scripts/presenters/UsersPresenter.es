@@ -16,17 +16,13 @@ export default class UsersComponentPresenter extends Presenter {
     }
 
     async initialize() {
-        this.fetch();
+        await this.fetch();
     }
 
     async fetch() {
-        try {
-            const users = await UserRepository.fetchUsers();
-            this.users = users;
-            this.emitChange();
-        } catch(e) {
-            console.error(e);
-        }
+        const users = await UserRepository.fetchUsers();
+        this.users = users;
+        this.emitChange();
     }
 
     navigate(userId) {

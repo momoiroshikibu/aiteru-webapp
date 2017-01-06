@@ -5,9 +5,9 @@ import TransitionUtil from '../utils/TransitionUtil.es';
 
 export default class UserNewPresenter extends Presenter {
 
-    constructor(params) {
+    constructor() {
         super(UserNewComponent);
-        this.screenTitle = () => {return 'New User';};
+        this.screenTitle = () => { return 'New User'; };
         this.name = '';
         this.message = null;
     }
@@ -30,19 +30,14 @@ export default class UserNewPresenter extends Presenter {
         this.emitChange();
     }
 
-    // parent
     async register() {
         if (!this.name) {
             this.setMessage('User Name cannot be empty.');
             return;
         }
 
-        try {
-            const user = await UserRepository.addUser(this.name);
-            TransitionUtil.emit(`/users/${user.id}`);
-        } catch(e) {
-            console.error(e);
-        }
+        const user = await UserRepository.addUser(this.name);
+        TransitionUtil.emit(`/users/${user.id}`);
     }
 
 }

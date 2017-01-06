@@ -7,7 +7,7 @@ export default class PlaceRepository {
             const response = await Fetcher.get('/api/v1/places', queryParams);
             return response.places;
         } catch (e) {
-            return undefined;
+            return null;
         }
     }
 
@@ -16,30 +16,28 @@ export default class PlaceRepository {
             const response = await Fetcher.get(`/api/v1/places/${placeId}`);
             return response.place;
         } catch (e) {
-            return undefined;
+            return null;
         }
     }
 
     static async addPlace({name, owners, collaborators}) {
         try {
-            return await Fetcher.post(`/api/v1/places`, {
+            return await Fetcher.post('/api/v1/places', {
+                collaborators: collaborators || [],
                 name: name,
-                owners: owners || [],
-                collaborators: collaborators || []
+                owners: owners || []
             });
         } catch (e) {
-            return undefined;
+            return null;
         }
     }
 
 
     static async updatePlaceStatus(placeId, status) {
         try {
-            return await Fetcher.post(`/api/v1/places/${placeId}/status`, {
-                isOpen: status
-            });
+            return await Fetcher.post(`/api/v1/places/${placeId}/status`, {isOpen: status});
         } catch (e) {
-            return undefined;
+            return null;
         }
     }
 

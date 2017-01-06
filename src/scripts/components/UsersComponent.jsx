@@ -27,18 +27,19 @@ export default class UsersComponent extends PresenterComponent {
             return (
                 <ListItem key={userId}
                           primaryText={user.name}
-                          innerDivStyle={{fontSize: '20pt',
-                                          minHeight: '20px'
+                          innerDivStyle={{
+                              fontSize: '20pt',
+                              minHeight: '20px'
                           }}
-                leftAvatar={<Avatar size={30}
+                          leftAvatar={<Avatar size={30}
                                     style={{marginTop: '6px'}}
-                                    src={'data:image/png;base64,' + ChanrioImage} />}
+                                    src={`data:image/png;base64,${ChanrioImage}`} />}
                           rightIcon={(<div style={{
                               fontSize: '13px',
-                              textAlign: 'center',
-                              paddingTop: '6px'
+                              paddingTop: '6px',
+                              textAlign: 'center'
                           }}>{user.id}</div>)}
-                          onClick={() => {presenter.navigate(userId)}}
+                          onClick={() => { presenter.navigate(userId); }}
                 />
             );
         });
@@ -48,7 +49,7 @@ export default class UsersComponent extends PresenterComponent {
                 <List>
                     {userListItems}
                 </List>
-                <FloatingActionButtonComponent path='/users/new' />
+                <FloatingActionButtonComponent path="/users/new" />
             </div>
         );
     }

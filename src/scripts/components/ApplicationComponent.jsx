@@ -42,3 +42,6 @@ export default class ApplicationComponent extends Component {
         );
     }
 }
+
+
+ApplicationComponent.propTypes = {router: React.PropTypes.object};

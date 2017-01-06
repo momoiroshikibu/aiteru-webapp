@@ -24,3 +24,5 @@ export default function FloatingActionButtonComponent({path}) {
         </FloatingActionButton>
     );
 }
+
+FloatingActionButtonComponent.propTypes = {path: React.PropTypes.string};

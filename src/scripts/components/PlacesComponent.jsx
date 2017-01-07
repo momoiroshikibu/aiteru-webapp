@@ -1,7 +1,7 @@
 import React from 'react';
 import PresenterComponent from './PresenterComponent.jsx';
 import TabComponent from './TabComponent.jsx';
-import TransitionUtil from '../utils/TransitionUtil.es';
+import NagivationUtil from '../utils/TransitionUtil.es';
 import {List, ListItem} from 'material-ui/List';
 import FloatingActionButtonComponent from './FloatingActionButtonComponent.jsx';
 import DateFormatter from '../utils/DateFormatter.es';
@@ -47,7 +47,7 @@ export default class PlacesComponent extends PresenterComponent {
                           rightIcon={rightIcon}
                           innerDivStyle={{fontSize: '20pt'}}
                           primaryText={place.name}
-                onClick={() => { TransitionUtil.emit(`/places/${placeId}`); }}
+                onClick={() => { NagivationUtil.emit(`/places/${placeId}`); }}
                 />
             );
         });

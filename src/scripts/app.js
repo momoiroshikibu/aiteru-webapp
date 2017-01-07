@@ -15,7 +15,7 @@ import UserNewPresenter from './presenters/UserNewPresenter.es';
 import UserEditPresenter from './presenters/UserEditPresenter.es';
 
 import EventBus from './utils/EventBus.es';
-import TransitionUtil from './utils/TransitionUtil.es';
+import NagivationUtil from './utils/NagivationUtil.es';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
@@ -38,7 +38,7 @@ const resolveLocationHash = () => router.resolve(window.location.hash);
 window.addEventListener('DOMContentLoaded', resolveLocationHash);
 window.addEventListener('hashchange', resolveLocationHash);
 EventBus.on('Fetcher:Authentication:Failed', () => {
-    TransitionUtil.emit('/login');
+    NagivationUtil.emit('/login');
     EventBus.emit('change:application:message', 'Access authentication expired. Please login again.');
 });
 

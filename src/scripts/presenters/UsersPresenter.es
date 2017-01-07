@@ -1,7 +1,7 @@
 import Presenter from './Presenter.es';
 import UserRepository from '../repositories/UserRepository.es';
 import UsersComponent from '../components/UsersComponent.jsx';
-import TransitionUtil from '../utils/TransitionUtil.es';
+import NagivationUtil from '../utils/TransitionUtil.es';
 
 export default class UsersComponentPresenter extends Presenter {
 
@@ -26,7 +26,7 @@ export default class UsersComponentPresenter extends Presenter {
     }
 
     navigate(userId) {
-        TransitionUtil.emit(`/users/${userId}`);
+        NagivationUtil.emit(`/users/${userId}`);
     }
 
 }

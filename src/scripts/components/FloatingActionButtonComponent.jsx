@@ -2,7 +2,7 @@ import React from 'react';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 
-import TransitionUtil from '../utils/TransitionUtil.es';
+import NagivationUtil from '../utils/TransitionUtil.es';
 
 const style = {
     bottom: '20px',
@@ -19,7 +19,7 @@ export default function FloatingActionButtonComponent({path}) {
     return (
         <FloatingActionButton
             style={style}
-        onTouchTap={() => { TransitionUtil.emit(path); }}>
+        onTouchTap={() => { NagivationUtil.emit(path); }}>
             <ContentAdd />
         </FloatingActionButton>
     );

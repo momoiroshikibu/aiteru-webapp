@@ -1,7 +1,7 @@
 import Presenter from './Presenter.es';
 import UserRepository from '../repositories/UserRepository.es';
 import UserEditComponent from '../components/UserEditComponent.jsx';
-import TransitionUtil from '../utils/TransitionUtil.es';
+import NagivationUtil from '../utils/TransitionUtil.es';
 
 export default class UserEditPresenter extends Presenter {
 
@@ -65,6 +65,6 @@ export default class UserEditPresenter extends Presenter {
     }
 
     navigateToUser() {
-        TransitionUtil.emit(`/users/${this.user.id}`);
+        NagivationUtil.emit(`/users/${this.user.id}`);
     }
 }

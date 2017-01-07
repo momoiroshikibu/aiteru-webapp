@@ -22,6 +22,14 @@ export default class Router extends EventEmitter {
         return this;
     }
 
+    setNotFoundComopnent(component) {
+        this.notFoundComponent = null;
+    }
+
+    getNotFoundComponent() {
+        return this.notFoundComponent;
+    }
+
     resolve(rawPath) {
         const [path, query] = rawPath.split('?');
         const queryParams = QueryString.parse(query);
@@ -29,24 +37,25 @@ export default class Router extends EventEmitter {
             return !!route.regexp.exec(path);
         });
 
-        if (!route) {
-            this.currentPath = null;
-            this.currentComponent = null;
-            this.currentPathParams = null;
-            this.emit('notfound', path, queryParams);
-            return;
-        }
 
         this.currentPath = path;
         this.currentQueryParams = queryParams;
-        const event = (this.currentComponent === route.component)? 'update' : 'change';
 
+        if (!route) {
+            this.currentComponent = this.notFoundComponnet;
+            this.emit('notfound');
+            return;
+        }
+
+        const event = (this.currentComponent === route.component)? 'update' : 'change';
         this.currentComponent = route.component;
-        const matches = route.regexp.exec(path);
-        this.currentPathParams = route.regexp.keys.reduce((keyValues, key, i) => {
-            keyValues[key.name] = matches[i + 1];
-            return keyValues;
-        }, {});
+        this.currentPathParams = ((route) => {
+            const matches = route.regexp.exec(path);
+            return route.regexp.keys.reduce((keyValues, key, i) => {
+                keyValues[key.name] = matches[i + 1];
+                return keyValues;
+            }, {});
+        })(route);
         this.emit(event);
     }
 

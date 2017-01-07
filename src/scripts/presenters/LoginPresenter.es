@@ -1,7 +1,7 @@
 import Presenter from './Presenter.es';
 import LoginRepository from '../repositories/LoginRepository.es';
 import LoginComponent from '../components/LoginComponent.jsx';
-import TransitionUtil from '../utils/TransitionUtil.es';
+import NavigationUtil from '../utils/NavigationUtil.es';
 import EventBus from '../utils/EventBus.es';
 
 export default class LoginPresenter extends Presenter {
@@ -54,7 +54,7 @@ export default class LoginPresenter extends Presenter {
 
         try {
             await LoginRepository.login(this.loginId, this.password);
-            TransitionUtil.emit('/places');
+            NavigationUtil.emit('/places');
             EventBus.emit('change:application:message', 'Login Success');
         } catch (e) {
             this.setMessage('Login Failed');

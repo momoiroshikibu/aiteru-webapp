@@ -7,7 +7,7 @@ import Drawer from 'material-ui/Drawer';
 import Subheader from 'material-ui/Subheader';
 import MenuItem from 'material-ui/MenuItem';
 
-import TransitionUtil from '../utils/TransitionUtil.es';
+import NavigationUtil from '../utils/NavigationUtil.es';
 import EventBus from '../utils/EventBus.es';
 
 export default class AppBarComponent extends Component {
@@ -41,7 +41,7 @@ export default class AppBarComponent extends Component {
     }
 
     navigate(path) {
-        TransitionUtil.emit(path);
+        NavigationUtil.emit(path);
         this.closeDrawer();
     }
 

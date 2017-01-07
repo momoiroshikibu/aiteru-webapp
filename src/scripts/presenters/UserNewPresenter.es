@@ -1,7 +1,7 @@
 import Presenter from './Presenter.es';
 import UserRepository from '../repositories/UserRepository.es';
 import UserNewComponent from '../components/UserNewComponent.jsx';
-import TransitionUtil from '../utils/TransitionUtil.es';
+import NavigationUtil from '../utils/NavigationUtil.es';
 
 export default class UserNewPresenter extends Presenter {
 
@@ -37,7 +37,7 @@ export default class UserNewPresenter extends Presenter {
         }
 
         const user = await UserRepository.addUser(this.name);
-        TransitionUtil.emit(`/users/${user.id}`);
+        NavigationUtil.emit(`/users/${user.id}`);
     }
 
 }

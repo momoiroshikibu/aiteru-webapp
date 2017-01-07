@@ -23,7 +23,7 @@ export default class Router extends EventEmitter {
     }
 
     setNotFoundComopnent(component) {
-        this.notFoundComponent = null;
+        this.notFoundComponent = component;
     }
 
     getNotFoundComponent() {
@@ -42,7 +42,7 @@ export default class Router extends EventEmitter {
         this.currentQueryParams = queryParams;
 
         if (!route) {
-            this.currentComponent = this.notFoundComponnet;
+            this.currentComponent = this.notFoundComponent;
             this.emit('notfound');
             return;
         }

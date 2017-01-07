@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import NotFoundComponent from './NotFoundComponent.jsx';
 
 export default class RoutingComponent extends Component {
 
@@ -17,7 +16,7 @@ export default class RoutingComponent extends Component {
     componentWillMount() {
         this.router.on('change', ::this.onChangeRoute);
         this.router.on('update', ::this.onUpdateCondition);
-        this.router.on('notfound', ::this.onNotFound);
+        this.router.on('notfound', ::this.onChangeRoute);
     }
 
     onChangeRoute() {
@@ -38,10 +37,11 @@ export default class RoutingComponent extends Component {
     }
 
     onNotFound(path, queryParams) {
+        const router = this.router;
         this.setState({
-            component: NotFoundComponent,
-            path: path,
-            queryParams: queryParams
+            component: router.getCurrentComponent(),
+            pathParams: router.getCurrentPathParams(),
+            queryParams: router.getCurrentQueryParams()
         });
     }
 

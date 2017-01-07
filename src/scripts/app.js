@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import Router from './Router.js';
 import ApplicationComponent from './components/ApplicationComponent.jsx';
+import NotFoundComponent from './components/NotFoundComponent.jsx';
 
 import LoginPresenter from './presenters/LoginPresenter.es';
 import PlaceNewPresenter from './presenters/PlaceNewPresenter.es';
@@ -32,6 +33,7 @@ router.add('/users', () => { return new UsersPresenter(); });
 router.add('/users/new', () => { return new UserNewPresenter(); });
 router.add('/users/:userId', ({pathParams}) => { return new UserPresenter(pathParams.userId); });
 router.add('/users/:userId/edit', ({pathParams}) => { return new UserEditPresenter(pathParams.userId); });
+router.setNotFoundComopnent(NotFoundComponent);
 
 
 const resolveLocationHash = () => router.resolve(window.location.hash);

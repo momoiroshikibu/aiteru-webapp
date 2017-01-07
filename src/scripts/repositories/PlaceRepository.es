@@ -22,11 +22,12 @@ export default class PlaceRepository {
 
     static async addPlace({name, owners, collaborators}) {
         try {
-            return await Fetcher.post('/api/v1/places', {
+            const response = await Fetcher.post('/api/v1/places', {
                 collaborators: collaborators || [],
                 name: name,
                 owners: owners || []
             });
+            return response.place;
         } catch (e) {
             return null;
         }

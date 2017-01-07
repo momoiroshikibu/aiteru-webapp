@@ -74,4 +74,4 @@ export default class RoutingComponent extends Component {
     }
 }
 
-RoutingComponent.propTypes = {router: React.PropTypes.string};
+RoutingComponent.propTypes = {router: React.PropTypes.object};

@@ -13,7 +13,6 @@ export default class LoginComponent extends PresenterComponent {
         const presenter = super.getPresenter();
         return (
             <div className="login-component">
-                <h1>Login</h1>
                 <p className="message">
                     {presenter.getMessage()}
                 </p>

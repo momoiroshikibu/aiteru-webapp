@@ -47,6 +47,7 @@ export default class RoutingComponent extends Component {
 
     render() {
         const component = this.state.component;
+
         if (!component) {
             return false;
         }
@@ -57,7 +58,11 @@ export default class RoutingComponent extends Component {
                 queryParams: this.state.queryParams
             });
             this.presenter = presenter;
-            return React.createElement(presenter.getComponentClass(), {presenter});
+            return (
+                <div className="screen">
+                    {React.createElement(presenter.getComponentClass(), {presenter})}
+                </div>
+            );
         }
 
         const element = (component.prototype.render)

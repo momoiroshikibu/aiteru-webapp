@@ -14,7 +14,7 @@ export default class PlaceNewComponent extends PresenterComponent {
     render() {
         const presenter = this.state.presenter;
         return (
-            <div className="place-new-component">
+            <div className="input-screen">
                 <p>
                     You can create a place.<br />
                     Input place's information, and Tap CREATE button.
@@ -31,8 +31,8 @@ export default class PlaceNewComponent extends PresenterComponent {
                             onChange={::this.onChangeName}
                         />
                     </div>
-                    <div>
-                        <RaisedButton className="place-create-button"
+                    <div className="action-buttons">
+                        <RaisedButton className="action-button"
                                       label="Create"
                                       primary={true}
                                       onClick={::presenter.register}

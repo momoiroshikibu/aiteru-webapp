@@ -20,7 +20,7 @@ export default class UserEditComponent extends PresenterComponent {
         }
 
         return (
-            <div className="user-edit-component">
+            <div className="input-screen">
                 <p>
                     You can edit the user.<br />
                     Input user's information, and Tap UPDATE button.
@@ -40,13 +40,13 @@ export default class UserEditComponent extends PresenterComponent {
                     <div>
                         <p>User info updated: <span>{DateFormatter.formatTimeAgo(user.updatedAt)}</span></p>
                     </div>
-                    <div>
-                        <RaisedButton className="user-update-button"
+                    <div className="action-buttons">
+                        <RaisedButton className="action-button"
                                       label="update"
                                       primary={true}
                                       onClick={::presenter.update}
                         />
-                        <RaisedButton className="user-edit-cancel-button"
+                        <RaisedButton className="action-button"
                                       label="cancel"
                                       secondary={true}
                                       onClick={::presenter.navigateToUser}

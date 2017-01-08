@@ -12,7 +12,7 @@ export default class LoginComponent extends PresenterComponent {
     render() {
         const presenter = super.getPresenter();
         return (
-            <div className="login-component">
+            <div className="input-screen">
                 <p className="message">
                     {presenter.getMessage()}
                 </p>
@@ -32,10 +32,12 @@ export default class LoginComponent extends PresenterComponent {
                             onChange={::this.onChangePassword}
                         />
                     </div>
-                    <RaisedButton className="login-button"
-                                  label="Login"
-                                  primary={true}
-                                  onClick={::this.login} />
+                    <div className="action-buttons">
+                        <RaisedButton className="action-button"
+                                      label="Login"
+                                      primary={true}
+                                      onClick={::this.login} />
+                    </div>
                 </form>
             </div>
         );

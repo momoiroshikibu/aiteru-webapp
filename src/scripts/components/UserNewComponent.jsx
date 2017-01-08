@@ -16,7 +16,7 @@ export default class UserNewComponent extends PresenterComponent {
     render() {
         const presenter = super.getPresenter();
         return (
-            <div className="user-new-component">
+            <div className="input-screen">
                 <p>
                     You can create a user.<br />
                     Input user's information, and Tap CREATE button.
@@ -33,8 +33,8 @@ export default class UserNewComponent extends PresenterComponent {
                             onChange={::this.onChangeName}
                         />
                     </div>
-                    <div>
-                        <RaisedButton className="user-create-button"
+                    <div className="action-buttons">
+                        <RaisedButton className="action-button"
                                       label="Create"
                                       primary={true}
                                       onClick={::presenter.register}

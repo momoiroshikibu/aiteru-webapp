@@ -40,19 +40,19 @@ export default class UserEditComponent extends PresenterComponent {
                     <div>
                         <p>User info updated: <span>{DateFormatter.formatTimeAgo(user.updatedAt)}</span></p>
                     </div>
-                    <div className="action-buttons">
-                        <RaisedButton className="action-button"
-                                      label="update"
-                                      primary={true}
-                                      onClick={::presenter.update}
-                        />
-                        <RaisedButton className="action-button"
-                                      label="cancel"
-                                      secondary={true}
-                                      onClick={::presenter.navigateToUser}
-                        />
-                    </div>
                 </form>
+                <div className="action-buttons">
+                    <RaisedButton className="action-button"
+                                  label="update"
+                                  primary={true}
+                                  onClick={::presenter.update}
+                    />
+                    <RaisedButton className="action-button"
+                                  label="cancel"
+                                  secondary={true}
+                                  onClick={::presenter.navigateToUser}
+                    />
+                </div>
             </div>
         );
     }

@@ -33,14 +33,14 @@ export default class UserNewComponent extends PresenterComponent {
                             onChange={::this.onChangeName}
                         />
                     </div>
-                    <div className="action-buttons">
-                        <RaisedButton className="action-button"
-                                      label="Create"
-                                      primary={true}
-                                      onClick={::presenter.register}
-                        />
-                    </div>
                 </form>
+                <div className="action-buttons">
+                    <RaisedButton className="action-button"
+                                  label="Create"
+                                  primary={true}
+                                  onClick={::presenter.register}
+                    />
+                </div>
             </div>
         );
     }

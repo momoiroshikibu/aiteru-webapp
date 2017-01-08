@@ -32,13 +32,13 @@ export default class LoginComponent extends PresenterComponent {
                             onChange={::this.onChangePassword}
                         />
                     </div>
-                    <div className="action-buttons">
-                        <RaisedButton className="action-button"
-                                      label="Login"
-                                      primary={true}
-                                      onClick={::this.login} />
-                    </div>
                 </form>
+                <div className="action-buttons">
+                    <RaisedButton className="action-button"
+                                  label="Login"
+                                  primary={true}
+                                  onClick={::this.login} />
+                </div>
             </div>
         );
     }

@@ -25,7 +25,7 @@ export default class PlaceComponent extends PresenterComponent {
         return (
             <div className="place-component">
                 <h1 className="place-name">{place.name}</h1>
-                <h2 className={`place-is-open ${openStatus}`}>{openStatus}</h2>
+                <h2 className={`status ${openStatus}`}>{openStatus}</h2>
 
                 <div style={{
                     fontSize: '24pt',

@@ -34,10 +34,10 @@ body
 
 .places-component
   .place
-    .open
+    .status.open
       background-color: $open_color
       border-radius: 12px
-    .closed
+    .status.closed
       background-color: $closed_color
       border-radius: 4px
 
@@ -49,7 +49,7 @@ body
     font-size: 3em
     font-weight: normal;
 
-  .place-is-open
+  .status
     font-size: 5em;
     font-weight: bold;
     color: #03A9F4;
@@ -59,18 +59,13 @@ body
     margin: 24px 0;
     border-radius: 24px;
 
-  .place-is-open.OPEN
+  .status.OPEN
     color: $open_color;
     border-color: $open_color;
 
-  .place-is-open.CLOSED
+  .status.CLOSED
     color: $closed_color;
     border-color: $closed_color;
-
-  .place-info
-    display: flex;
-    justify-content: center;
-    margin-top: 40px;
 
 
 .user

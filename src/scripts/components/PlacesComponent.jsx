@@ -38,8 +38,8 @@ export default class PlacesComponent extends PresenterComponent {
             const rightIcon = (<div style={rightIconStyle}>{ago}</div>);
 
             const statusIcon = (place.status.isOpen)
-                             ? (<div style={statusIconStyle} className="open"></div>)
-                             : (<div style={statusIconStyle} className="closed"></div>);
+                             ? (<div style={statusIconStyle} className="status open"></div>)
+                             : (<div style={statusIconStyle} className="status closed"></div>);
             return (
                 <ListItem key={placeId}
                           className="place"

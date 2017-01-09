@@ -6,6 +6,29 @@ import {List, ListItem} from 'material-ui/List';
 import FloatingActionButtonComponent from './FloatingActionButtonComponent.jsx';
 import DateFormatter from '../utils/DateFormatter.es';
 
+const styles = {
+    statusIcon: {
+        height: '20px',
+        lineHeight: '14px',
+        marginTop: '14px',
+        minHeight: '20px',
+        width: '20px'
+    },
+    ago: {
+        color: '#bbb',
+        fontSize: '12pt',
+        marginTop: '16px',
+        textAlign: 'right',
+        width: '200px'
+    },
+    listItem: (isOpen) => {
+        return {
+            fontSize: '20pt',
+            color: (isOpen)? '#888' : '#ccc'
+        }
+    }
+};
+
 export default class PlacesComponent extends PresenterComponent {
 
     constructor({presenter}) {
@@ -18,42 +41,20 @@ export default class PlacesComponent extends PresenterComponent {
         }
         const placeLinks = this.state.presenter.getPlaces().map((place) => {
             const placeId = place.id;
-            const statusIconStyle = {
-                height: '20px',
-                lineHeight: '14px',
-                marginTop: '14px',
-                minHeight: '20px',
-                width: '20px'
-            };
-
-            const rightIconStyle = {
-                color: '#bbb',
-                fontSize: '12pt',
-                marginTop: '16px',
-                textAlign: 'right',
-                width: '200px'
-            };
-
-            const ago = DateFormatter.formatTimeAgo(place.status.updatedAt);
-            const rightIcon = (<div style={rightIconStyle}>{ago}</div>);
+            const rightIcon = (<div style={styles.ago}>{DateFormatter.formatTimeAgo(place.status.updatedAt)}</div>);
 
             const isOpen = place.status.isOpen;
             const statusIcon = (isOpen)
-                             ? (<div style={statusIconStyle} className="status open"></div>)
-                             : (<div style={statusIconStyle} className="status closed"></div>);
+                             ? (<div style={styles.statusIcon} className="status open"></div>)
+                             : (<div style={styles.statusIcon} className="status closed"></div>);
             return (
                 <ListItem key={placeId}
                           className="place"
                           leftIcon={statusIcon}
                           rightIcon={rightIcon}
-                          innerDivStyle={{
-                              fontSize: '20pt',
-                              color: (isOpen)
-                                   ? '#888'
-                                   : '#ccc'
-                          }}
+                          innerDivStyle={styles.listItem(isOpen)}
                           primaryText={place.name}
-                onClick={() => { NavigationUtil.emit(`/places/${placeId}`); }}
+                          onClick={() => { NavigationUtil.emit(`/places/${placeId}`); }}
                 />
             );
         });

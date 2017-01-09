@@ -1,5 +1,12 @@
 import React from 'react';
 
+const styles = {
+    wrapper: {
+        marginTop: '20px',
+        textAlign: 'center'
+    }
+};
+
 /**
  * NotFoundComponent
  * @param {String} path - path
@@ -7,10 +14,7 @@ import React from 'react';
  */
 export default function NotFoundComponent() {
     return (
-        <div style={{
-            marginTop: '20px',
-            textAlign: 'center'
-        }}>
+        <div style={styles.wrapper}>
             <h1>Not Found</h1>
             <p>
                 The page you requested was not found.

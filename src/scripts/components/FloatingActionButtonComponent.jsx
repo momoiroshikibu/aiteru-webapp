@@ -4,11 +4,14 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 
 import NavigationUtil from '../utils/NavigationUtil.es';
 
-const style = {
-    bottom: '20px',
-    marginRight: 20,
-    position: 'fixed',
-    right: 0
+const styles = {
+    floatingActionButton: {
+        bottom: '20px',
+        marginRight: 20,
+        position: 'fixed',
+        right: 0
+
+    }
 };
 
 /**
@@ -18,7 +21,7 @@ const style = {
 export default function FloatingActionButtonComponent({path}) {
     return (
         <FloatingActionButton
-            style={style}
+            style={styles.floatingActionButton}
         onTouchTap={() => { NavigationUtil.emit(path); }}>
             <ContentAdd />
         </FloatingActionButton>

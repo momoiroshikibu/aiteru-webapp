@@ -37,7 +37,8 @@ export default class PlacesComponent extends PresenterComponent {
             const ago = DateFormatter.formatTimeAgo(place.status.updatedAt);
             const rightIcon = (<div style={rightIconStyle}>{ago}</div>);
 
-            const statusIcon = (place.status.isOpen)
+            const isOpen = place.status.isOpen;
+            const statusIcon = (isOpen)
                              ? (<div style={statusIconStyle} className="status open"></div>)
                              : (<div style={statusIconStyle} className="status closed"></div>);
             return (
@@ -45,7 +46,12 @@ export default class PlacesComponent extends PresenterComponent {
                           className="place"
                           leftIcon={statusIcon}
                           rightIcon={rightIcon}
-                          innerDivStyle={{fontSize: '20pt'}}
+                          innerDivStyle={{
+                              fontSize: '20pt',
+                              color: (isOpen)
+                                   ? '#888'
+                                   : '#ccc'
+                          }}
                           primaryText={place.name}
                 onClick={() => { NavigationUtil.emit(`/places/${placeId}`); }}
                 />

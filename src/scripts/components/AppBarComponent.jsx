@@ -10,6 +10,14 @@ import MenuItem from 'material-ui/MenuItem';
 import NavigationUtil from '../utils/NavigationUtil.es';
 import EventBus from '../utils/EventBus.es';
 
+const styles = {
+    title: {
+        fontWeight: 'bold',
+        marginLeft: '-40px',
+        textAlign: 'center'
+    }
+};
+
 export default class AppBarComponent extends Component {
 
     constructor(props) {
@@ -50,11 +58,7 @@ export default class AppBarComponent extends Component {
             <div>
                 <AppBar
                     title={this.state.title}
-                    titleStyle={{
-                        fontWeight: 'bold',
-                        marginLeft: '-40px',
-                        textAlign: 'center'
-                    }}
+                    titleStyle={styles.title}
                     iconElementLeft={<IconButton><MenuIcon onTouchTap={::this.openDrawer}/></IconButton>}
                 />
 

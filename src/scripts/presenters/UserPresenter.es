@@ -2,6 +2,7 @@ import Presenter from './Presenter.es';
 import UserRepository from '../repositories/UserRepository.es';
 import UserComponent from '../components/UserComponent.jsx';
 import NavigationUtil from '../utils/NavigationUtil.es';
+import 'babel-polyfill';
 
 export default class UserPresenter extends Presenter {
 

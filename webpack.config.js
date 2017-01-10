@@ -5,7 +5,7 @@ module.exports = {
     devtool: 'source-map',
     context: __dirname + '/src',
     entry: {
-        app: './scripts/app.js'
+        app: ['babel-polyfill', './scripts/app.js']
     },
     output: {
         path: __dirname + '/dist/assets',
@@ -15,6 +15,11 @@ module.exports = {
         rules: [
             {
                 test: /\.jsx?$/,
+                use: 'babel-loader',
+                exclude: /node_modules/
+            },
+            {
+                test: /\.es?$/,
                 use: 'babel-loader',
                 exclude: /node_modules/
             }

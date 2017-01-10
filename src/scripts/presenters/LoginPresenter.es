@@ -3,6 +3,7 @@ import LoginRepository from '../repositories/LoginRepository.es';
 import LoginComponent from '../components/LoginComponent.jsx';
 import NavigationUtil from '../utils/NavigationUtil.es';
 import EventBus from '../utils/EventBus.es';
+import 'babel-polyfill';
 
 export default class LoginPresenter extends Presenter {
 

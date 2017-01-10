@@ -2,6 +2,7 @@ import Presenter from './Presenter.es';
 import PlaceRepository from '../repositories/PlaceRepository.es';
 import UserRepository from '../repositories/UserRepository.es';
 import PlaceComponent from '../components/PlaceComponent.jsx';
+import 'babel-polyfill';
 
 export default class PlacePresenter extends Presenter {
 

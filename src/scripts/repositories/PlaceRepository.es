@@ -3,10 +3,16 @@ import 'babel-polyfill';
 
 export default class PlaceRepository {
 
+    static getCachedPlaces() {
+        return JSON.parse(localStorage.getItem('places'));
+    }
+
     static async fetchPlaces(queryParams) {
         try {
             const response = await Fetcher.get('/api/v1/places', queryParams);
-            return response.places;
+            const places = response.places || [];
+            localStorage.setItem('places', JSON.stringify(places));
+            return places;
         } catch (e) {
             return null;
         }

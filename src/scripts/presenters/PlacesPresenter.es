@@ -23,6 +23,7 @@ export default class PlacesPresenter extends Presenter {
     }
 
     async initialize() {
+        this.places = PlaceRepository.getCachedPlaces();
         await this.fetch();
     }
 

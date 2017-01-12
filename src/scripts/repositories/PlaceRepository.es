@@ -4,7 +4,8 @@ import 'babel-polyfill';
 export default class PlaceRepository {
 
     static getCachedPlaces() {
-        return JSON.parse(localStorage.getItem('places'));
+        const places = JSON.parse(localStorage.getItem('places')) || [];
+        return places;
     }
 
     static async fetchPlaces(queryParams) {

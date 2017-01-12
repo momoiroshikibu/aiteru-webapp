@@ -1,5 +1,4 @@
 import Fetcher from './Fetcher.es';
-import 'babel-polyfill';
 
 export default class PlaceRepository {
 

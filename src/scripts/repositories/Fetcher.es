@@ -1,6 +1,5 @@
 import EventBus from '../utils/EventBus.es';
 import QueryString from 'querystring';
-import 'babel-polyfill';
 
 
 const checkAuthOrThrow = (response) => {

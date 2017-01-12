@@ -2,7 +2,6 @@ import Presenter from './Presenter.es';
 import PlaceRepository from '../repositories/PlaceRepository.es';
 import PlaceNewComponent from '../components/PlaceNewComponent.jsx';
 import NavigationUtil from '../utils/NavigationUtil.es';
-import 'babel-polyfill';
 
 export default class PlaceNewPresenter extends Presenter {
 

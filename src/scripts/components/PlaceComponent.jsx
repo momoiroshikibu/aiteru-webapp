@@ -59,7 +59,7 @@ export default class PlaceComponent extends PresenterComponent {
                 </div>
 
                 <div style={styles.updatedAt}>
-                    {place.status.updatedAt}
+                    {DateFormatter.format(DateFormatter.YYYY_MM_DD_HH_MM_SS, place.status.updatedAt)}
                 </div>
 
                 <div style={styles.updatedBy}>

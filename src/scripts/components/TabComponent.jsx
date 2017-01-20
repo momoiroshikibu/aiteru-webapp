@@ -13,8 +13,8 @@ export default function TabComponent() {
     return (
         <Tabs>
             <Tab icon={<ToggleStar />} onClick={() => { NavigationUtil.emit('/places?filter=favorites'); }} />
-            <Tab icon={<ToggleCheckBox />} onClick={() => { NavigationUtil.emit('/places?filter=open'); }} />
-            <Tab icon={<ToggleInterminateCheckBox />} onClick={() => { NavigationUtil.emit('/places?filter=closed'); }} />
+            <Tab icon={<ToggleCheckBox />} onClick={() => { NavigationUtil.emit('/places?isOpen=true'); }} />
+            <Tab icon={<ToggleInterminateCheckBox />} onClick={() => { NavigationUtil.emit('/places?isOpen=false'); }} />
         </Tabs>
     );
 }

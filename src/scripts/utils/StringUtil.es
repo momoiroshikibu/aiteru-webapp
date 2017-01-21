@@ -1,6 +1,11 @@
 export default class StringUtil {
 
     static padZero(value, length) {
+
+        if (isNaN(value)) {
+            return '';
+        };
+
         function iterate(str, currentLength) {
             if (length === currentLength) {
                 return str;

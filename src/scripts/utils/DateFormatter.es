@@ -28,6 +28,9 @@ export default class DateFormatter {
 
 function format_YYYY_MM_DD_HH_MM_SS(isoDateString) {
     const datetime = new Date(isoDateString);
+    if (isNaN(datetime.getTime())) {
+        return '';
+    }
     const year = datetime.getFullYear();
     const month = StringUtil.padZero((datetime.getMonth() + 1), 2);
     const day = StringUtil.padZero(datetime.getDate(), 2);

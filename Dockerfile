@@ -16,3 +16,12 @@ RUN git clone https://github.com/momoiroshikibu/aiteru-webapp.git
 WORKDIR /opt/aiteru-webapp
 RUN yarn install
 RUN yarn run build:all:production
+
+
+RUN apt-get install -y nginx
+RUN rm -rf /var/www/html
+RUN mv /opt/aiteru-webapp/dist /var/www/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]

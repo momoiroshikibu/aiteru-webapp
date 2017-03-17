@@ -7,3 +7,6 @@ npm-debug.log
 index.js
 /dist
 
+/.bundle/
+/Gemfile.lock
+

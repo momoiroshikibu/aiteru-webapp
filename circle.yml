@@ -5,7 +5,7 @@ machine:
 dependencies:
   override:
     - docker info
-    - docker build -t momoiroshikibu/aiteru-webapp
+    - docker build -t momoiroshikibu/aiteru-webapp .
 
 test:
   override:

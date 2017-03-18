@@ -24,6 +24,15 @@ $ npm run server:h2o & tail -f tmp/h2o/access-log
 
 
 
+## Test
+
+### Service
+
+```
+$ bundle exec rspec
+```
+
+
 ## Images
 
 ![./docs/images/list.png](./docs/images/list.png)
